@@ -1,0 +1,56 @@
+:root {
+    --primary: #A70B0B;
+    --secondary: #F1BA0A;
+    --dark: #372B2B;
+    --light: #EDE9E9;
+    --black: #2D2424;
+    --accent: #F6DE26;
+    --red: #850A0A;
+    --orange: #a63c06;
+}
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+}
+.btn-primary:hover {
+    background-color: var(--red);
+}
+main {
+    background-color: var(--dark);
+}
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+  background-color: var(--black);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: white;
+  transition: color .15s ease-in-out;
+  text-decoration: none;
+}
+.site-header a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer {
+    color: var(--dark); // set all text in footer
+}
+
+/* individual elements inside main */
+
+.product-card {
+    margin-bottom: 10px;
+    max-width: 200px;
+}
+.product-card:hover {
+    background-color: var(--light);
+}
+.wrapper-image {
+    display: flex;
+    float: left;
+}
