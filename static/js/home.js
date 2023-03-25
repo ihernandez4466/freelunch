@@ -17,3 +17,4 @@ function closeModal(event) {
     productID = event.id.split("-")[1];
     closeDiv(`modal-${productID}`);
 }
+// wow so organized
