@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../public/styles/styles.css';
 import Head from 'next/head';
 

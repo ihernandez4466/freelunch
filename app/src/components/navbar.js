@@ -1,27 +1,26 @@
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import { pink } from '@mui/material/colors';
-import { signIn } from "next-auth/react";
-import { signOut } from "next-auth/react";
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav'
 
 export function CustomNavBar() {
     return (
-        <Grid 
-          container
-          sx={{flexWrap: 'nowrap', height: '50px', backgroundColor: pink[100] }}
-        >
-          <Grid item xs={3}>
-            <h1>Tiktok Buttons</h1>
-          </Grid>
-          <Grid item xs={8}>
-            <Button>Nav Button</Button>
-            <Button>Nav Button</Button>
-            <Button>Nav Button</Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button onClick={() => signIn("google")} variant="contained">Login</Button>
-            <Button onClick={() => signOut()}>Sign out</Button>
-          </Grid>
-        </Grid>
+      <Navbar style={{ backgroundColor:'var(--background)'}}>
+      <Container 
+        fluid 
+        style={{ justifyContent: 'space-between', display: 'flex' }}>
+        <Navbar.Brand>
+            <iframe 
+              src="https://giphy.com/embed/spYiRx7B0BtDk7slLK"
+              width='50px'
+              height='50px'
+              /></Navbar.Brand>
+        <Nav variant="underline" >
+          <Nav.Link>Designs</Nav.Link>
+          <Nav.Link>Sweaters</Nav.Link>
+          <Nav.Link>About Us</Nav.Link>
+          <Nav.Link>Contact Us</Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
     );
 }
