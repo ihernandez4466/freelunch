@@ -5,8 +5,10 @@
 
 body {
   font-family: 'GraffitiFont', sans-serif;
-  background-color: var(--background);
+  background-color: white;
   margin: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevents horizontal scrollbar */
 }
 
 :root {

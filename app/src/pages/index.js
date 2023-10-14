@@ -2,16 +2,16 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { CustomNavBar } from '../components/navbar';
-import { DesignSlides } from '../components/designslides';
+import { LandingPage } from '../components/landingPage';
  
 function Home() {
   return (
-      <Container fluid>
+      <div>
         <CustomNavBar/>
         <Row>
-            <DesignSlides />
+            <LandingPage />
         </Row>
-      </Container>
+      </div>
   );
 }
 

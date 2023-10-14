@@ -15,10 +15,10 @@ export function CustomNavBar() {
               height='50px'
               /></Navbar.Brand>
         <Nav variant="underline" >
-          <Nav.Link>Designs</Nav.Link>
-          <Nav.Link>Sweaters</Nav.Link>
-          <Nav.Link>About Us</Nav.Link>
-          <Nav.Link>Contact Us</Nav.Link>
+          <Nav.Link href="#designs" style={{ color: "var(--textPrimary)"}}>Designs</Nav.Link>
+          <Nav.Link href="#sweaters" style={{ color: "var(--textPrimary)"}}>Sweaters</Nav.Link>
+          <Nav.Link href="#about-us" style={{ color: "var(--textPrimary)"}}>About Us</Nav.Link>
+          <Nav.Link href="#contact-us" style={{ color: "var(--textPrimary)"}}>Contact Us</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
