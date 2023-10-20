@@ -1,24 +1,36 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav'
+import Nav from 'react-bootstrap/Nav';
+//import Link from 'next/link';
+import Image from 'react-bootstrap/Image';
+import { Link as ScrollLink } from 'react-scroll';
 
 export function CustomNavBar() {
     return (
-      <Navbar style={{ backgroundColor:'var(--background)'}}>
+      <Navbar sticky="top" style={{ backgroundColor:'rgb(255, 255, 255, 0.8)'}}>
       <Container 
         fluid 
         style={{ justifyContent: 'space-between', display: 'flex' }}>
         <Navbar.Brand>
-            <iframe 
-              src="https://giphy.com/embed/spYiRx7B0BtDk7slLK"
-              width='50px'
-              height='50px'
-              /></Navbar.Brand>
+            <Image 
+              src="http://localhost:3000/images/logo-icon.png"
+              style={{
+              height:'50px'}}
+              ></Image>
+        </Navbar.Brand>
         <Nav variant="underline" >
-          <Nav.Link href="#designs" style={{ color: "var(--textPrimary)"}}>Designs</Nav.Link>
-          <Nav.Link href="#sweaters" style={{ color: "var(--textPrimary)"}}>Sweaters</Nav.Link>
-          <Nav.Link href="#about-us" style={{ color: "var(--textPrimary)"}}>About Us</Nav.Link>
-          <Nav.Link href="#contact-us" style={{ color: "var(--textPrimary)"}}>Contact Us</Nav.Link>
+          <ScrollLink activeClass="active" to="home" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px'}}>
+            Home
+          </ScrollLink>
+          <ScrollLink activeClass="active" to="designs" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px'}}>
+            Designs
+          </ScrollLink>
+          <ScrollLink activeClass="active" to="about-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px'}}>
+            About Us
+          </ScrollLink>
+          <ScrollLink activeClass="active" to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px' }}>
+            Contact Us
+          </ScrollLink>
         </Nav>
       </Container>
     </Navbar>

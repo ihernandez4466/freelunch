@@ -1,14 +1,27 @@
 @font-face {
-  font-family: 'GraffitiFont';
-  src: url('../fonts/graffitfont.otf') format('truetype');
+  font-family: 'Mezcal';
+  src: url('../fonts/Mezcal.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Fortune';
+  src: url('../fonts/Fortune.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Adelia';
+  src: url('../fonts/adelia.otf') format('truetype');
+}
+@font-face {
+  font-family: 'creamcake';
+  src: url('../fonts/creamcake.otf') format('truetype');
 }
 
 body {
-  font-family: 'GraffitiFont', sans-serif;
-  background-color: white;
+  font-family: 'creamcake', sans-serif;
+  background-color: var(--background);
   margin: 0;
   height: 100vh;
   overflow: hidden; /* Prevents horizontal scrollbar */
+  overflow-y: scroll; 
 }
 
 :root {
