@@ -2,6 +2,25 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+const HOST = process.env.HOST;
+const imagePath = HOST + '/images/sweaters'
+const images = [
+    `${imagePath}/betty-strongService-sweater.png`,
+    `${imagePath}/betty-strongService.png`,
+    `${imagePath}/relentless.png`,
+    `${imagePath}/relentless-sweater-white.png`,
+    `${imagePath}/betty-icy-sweater.png`,
+    `${imagePath}/betty-icy.png`,
+    `${imagePath}/cake-sweater.png`,
+    `${imagePath}/cake.png`,
+    `${imagePath}/betty-horn-sweater-white.png`,
+    `${imagePath}/betty-horn.png`,
+    `${imagePath}/betty-bearliving-sweater.png`,
+    `${imagePath}/betty-bearliving.png`,
+    `${imagePath}/betty-relentless-sweater-white.png`,
+    `${imagePath}/betty-relentless.png`
+]
+
 export function Designs() {
 
     return (
@@ -12,7 +31,7 @@ export function Designs() {
                 <h1 style={{ display: 'block', fontSize: '50px'}}>
                     Designs and Apparel
                 </h1>
-                <p style={{ display: 'block', fontSize: '25px'}}>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters and/or stickers are completely customizable upon request</p>
+                <p style={{ display: 'block', fontSize: '25px'}}>Dive into our first collection of designs that seek to show our brand through apparel. All of the following are available in a sweater or sticker and are completely customizable upon request</p>
             </Col>
             <Col xs={8} style={{ 
                 borderRadius:'4px', 
@@ -31,13 +50,13 @@ export function Designs() {
                             maxWidth: '100%',
                             maxHeight: '100%',
                         }}                                                                                            
-                        src='http://localhost:3000/images/design2-sweater.png'
+                        src={images[0]}
                         onMouseEnter={e => {
                             const imageElement = e.currentTarget; 
-                            imageElement.src = "http://localhost:3000/images/design2-transparent.png";
+                            imageElement.src = images[1];
                         }}
                         onMouseLeave={e => {
-                            e.currentTarget.src = "http://localhost:3000/images/design2-sweater.png";
+                            e.currentTarget.src = images[0]
                         }}
                         />
                     </Col>
@@ -53,13 +72,13 @@ export function Designs() {
                             maxWidth: '100%',
                             maxHeight: '100%',
                         }}                                                                                            
-                        src='http://localhost:3000/images/design1-sweater.png'
+                        src={images[2]}
                         onMouseEnter={e => {
                             const imageElement = e.currentTarget; 
-                            imageElement.src = "http://localhost:3000/images/design1-sticker.png";
+                            imageElement.src = images[3];
                         }}
                         onMouseLeave={e => {
-                            e.currentTarget.src = "http://localhost:3000/images/design1-sweater.png";
+                            e.currentTarget.src = images[2];
                         }}
                         />
                     </Col>
@@ -73,13 +92,13 @@ export function Designs() {
                             padding: '30px',
                             boxShadow: '10px 10px 10px var(--bs-dark-border-subtle)' 
                             }}
-                            src='http://localhost:3000/images/design11-sweater.png'
+                            src={images[4]}
                             onMouseEnter={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design11.png";
+                                e.currentTarget.src = images[5];
                             }}
                             onMouseLeave={e => {
                                 
-                                e.currentTarget.src = "http://localhost:3000/images/design11-sweater.png";
+                                e.currentTarget.src = images[4];
                             }}
                             />
                     </Col>
@@ -94,12 +113,12 @@ export function Designs() {
                         padding: '10px',
                         boxShadow: '-10px 10px 10px var(--bs-dark-border-subtle)' 
                         }}
-                        src='http://localhost:3000/images/design3-sweater.png'
+                        src={images[6]}
                         onMouseEnter={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design3-sticker.png";
+                                e.currentTarget.src = images[7];
                             }}
                             onMouseLeave={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design3-sweater.png";
+                                e.currentTarget.src = images[6];
                         }}/>
             </Col>
             <Col xs={8} 
@@ -121,12 +140,12 @@ export function Designs() {
                             padding: '10px',
                             boxShadow: '-10px 10px 10px var(--bs-dark-border-subtle)' 
                             }}
-                            src='http://localhost:3000/images/design4-sweater.png'
+                            src={images[8]}
                             onMouseEnter={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design4.png";
+                                e.currentTarget.src = images[9];
                             }}
                             onMouseLeave={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design4-sweater.png";
+                                e.currentTarget.src = images[8];
                             }}
                         />
                     </Col>
@@ -137,12 +156,12 @@ export function Designs() {
                             padding: '10px',
                             boxShadow: '-10px 10px 10px var(--bs-dark-border-subtle)' 
                             }}
-                            src='http://localhost:3000/images/design5-sweater.png'
+                            src={images[10]}
                             onMouseEnter={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design5.png";
+                                e.currentTarget.src = images[11];
                             }}
                             onMouseLeave={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design5-sweater.png";
+                                e.currentTarget.src = images[10];
                             }}
                             />
                     </Col>
@@ -155,12 +174,12 @@ export function Designs() {
                             padding: '30px',
                             boxShadow: '10px 10px 10px var(--bs-dark-border-subtle)' 
                             }}
-                            src='http://localhost:3000/images/design7-sweater.png'
+                            src={images[12]}
                             onMouseEnter={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design7.png";
+                                e.currentTarget.src = images[13];
                             }}
                             onMouseLeave={e => {
-                                e.currentTarget.src = "http://localhost:3000/images/design7-sweater.png";
+                                e.currentTarget.src = images[12];
                             }}
                             />
                     </Col>
