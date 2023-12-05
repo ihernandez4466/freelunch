@@ -1,15 +1,13 @@
 'use client'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import { CustomNavBar } from '../components/navbar';
 import { Designs } from './designs';
+import { ContactUsPage } from './contact-us';
  
 function Home() {
   return (
       <div>
         <CustomNavBar/>
-        {/* <Row> */}
           <div id="home" style={{ 
           display: 'flex', 
           justifyContent: 'center',
@@ -39,9 +37,8 @@ function Home() {
             </div>
         </div>
             <hr style={{ margin: '5rem 0'}}></hr>
-        {/* <Row id="designs" style={{ marginTop: '20%', padding: '20px'}}> */}
             <Designs id="designs" />
-        {/* </Row> */}
+            <ContactUsPage />
       </div>
   );
 }
