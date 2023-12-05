@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Mezcal';
+  src: url('../fonts/Mezcal.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Fortune';
+  src: url('../fonts/Fortune.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Adelia';
+  src: url('../fonts/adelia.otf') format('truetype');
+}
+@font-face {
+  font-family: 'creamcake';
+  src: url('../fonts/creamcake.otf') format('truetype');
+}
+
+body {
+  font-family: 'creamcake', sans-serif;
+  background-color: var(--background);
+  margin: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevents horizontal scrollbar */
+  overflow-y: scroll; 
+}
+
+:root {
+  /* light mode */
+  --primary: #5C0606;
+  --secondary: #C74F24;
+  --background: #FAF3EF;
+  --textPrimary: black;
+ 
+  /* dark mode */
+  --primaryDark: #BD4038;
+  --secondaryDark: #F76336;
+  --backgroundDark: #2F1A0E;
+  --textPrimaryDark: white;
+}
