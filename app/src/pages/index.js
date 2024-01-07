@@ -1,46 +1,48 @@
 'use client'
-import Image from 'react-bootstrap/Image';
-import { CustomNavBar } from '../components/navbar';
+import Nav from 'react-bootstrap/Nav';
+import { Link as ScrollLink } from 'react-scroll';
+
 import { Designs } from './designs';
 import { ContactUsPage } from './contact-us';
- 
+import { LandingPage } from '../components/landingPage';
+import { Logo } from '../components/logo';
+import CustomNavBar from '../components/navbar';
+
 function Home() {
   return (
       <div>
-        <CustomNavBar/>
-          <div id="home" style={{ 
-          display: 'flex', 
-          justifyContent: 'center',
-          position: 'relative',
-          zIndex: '0',
-          padding: '40px',
-          marginTop: '10%'
-          }}>
-              <Image
-                style={{ 
-                  width:'50%',
-                  boxShadow: '15px 10px 25px black, -30px 26px 2px rgb(92, 6, 6, 0.5), 30px -26px 0px rgb(92, 6, 6)' }}
-                src={process.env.REACT_APP_HOST + '/images/branding/freeLunchLettering.png'}
-              />
-            <div style={{   
-                position: 'absolute',
-                left: '35%',
-                top: '35%',
-                zIndex: '1',
-                width:'30%',
-              }}>
-            <Image
-                style={{ 
-                  width:'100%'}}
-                src={process.env.REACT_APP_HOST + '/images/branding/signature-transparent.png'}
-              />
-            </div>
-        </div>
-            <hr style={{ margin: '5rem 0'}}></hr>
-            <Designs id="designs" />
-            <ContactUsPage />
+        <CustomNavBar Logo={AppLogo} NavWithLinks={HomeNavWithLinks}/>
+        {/* <LandingPage /> */}
+        <ContactUsPage id="contact-us" />
+        <hr style={{ margin: '5rem 0'}}></hr>
+        <Designs id="designs" />
       </div>
   );
 }
 
+function AppLogo() {
+  return (
+   <>
+    <Logo style={{ height: '50px' }} />
+   </>
+  );
+ }
+
+ 
+function HomeNavWithLinks() {
+  <Nav variant="underline" >
+          <ScrollLink activeClass="active" to="home" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px'}}>
+            Home
+          </ScrollLink>
+          <ScrollLink activeClass="active" to="designs" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px'}}>
+            Designs
+          </ScrollLink>
+          <ScrollLink activeClass="active" to="about-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px'}}>
+            About Us
+          </ScrollLink>
+          <ScrollLink activeClass="active" to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px' }}>
+            Contact Us
+          </ScrollLink>
+        </Nav>
+}
 export default Home; 
