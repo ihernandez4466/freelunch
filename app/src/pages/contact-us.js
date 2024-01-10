@@ -1,10 +1,51 @@
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import { MdEmail } from "react-icons/md";
+import { BiSolidPhoneCall } from "react-icons/bi";
+import { MdLocationPin } from "react-icons/md";
+
 export function ContactUsPage() {
     return (
-        <>
-        <h1>Join The Movement</h1>
-            <h2>Whether you're eager to purchase one of our customizable sweaters or explore our upholstery options, 
-                we're thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation.
-            </h2>
-        </>
+        <div style={{
+            alignContent: 'center',
+            alignItems: 'center',
+            //background: 'linear-gradient(to top, white 50%, var(--background) 50%)',
+            display: 'flex',
+            flexWrap:'wrap',
+            height: '50vh', // Adjust the height as needed
+            justifyContent: 'center',
+            padding: '30px'
+        }}>
+            <div>
+                <h1>Join The Movement</h1>
+            </div>
+            <div>
+                <h2>Whether you're eager to purchase one of our customizable sweaters or explore our upholstery options, 
+                    we're thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation.
+                </h2>
+            </div>
+            <Row>
+                <Col>
+                    <Card>
+                    <Card.Header>Email Us <MdEmail /></Card.Header>
+                    <Card.Body>freelunch@gmail.com</Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                    <Card.Header>Call Us <BiSolidPhoneCall /></Card.Header>
+                    <Card.Body>7073878085</Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                    <Card.Header>Location <MdLocationPin /></Card.Header>
+                    <Card.Body><a href='https://www.google.com/maps/place/Sonoma,+CA+95476/@38.2910861,-122.4902991,13z/data=!3m1!4b1!4m6!3m5!1s0x8085ac43817b9d77:0x380ed210ee6e045!8m2!3d38.291859!4d-122.4580356!16zL20vMHI3OGs?entry=ttu'></a>Sonoma, California</Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </div>
     );
 }
+
