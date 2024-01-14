@@ -30,6 +30,7 @@ function AppLogo() {
 
  
 function HomeNavWithLinks() {
+  return (
   <Nav variant="underline" >
           <ScrollLink activeClass="active" to="home" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontSize: '25px'}}>
             Home
@@ -44,5 +45,6 @@ function HomeNavWithLinks() {
             Contact Us
           </ScrollLink>
         </Nav>
+  );
 }
 export default Home; 

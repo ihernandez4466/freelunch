@@ -7,7 +7,7 @@ import { MdLocationPin } from "react-icons/md";
 
 export function ContactUsPage() {
     return (
-        <div style={{
+        <div id="contact-us" style={{
             alignContent: 'center',
             alignItems: 'center',
             background: 'linear-gradient(to top, white 20%, var(--background) 40%)',
