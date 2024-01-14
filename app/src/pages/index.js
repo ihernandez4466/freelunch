@@ -13,9 +13,9 @@ function Home() {
       <div>
         <CustomNavBar Logo={AppLogo} NavWithLinks={HomeNavWithLinks}/>
         {/* <LandingPage /> */}
-        <ContactUsPage id="contact-us" />
-        <hr style={{ margin: '5rem 0'}}></hr>
+                <hr style={{ margin: '5rem 0'}}></hr>
         <Designs id="designs" />
+        <ContactUsPage id="contact-us" />
       </div>
   );
 }
