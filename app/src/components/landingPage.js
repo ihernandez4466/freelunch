@@ -1,10 +1,13 @@
 import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
 
+/**
+ * Functional component that renders a photo collage
+ *    @param {ReactNode} props.Style - The logo component style
+ */
 export function LandingPage() {
     return (
       <>
-      <div id="home" style={{ 
+      <div style={{ 
         display: 'flex', 
         justifyContent: 'center',
         position: 'relative',

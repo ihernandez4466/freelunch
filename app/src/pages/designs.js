@@ -6,7 +6,7 @@ export function Designs() {
 
     return (
         <>
-        <div id="designs" >
+        <div id="designs">
         <Row style={{ marginTop: '10%', padding: '20px'}}>
             <Col>
                 <h1 style={{ display: 'block', fontSize: '50px'}}>
