@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Link as ScrollLink } from 'react-scroll';
 
 import { Designs } from './designs';
-import { ContactUsPage } from './contact-us';
+import { ContactUs } from './contact-us';
 import { LandingPage } from '../components/landingPage';
 import { Logo } from '../components/logo';
 import CustomNavBar from '../components/navbar';
@@ -13,9 +13,10 @@ function Home() {
       <div>
         <CustomNavBar Logo={AppLogo} NavWithLinks={HomeNavWithLinks}/>
         {/* <LandingPage /> */}
-                <hr style={{ margin: '5rem 0'}}></hr>
-        <Designs id="designs" />
-        <ContactUsPage id="contact-us" />
+        <hr style={{ margin: '5rem 0'}}></hr>
+        <Designs />
+        <hr style={{ margin: '5rem 0', marginBottom: 0}}></hr>
+        <ContactUs />
       </div>
   );
 }
@@ -23,7 +24,9 @@ function Home() {
 function AppLogo() {
   return (
    <>
-    <Logo style={{ height: '50px' }} />
+    <Logo 
+      imgSrc={'http://localhost:3000/images/branding/logo-icon.png'}
+      customStyle={{ height: '50px' }} />
    </>
   );
  }
