@@ -18,12 +18,12 @@ export function ContactUs() {
             padding: '10px 30px 30px 30px'
         }}>
             <div style={{ padding: '20px' }}>
-                <h1>Join The Movement</h1>
+                <h1 style={{ fontSize: '30px', fontWeight: '600'}}>Join The Movement</h1>
             </div>
             <div>
-                <h2>Whether you're eager to purchase one of our customizable sweaters or explore our upholstery options, 
+                <p style={{fontSize: '20px', fontWeight: '300'}}>Whether you're eager to purchase one of our customizable sweaters or explore our upholstery options, 
                     we're thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation.
-                </h2>
+                </p>
             </div>
             <Row style={{ marginTop:'20px'}}>
                 <Col>

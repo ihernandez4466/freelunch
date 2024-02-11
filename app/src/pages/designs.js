@@ -47,10 +47,10 @@ export function Designs() {
         <div id="designs">
             <Row style={{ marginTop: '10%', padding: '20px'}} className="justify-content-center">
                 <Col>
-                    <h1 style={{ display: 'block', fontSize: '50px'}}>
+                    <h1 style={{ display: 'block', fontSize: '30px', fontWeight: '600'}}>
                         Designs and Apparel
                     </h1>
-                    <p style={{ display: 'block', fontSize: '25px'}}>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters and/or stickers are completely customizable upon request</p>
+                    <p style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters and/or stickers are completely customizable upon request</p>
                 </Col>
                 <SweaterDiv designName="betty-bearliving" />
                 <SweaterDiv designName="betty-icy" />
