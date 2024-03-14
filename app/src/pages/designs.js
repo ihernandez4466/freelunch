@@ -16,14 +16,14 @@ function SweaterDiv({ designName, style }) {
     return (
         <Col xs={12} md={4} className="d-flex justify-content-center mb-3" style={{ 
             borderRadius:'4px', 
-            backgroundColor: 'var(--background)',
+            //backgroundColor: 'var(--background)',
         }}>
             <Image
                 style={ style ? style : { 
                     width:'350px', 
                     height:'300px', 
                     padding: '10px', 
-                    boxShadow: '-10px 10px 10px var(--bs-dark-border-subtle)',
+                    //boxShadow: '-10px 10px 10px var(--bs-dark-border-subtle)',
                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                     maxWidth: '100%',
                     maxHeight: '100%',
