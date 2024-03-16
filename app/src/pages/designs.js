@@ -1,75 +1,74 @@
-import Image from 'react-bootstrap/Image';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import PropTypes from 'prop-types';
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Carousel from 'react-bootstrap/Carousel';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const hostUrl = "http://localhost:3000";
-const sweaterPath = "/images/sweaters/";
 const stickerPath = "/images/stickers/";
 
-function SweaterDiv({ designName, style }) {
-    const stickerExt = "-sticker";
-    const sweaterExt = "-sweater";
-    const sweaterSrc = hostUrl + sweaterPath + designName + sweaterExt + ".png";
-    const stickerSrc = hostUrl + stickerPath + designName + stickerExt + ".png";
+const slide1 = [
+    hostUrl + stickerPath + "betty-chiquita-sticker.png",
+    hostUrl + stickerPath + "betty-americanBeauty-sticker.png",
+    hostUrl + stickerPath + "betty-rain-sticker.png",
+    hostUrl + stickerPath + "cake-sticker.png",
+];
 
+const slide2 = [
+    hostUrl + stickerPath + "betty-chiquita-sticker.png",
+    hostUrl + stickerPath + "betty-americanBeauty-sticker.png",
+    hostUrl + stickerPath + "betty-rain-sticker.png",
+    hostUrl + stickerPath + "cake-sticker.png",
+];
+
+const slide3 = [
+    hostUrl + stickerPath + "betty-freelunch-sticker.png",
+    hostUrl + stickerPath + "pozole-sticker.png",
+    hostUrl + stickerPath + "betty-palms-sticker.png",
+    hostUrl + stickerPath + "betty-bearliving-sticker.png",
+];
+
+function Slide({ srcs }) {
     return (
-        <Col xs={12} md={4} className="d-flex justify-content-center mb-3" style={{ 
-            borderRadius:'4px', 
-            //backgroundColor: 'var(--background)',
-        }}>
-            <Image
-                style={ style ? style : { 
-                    width:'350px', 
-                    height:'300px', 
-                    padding: '10px', 
-                    //boxShadow: '-10px 10px 10px var(--bs-dark-border-subtle)',
-                    transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                }}                                                                                            
-                src={sweaterSrc}
-                onMouseEnter={e => {
-                    const imageElement = e.currentTarget; 
-                    imageElement.src = stickerSrc;
-                }}
-                onMouseLeave={e => {
-                    e.currentTarget.src = sweaterSrc;
-                }}
-                />
-            </Col>
-        );
-    }
-
-export function Designs() {
-
-    return (
-        <div id="designs">
-            <Row style={{ marginTop: '10%', padding: '20px'}} className="justify-content-center">
+        <Row>
+            {srcs.map((src, index) => (
                 <Col>
-                    <h1 style={{ display: 'block', fontSize: '30px', fontWeight: '600'}}>
-                        Designs and Apparel
-                    </h1>
-                    <p style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters and/or stickers are completely customizable upon request</p>
+                <img
+                    key={index}
+                    src={src}
+                    style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }}
+                />
                 </Col>
-                <SweaterDiv designName="betty-bearliving" />
-                <SweaterDiv designName="betty-icy" />
-            </Row>
-            <Row className="justify-content-center">
-                <SweaterDiv designName="betty-strongService" />
-                <SweaterDiv designName="cake" />
-                <SweaterDiv designName="betty-rain" />
-            </Row>
-            <Row className="justify-content-center">
-                <SweaterDiv designName="betty-americanBeauty" />
-                <SweaterDiv designName="relentless" />
-                <SweaterDiv designName="pozole" />
-            </Row>
-        </div>
+            ))}
+        </Row>
     );
 }
 
-SweaterDiv.prototype = {
-    designName: PropTypes.string.isRequired,
-    style: PropTypes.object // optional
-};
+export function Designs() {
+    return (
+        <>
+        <div style={{padding: '20px'}}>
+          <h1 style={{ display: 'block', fontSize: '30px', fontWeight: '600'}}>
+                        Designs
+          </h1>
+          <p style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Any of these designs can be customized</p>
+        </div>
+        <Container id="designs" fluid>
+            <Carousel data-bs-theme="dark" pause="hover">
+                <Carousel.Item>
+                    {/* <img src={designs[0]}></img> */}
+                    <Slide srcs={slide1} />
+                </Carousel.Item>
+                <Carousel.Item>
+                    {/* <img src={designs[0]}></img> */}
+                    <Slide srcs={slide2} />
+                </Carousel.Item>
+                <Carousel.Item >
+                    {/* <img src={designs[0]}></img> */}
+                    <Slide srcs={slide3} />
+                </Carousel.Item>
+            </Carousel>
+        </Container>
+        </>
+    );
+}
