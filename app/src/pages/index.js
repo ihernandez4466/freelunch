@@ -3,10 +3,24 @@ import Nav from 'react-bootstrap/Nav';
 import { Link as ScrollLink } from 'react-scroll';
 import { Sweaters } from './sweaters';
 import { Designs } from './designs';
-import {Row} from 'react-bootstrap/Row';
 import { ContactUs } from './contact-us';
 import { Logo } from '../components/logo';
 import CustomNavBar from '../components/navbar';
+
+// Base function for the whole website
+function Home() {
+  return (
+      <div>
+        <CustomNavBar Logo={AppLogo} NavWithLinks={HomeNavWithLinks}/>
+        <Header />
+        <Sweaters />
+        <hr style={{ margin: '5rem 0', marginBottom: 0}}></hr>
+        <Designs />
+        <hr style={{ margin: '5rem 0', marginBottom: 0}}></hr>
+        <ContactUs />
+      </div>
+  );
+}
 
 function Header() {
   return (
@@ -19,19 +33,6 @@ function Header() {
   );
 }
 
-function Home() {
-  return (
-      <div>
-        <CustomNavBar Logo={AppLogo} NavWithLinks={HomeNavWithLinks}/>
-        <Header />
-        <Sweaters />
-        <Designs />
-        <hr style={{ margin: '5rem 0', marginBottom: 0}}></hr>
-        <ContactUs />
-      </div>
-  );
-}
-
 function AppLogo() {
   return (
    <>
@@ -41,21 +42,25 @@ function AppLogo() {
    </>
   );
  }
-
  
+ const customLinkStyle = {
+  textDecoration: 'underline',
+  textUnderlineOffset: '15px' // Adjust as needed
+};
+
 function HomeNavWithLinks() {
   return (
-  <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
-          <ScrollLink activeClass="active" to="home" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
+  <Nav variant="underline"style={{ fontFamily: 'merienda' }}>
+          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="home" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
             Home
           </ScrollLink>
-          <ScrollLink activeClass="active" to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
+          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
             Sweaters
           </ScrollLink>
-          <ScrollLink activeClass="active" to="designs" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
+          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="designs" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
             Designs
           </ScrollLink>
-          <ScrollLink activeClass="active" to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px' }}>
+          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px' }}>
             Contact Us
           </ScrollLink>
         </Nav>

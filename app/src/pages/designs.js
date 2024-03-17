@@ -47,11 +47,22 @@ function Slide({ srcs }) {
 export function Designs() {
     return (
         <>
-        <div style={{padding: '20px'}}>
-          <h1 style={{ display: 'block', fontSize: '30px', fontWeight: '600'}}>
-                        Designs
-          </h1>
-          <p style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Any of these designs can be customized</p>
+        <div style={{
+            padding: '20px',
+            //alignContent: 'center',
+            //alignItems: 'center',
+            //display: 'flex',
+            //flexWrap:'wrap',
+            //justifyContent: 'center',
+        }}>
+            <Row>
+                    <h1 style={{ display: 'block', fontSize: '30px', fontWeight: '600'}}>
+                                Designs
+                    </h1>
+            </Row>
+            <Row>
+                    <p class="col" style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Any of these designs can be customized</p>
+            </Row>
         </div>
         <Container id="designs" fluid>
             <Carousel data-bs-theme="dark" pause="hover">
