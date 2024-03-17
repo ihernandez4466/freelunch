@@ -1,22 +1,64 @@
 @font-face {
-  font-family: 'Mezcal';
-  src: url('../fonts/Mezcal.otf') format('truetype');
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Regular.ttf') format('truetype'); /* Regular */
+  font-weight: normal;
+  font-style: normal;
 }
+
 @font-face {
-  font-family: 'Fortune';
-  src: url('../fonts/Fortune.otf') format('truetype');
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Light.ttf') format('truetype'); /* Light */
+  font-weight: 300;
+  font-style: normal;
 }
+
 @font-face {
-  font-family: 'Adelia';
-  src: url('../fonts/adelia.otf') format('truetype');
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Medium.ttf') format('truetype'); /* Medium */
+  font-weight: 500;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-SemiBold.ttf') format('truetype'); /* Semi-Bold */
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Bold.ttf') format('truetype'); /* Bold */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-ExtraBold.ttf') format('truetype'); /* Extra-Bold */
+  font-weight: 800;
+  font-style: normal;
+}
+
 @font-face {
   font-family: 'creamcake';
   src: url('../fonts/creamcake.otf') format('truetype');
 }
 
+h1 {
+  font-family: 'merienda';
+  font-size: '30px';
+  font-weight: '600';
+}
+
+h2 {
+  font-family: 'merienda';
+  font-size: '20px';
+  font-weight: '500';
+}
+
 body {
-  font-family: 'creamcake', sans-serif;
+  font-family: 'serif';
   background-color: var(--background);
   margin: 0;
   height: 100vh;
@@ -28,7 +70,7 @@ body {
   /* light mode */
   --primary: #5C0606;
   --secondary: #C74F24;
-  --background: #FAF3EF;
+  --background: #FFFAF7;
   --textPrimary: black;
  
   /* dark mode */
