@@ -44,7 +44,7 @@ function Slide({ srcs }) {
     );
 }
 
-export function Designs() {
+export default function Designs() {
     return (
         <>
         <div style={{

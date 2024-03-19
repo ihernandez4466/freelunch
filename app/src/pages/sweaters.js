@@ -41,7 +41,7 @@ function SweaterDiv({ designName, style }) {
         );
     }
 
-export function Sweaters() {
+export default function Sweaters() {
 
     return (
         <div id="sweaters">

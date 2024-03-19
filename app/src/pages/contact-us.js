@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
 
-export function ContactUs() {
+export default function ContactUs() {
     return (
         <div id="contact-us" style={{
             alignContent: 'center',

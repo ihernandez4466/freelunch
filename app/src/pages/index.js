@@ -1,9 +1,9 @@
 'use client'
 import Nav from 'react-bootstrap/Nav';
 import { Link as ScrollLink } from 'react-scroll';
-import { Sweaters } from './sweaters';
-import { Designs } from './designs';
-import { ContactUs } from './contact-us';
+import Sweaters from './sweaters';
+import Designs from './designs';
+import ContactUs from './contact-us';
 import { Logo } from '../components/logo';
 import CustomNavBar from '../components/navbar';
 
