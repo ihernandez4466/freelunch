@@ -28,13 +28,16 @@ function Header() {
   const headerPath = imagePath + '/branding/freelunch.png'
   const brandPath = imagePath + '/red-trees-blur.png'
   return (
-    <div id="home" style={{ position: 'relative', width: '100%', height: '300px' }}>
-      <img src={headerPath} alt="Your Image" style={{ width: '100%', height: '450px', position: 'absolute', top: '-65px', left: '0' }} />
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: '#fff', width: '100%' }}>
-        <img src={brandPath} style={{ height: '200px', bottom: '10px'}}/>
+     <div id="home" style={{ position: 'relative', width: '100%', height: '60vh' }}>
+      {/* Full-width image */}
+      <img src={brandPath} style={{ position: 'absolute', top: '-15%', width: '100%', height: '100%' }} alt="Full Width" />
+
+      {/* Overlapping image */}
+      <div style={{ position: 'absolute', left: '60%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: '1', height: '100%' }}>
+        <img src={headerPath} style={{ width: '50%', height: '100%' }} alt="Overlapping" />
       </div>
     </div>
-  );
+    );
 }
 
 function AppLogo() {

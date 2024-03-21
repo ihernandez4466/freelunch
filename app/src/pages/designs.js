@@ -60,7 +60,7 @@ export default function Designs() {
                     </h1>
             </Row>
             <Row>
-                    <p class="col" style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Any of these designs can be customized</p>
+                    <p class="col" style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Transform any of these designs onto a sweater, poster, or sticker, and add your own touch to elevate your style.</p>
             </Row>
         </div>
         <Container id="designs" fluid>
