@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const hostUrl = process.env.API_URL;
+const hostUrl = process.env.VERCEL_URL;
 const stickerPath = hostUrl + "/images/stickers/";
 
 const slide1 = [

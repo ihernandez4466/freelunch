@@ -7,7 +7,7 @@ import ContactUs from './contact-us';
 import { Logo } from '../components/logo';
 import CustomNavBar from '../components/navbar';
 
-const hostUrl = process.env.APP_URL;
+const hostUrl = process.env.VERCEL_URL;
 const imagePath = hostUrl + '/images';
 
 // Base function for the whole website

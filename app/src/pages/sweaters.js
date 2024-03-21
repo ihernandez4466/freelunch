@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 
-const hostUrl = process.env.API_URL;
+const hostUrl = process.env.VERCEL_URL;
 const sweaterPath = "/images/sweaters/";
 const stickerPath = "/images/stickers/";
 
