@@ -7,24 +7,24 @@ import Col from 'react-bootstrap/Col'
 const stickerPath = "/images/stickers/";
 
 const slide1 = [
-    hostUrl + stickerPath + "betty-chiquita-sticker.png",
-    hostUrl + stickerPath + "betty-americanBeauty-sticker.png",
-    hostUrl + stickerPath + "betty-rain-sticker.png",
-    hostUrl + stickerPath + "cake-sticker.png",
+    stickerPath + "betty-chiquita-sticker.png",
+    stickerPath + "betty-americanBeauty-sticker.png",
+    stickerPath + "betty-rain-sticker.png",
+    stickerPath + "cake-sticker.png",
 ];
 
 const slide2 = [
-    hostUrl + stickerPath + "betty-chiquita-sticker.png",
-    hostUrl + stickerPath + "betty-americanBeauty-sticker.png",
-    hostUrl + stickerPath + "betty-rain-sticker.png",
-    hostUrl + stickerPath + "cake-sticker.png",
+    stickerPath + "betty-chiquita-sticker.png",
+    stickerPath + "betty-americanBeauty-sticker.png",
+    stickerPath + "betty-rain-sticker.png",
+    stickerPath + "cake-sticker.png",
 ];
 
 const slide3 = [
-    hostUrl + stickerPath + "betty-freelunch-sticker.png",
-    hostUrl + stickerPath + "pozole-sticker.png",
-    hostUrl + stickerPath + "betty-palms-sticker.png",
-    hostUrl + stickerPath + "betty-bearliving-sticker.png",
+    stickerPath + "betty-freelunch-sticker.png",
+    stickerPath + "pozole-sticker.png",
+    stickerPath + "betty-palms-sticker.png",
+    stickerPath + "betty-bearliving-sticker.png",
 ];
 
 function Slide({ srcs }) {
