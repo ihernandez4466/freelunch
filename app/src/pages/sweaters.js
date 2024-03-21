@@ -3,15 +3,14 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 
-const hostUrl = process.env.VERCEL_URL;
 const sweaterPath = "/images/sweaters/";
 const stickerPath = "/images/stickers/";
 
 function SweaterDiv({ designName, style }) {
     const stickerExt = "-sticker";
     const sweaterExt = "-sweater";
-    const sweaterSrc = hostUrl + sweaterPath + designName + sweaterExt + ".png";
-    const stickerSrc = hostUrl + stickerPath + designName + stickerExt + ".png";
+    const sweaterSrc = sweaterPath + designName + sweaterExt + ".png";
+    const stickerSrc = stickerPath + designName + stickerExt + ".png";
 
     return (
         <Col xs={12} md={4} className="d-flex justify-content-center mb-3" style={{ 

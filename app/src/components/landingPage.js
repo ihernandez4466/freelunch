@@ -19,7 +19,7 @@ export function LandingPage() {
               style={{ 
                 width:'50%',
                 boxShadow: '15px 10px 25px black, -30px 26px 2px rgb(92, 6, 6, 0.5), 30px -26px 0px rgb(92, 6, 6)' }}
-              src={process.env.VERCEL_URL + '/images/freeLunchLettering.png'}
+              src={'/images/freeLunchLettering.png'}
             />
           <div style={{   
               position: 'absolute',
@@ -31,7 +31,7 @@ export function LandingPage() {
            <Image
               style={{ 
                 width:'100%'}}
-              src={process.env.VERCEL_URL + '/images/signature-transparent.PNG'}
+              src={'/images/signature-transparent.PNG'}
             />
           </div>
       </div>
