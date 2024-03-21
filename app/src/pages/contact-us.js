@@ -6,11 +6,20 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
 
 export function ContactUs() {
+    const cardStyle = {
+        height: '150px',
+        width: '175px',
+        fontSize: '20px'
+    }
+    const cardHeaderStyle = {
+        backgroundColor: 'white',
+        borderBottom: 'none',
+    }
     return (
         <div id="contact-us" style={{
             alignContent: 'center',
             alignItems: 'center',
-            background: 'linear-gradient(to top, white 20%, var(--background) 40%)',
+            background: 'linear-gradient(to top, white 29%, var(--background) 20%)',
             display: 'flex',
             flexWrap:'wrap',
             height: '70vh', // Adjust the height as needed
@@ -27,20 +36,20 @@ export function ContactUs() {
             </div>
             <Row style={{ marginTop:'20px'}}>
                 <Col>
-                    <Card style={{ height: '100%'}}>
-                    <Card.Header>Email Us <MdEmail /></Card.Header>
+                    <Card style={cardStyle}>
+                    <Card.Header style={cardHeaderStyle}>Email Us <MdEmail /></Card.Header>
                     <Card.Body>freelunch@gmail.com</Card.Body>
                     </Card>
                 </Col>
                 <Col>
-                    <Card style={{ height: '100%'}}>
-                    <Card.Header>Call Us <BiSolidPhoneCall /></Card.Header>
+                    <Card style={cardStyle}>
+                    <Card.Header style={cardHeaderStyle}>Call Us <BiSolidPhoneCall /></Card.Header>
                     <Card.Body>7073878085</Card.Body>
                     </Card>
                 </Col>
                 <Col>
-                <Card style={{ height: '100%'}}>               
-                    <Card.Header>Location <MdLocationPin /></Card.Header>
+                <Card style={cardStyle}>               
+                    <Card.Header style={cardHeaderStyle}>Location <MdLocationPin /></Card.Header>
                     <Card.Body>
                     <a href={'https://www.google.com/maps/place/Sonoma,+CA+95476/@38.2910861,-122.4902991,13z/data=!3m1!4b1!4m6!3m5!1s0x8085ac43817b9d77:0x380ed210ee6e045!8m2!3d38.291859!4d-122.4580356!16zL20vMHI3OGs?entry=ttu'} target="_blank" rel="noopener noreferrer">
                         Sonoma, California
