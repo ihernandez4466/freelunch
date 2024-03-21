@@ -7,6 +7,9 @@ import ContactUs from './contact-us';
 import { Logo } from '../components/logo';
 import CustomNavBar from '../components/navbar';
 
+const hostUrl = process.env.APP_URL;
+const imagePath = hostUrl + '/images';
+
 // Base function for the whole website
 function Home() {
   return (
@@ -23,21 +26,24 @@ function Home() {
 }
 
 function Header() {
+  const headerPath = imagePath + '/branding/freelunch.png'
+  const brandPath = imagePath + '/red-trees-blur.png'
   return (
     <div id="home" style={{ position: 'relative', width: '100%', height: '300px' }}>
-      <img src="http://localhost:3000/images/red-trees-blur.png" alt="Your Image" style={{ width: '100%', height: '450px', position: 'absolute', top: '-65px', left: '0' }} />
+      <img src={headerPath} alt="Your Image" style={{ width: '100%', height: '450px', position: 'absolute', top: '-65px', left: '0' }} />
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: '#fff', width: '100%' }}>
-        <img src="http://localhost:3000/images/branding/freelunch.png" style={{ height: '200px', bottom: '10px'}}/>
+        <img src={brandPath} style={{ height: '200px', bottom: '10px'}}/>
       </div>
     </div>
   );
 }
 
 function AppLogo() {
+  const logoPath = imagePath + '/branding/logo-icon.png';  
   return (
    <>
     <Logo 
-      imgSrc={'http://localhost:3000/images/branding/logo-icon.png'}
+      imgSrc={logoPath}
       customStyle={{ height: '50px' }} />
    </>
   );
