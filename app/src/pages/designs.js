@@ -4,28 +4,27 @@ import Carousel from 'react-bootstrap/Carousel';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const hostUrl = "http://localhost:3000";
 const stickerPath = "/images/stickers/";
 
 const slide1 = [
-    hostUrl + stickerPath + "betty-chiquita-sticker.png",
-    hostUrl + stickerPath + "betty-americanBeauty-sticker.png",
-    hostUrl + stickerPath + "betty-rain-sticker.png",
-    hostUrl + stickerPath + "cake-sticker.png",
+    stickerPath + "betty-chiquita-sticker.png",
+    stickerPath + "betty-americanBeauty-sticker.png",
+    stickerPath + "betty-rain-sticker.png",
+    stickerPath + "cake-sticker.png",
 ];
 
 const slide2 = [
-    hostUrl + stickerPath + "betty-chiquita-sticker.png",
-    hostUrl + stickerPath + "betty-americanBeauty-sticker.png",
-    hostUrl + stickerPath + "betty-rain-sticker.png",
-    hostUrl + stickerPath + "cake-sticker.png",
+    stickerPath + "betty-chiquita-sticker.png",
+    stickerPath + "betty-americanBeauty-sticker.png",
+    stickerPath + "betty-rain-sticker.png",
+    stickerPath + "cake-sticker.png",
 ];
 
 const slide3 = [
-    hostUrl + stickerPath + "betty-freelunch-sticker.png",
-    hostUrl + stickerPath + "pozole-sticker.png",
-    hostUrl + stickerPath + "betty-palms-sticker.png",
-    hostUrl + stickerPath + "betty-bearliving-sticker.png",
+    stickerPath + "betty-freelunch-sticker.png",
+    stickerPath + "pozole-sticker.png",
+    stickerPath + "betty-palms-sticker.png",
+    stickerPath + "betty-bearliving-sticker.png",
 ];
 
 function Slide({ srcs }) {
@@ -61,7 +60,7 @@ export default function Designs() {
                     </h1>
             </Row>
             <Row>
-                    <p class="col" style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Any of these designs can be customized</p>
+                    <p class="col" style={{ display: 'block', fontSize: '20px', fontWeight: '300'}}>Transform any of these designs onto a sweater, poster, or sticker, and add your own touch to elevate your style.</p>
             </Row>
         </div>
         <Container id="designs" fluid>

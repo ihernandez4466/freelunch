@@ -10,19 +10,18 @@ export default function ContactUs() {
         <div id="contact-us" style={{
             alignContent: 'center',
             alignItems: 'center',
-            background: 'linear-gradient(to top, white 20%, var(--background) 40%)',
             display: 'flex',
             flexWrap:'wrap',
             height: '70vh', // Adjust the height as needed
             justifyContent: 'center',
             padding: '10px 30px 30px 30px'
         }}>
-            <div style={{ padding: '20px' }}>
-                <h1 style={{ fontSize: '30px', fontWeight: '600'}}>Join The Movement</h1>
+            <div style={{ padding: '30px'}}>
+                <h1 style={{ color: 'var(--textPrimary)', fontSize: '30px', fontWeight: '600'}}>Join The Movement</h1>
             </div>
-            <div>
-                <p style={{fontSize: '20px', fontWeight: '300'}}>Whether you're eager to purchase one of our customizable sweaters or explore our upholstery options, 
-                    we're thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation.
+            <div style={{ padding: '20px', backgroundColor: 'rgb(72, 88, 14, 0.2)', borderRadius: '20px 20px 20px 20px'}}>
+                <p style={{ color: 'var(--textPrimary)',  fontSize: '20px', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters or posters, 
+                    we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation. Purchases online will be coming soon and delivery is available.
                 </p>
             </div>
             <Row style={{ marginTop:'20px'}}>
@@ -35,7 +34,7 @@ export default function ContactUs() {
                 <Col>
                     <Card style={{ height: '100%'}}>
                     <Card.Header>Call Us <BiSolidPhoneCall /></Card.Header>
-                    <Card.Body>7073878085</Card.Body>
+                    <Card.Body>+1 (707) 931-8265</Card.Body>
                     </Card>
                 </Col>
                 <Col>
