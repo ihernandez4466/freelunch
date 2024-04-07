@@ -36,7 +36,7 @@ function Header() {
       <Row style={{ justifyContent: 'center', maxHeight: '70vh'}}>
         <img src={headerPath} style={{ width: '100%', height: '100%'}}></img>
       </Row>
-          </Container>
+      </Container>
     );
 }
 
