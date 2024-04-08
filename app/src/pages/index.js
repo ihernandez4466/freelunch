@@ -29,14 +29,13 @@ function Home() {
 }
 
 function Header() {
-  const headerPath = imagePath + '/branding/trees_and_logo.png';
+  const headerPath = imagePath + '/branding/trees_and_logo_header.png';
   return (
     <Container fluid id="home">    
-      {/* <div id="home" style={{ display: 'block', width: '100%', height: '60vh' }}> */}
       <Row style={{ justifyContent: 'center', maxHeight: '70vh'}}>
         <img src={headerPath} style={{ width: '100%', height: '100%'}}></img>
       </Row>
-      </Container>
+    </Container>
     );
 }
 
