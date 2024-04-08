@@ -22,7 +22,8 @@ function SweaterDiv({ designName, style }) {
                     width: '350px',
                     height: '300px',
                     padding: '10px',
-                    backgroundColor: 'white',
+                    boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
+                    backgroundColor: 'rgb(72, 88, 14, 0.1)',
                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                     maxWidth: '100%',
                     maxHeight: '100%',

@@ -2,41 +2,40 @@
 import Nav from 'react-bootstrap/Nav';
 import { Link as ScrollLink } from 'react-scroll';
 import Sweaters from './sweaters';
-import Designs from './designs';
+import Posters from './posters';
 import ContactUs from './contact-us';
 import { Logo } from '../components/logo';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Row';
 import CustomNavBar from '../components/navbar';
 
 const imagePath = '/images';
 
 // Base function for the whole website
 function Home() {
+  const postersPath = imagePath + '/branding/posters.png';
   return (
       <div>
         <CustomNavBar Logo={AppLogo} NavWithLinks={HomeNavWithLinks}/>
         <Header />
+        <hr style={{ margin: '5rem 0'}}></hr>
         <Sweaters />
-        <hr style={{ margin: '5rem 0', marginBottom: 0}}></hr>
-        <Designs />
-        <hr style={{ margin: '5rem 0', marginBottom: 0}}></hr>
+        <hr style={{ margin: '5rem 0'}}></hr>
+        <Posters />        
+        <hr style={{ margin: '5rem 0', marginBottom: '0'}}></hr>
         <ContactUs />
       </div>
   );
 }
 
 function Header() {
-  const headerPath = imagePath + '/branding/freelunch.png'
-  const brandPath = imagePath + '/red-trees-blur.png'
+  const headerPath = imagePath + '/branding/trees_and_logo_header.png';
   return (
-     <div id="home" style={{ position: 'relative', width: '100%', height: '60vh' }}>
-      {/* Full-width image */}
-      <img src={brandPath} style={{ position: 'absolute', top: '-15%', width: '100%', height: '100%' }} alt="Full Width" />
-
-      {/* Overlapping image */}
-      <div style={{ position: 'absolute', left: '60%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: '1', height: '100%' }}>
-        <img src={headerPath} style={{ width: '50%', height: '100%' }} alt="Overlapping" />
-      </div>
-    </div>
+    <Container fluid id="home">    
+      <Row style={{ justifyContent: 'center', maxHeight: '70vh'}}>
+        <img src={headerPath} style={{ width: '100%', height: '100%'}}></img>
+      </Row>
+    </Container>
     );
 }
 
@@ -65,8 +64,8 @@ function HomeNavWithLinks() {
           <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
             Sweaters
           </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="designs" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
-            Designs
+          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
+            Posters
           </ScrollLink>
           <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px' }}>
             Contact Us

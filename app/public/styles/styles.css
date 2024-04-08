@@ -69,8 +69,8 @@ body {
 :root {
   /* light mode */
   --primary: #5C0606;
-  --secondary: #C74F24;
-  --background: #FFFAF7;
+  --secondary: #001400;
+  --background: #F9FCED;
   --textPrimary: black;
  
   /* dark mode */
