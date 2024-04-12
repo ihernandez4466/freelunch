@@ -10,13 +10,10 @@ export default function ContactUs() {
         <div id="contact-us" style={{
             alignContent: 'center',
             alignItems: 'center',
-            display: 'flex',
-            flexWrap:'wrap',
-            height: '70vh', // Adjust the height as needed
-            justifyContent: 'center',
+            height: '80vh',
             padding: '10px 30px 30px 30px'
         }}>
-            <div style={{ padding: '30px'}}>
+            <div style={{ padding: '30px', display: 'flex', justifyContent: 'center',}}>
                 <h1 style={{ color: 'var(--textPrimary)', fontSize: '30px', fontWeight: '600'}}>Join The Movement</h1>
             </div>
             <div style={{ padding: '20px', backgroundColor: 'rgb(72, 88, 14, 0.2)', borderRadius: '20px 20px 20px 20px'}}>

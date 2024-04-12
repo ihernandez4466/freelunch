@@ -61,7 +61,17 @@ function AppLogo() {
     padding: '5px'
   }
  
+// function callActivateFunction() {
+//   const options = {
+//     // Your options here, for example:
+//     duration: 500,
+//     smooth: true,
+//     smooth={true}, duration={300}
+//   };
+  
+//   animateScroll.scrollToBottom(options);
 function HomeNavWithLinks() {
+  
   return (
   <Nav variant="underline"style={{ fontFamily: 'merienda' }}>
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="home" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
@@ -73,10 +83,10 @@ function HomeNavWithLinks() {
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Posters
           </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} style={linkStyle}>
             Contact Us
           </ScrollLink>
-        </Nav>
+      </Nav>
   );
 }
 export default Home; 
