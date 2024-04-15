@@ -8,7 +8,7 @@ const stickerPath = "/images/stickers/";
 
 function SweaterDiv({ designName, style }) {
     const stickerExt = "-sticker";
-    const sweaterExt = "-sweater";
+    const sweaterExt = "-sweater-attachment";
     const sweaterSrc = sweaterPath + designName + sweaterExt + ".png";
     const stickerSrc = stickerPath + designName + stickerExt + ".png";
 
@@ -41,6 +41,32 @@ function SweaterDiv({ designName, style }) {
     );
 }
 
+function sweaterOptions({ designName }) {
+    const stickerExt = "-sticker";
+    const sweaterExt = "-sweater";
+    const attachmentExt = "-attachment";
+    const sweaterSrc = sweaterPath + designName + sweaterExt + ".png";
+    const sweaterAttachmentSrc = sweaterPath + designName + sweaterExt + attachmentExt + ".png";
+    const stickerSrc = stickerPath + designName + stickerExt + ".png";
+    return (
+        <div>
+            <Col md={3}>
+                <Row>
+                    <img src={sweaterAttachmentSrc}></img>
+                </Row>
+                <Row>
+                    <img src={sweaterSrc}></img>
+                </Row>
+                <Row>
+                    <img src={stickerSrc}></img>
+                </Row>
+            </Col>
+            <Col md={9}>
+                <img src={sweaterAttachmentSrc}></img>
+            </Col>
+        </div>
+    );
+}
 export default function Sweaters() {
 
     return (
