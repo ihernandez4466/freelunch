@@ -32,9 +32,7 @@ function Header() {
   const headerPath = imagePath + '/branding/trees_and_logo_header.png';
   return (
     <Container fluid id="home">    
-      <Row style={{ justifyContent: 'center', maxHeight: '70vh'}}>
         <img src={headerPath} style={{ width: '100%', height: '100%'}}></img>
-      </Row>
     </Container>
     );
 }
@@ -50,27 +48,45 @@ function AppLogo() {
   );
  }
  
- const customLinkStyle = {
-  textDecoration: 'underline',
-  textUnderlineOffset: '15px' // Adjust as needed
-};
-
+ const activeLinkStyle = {
+    color: 'var(--primaryDark)',
+    borderRadius: '5px',
+    textAlign: 'center',
+    textDecoration: 'none'
+  };
+  const linkStyle = {
+    fontSize: '2vw',
+    fontWeight: '800',
+    color: 'var(--textPrimary)',
+    padding: '5px'
+  }
+ 
+// function callActivateFunction() {
+//   const options = {
+//     // Your options here, for example:
+//     duration: 500,
+//     smooth: true,
+//     smooth={true}, duration={300}
+//   };
+  
+//   animateScroll.scrollToBottom(options);
 function HomeNavWithLinks() {
+  
   return (
   <Nav variant="underline"style={{ fontFamily: 'merienda' }}>
-          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="home" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="home" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Home
           </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Sweaters
           </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px'}}>
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Posters
           </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={customLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={{ color: 'var(--textPrimary)', fontWeight: 800, fontSize: '20px' }}>
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} style={linkStyle}>
             Contact Us
           </ScrollLink>
-        </Nav>
+      </Nav>
   );
 }
 export default Home; 
