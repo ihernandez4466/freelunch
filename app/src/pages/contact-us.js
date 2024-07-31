@@ -5,6 +5,10 @@ import { MdEmail } from "react-icons/md";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
 
+
+/**
+ * Functional component that renders the Contact Us Page
+ */
 export default function ContactUs() {
     return (
         <div id="contact-us" style={{

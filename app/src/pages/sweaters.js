@@ -6,7 +6,13 @@ import PropTypes from 'prop-types';
 const sweaterPath = "/images/sweaters/";
 const stickerPath = "/images/stickers/";
 
-function SweaterDiv({ designName, style }) {
+
+/**
+ * Functional component that renders a widget for a product.
+ *    @param {ReactNode} props.designName - Name for design png to attach expected to be in /public/images/
+ *    @param {ReactNode} props.style - Optional style for the image in case it does not fit as expected
+ */
+function ProductDiv({ designName, style }) {
     const stickerExt = "-sticker";
     const sweaterExt = "-sweater-attachment";
     const sweaterSrc = sweaterPath + designName + sweaterExt + ".png";
@@ -41,6 +47,10 @@ function SweaterDiv({ designName, style }) {
     );
 }
 
+/**
+ * Functional component that renders a pop up widget when a design is selected (NOT DONE)
+ *    @param {ReactNode} props.designName - Name for design png to attach expected to be in /public/images/
+ */
 function sweaterOptions({ designName }) {
     const stickerExt = "-sticker";
     const sweaterExt = "-sweater";
@@ -67,6 +77,9 @@ function sweaterOptions({ designName }) {
         </div>
     );
 }
+
+/* Functional component that renders sweaters page.*/
+
 export default function Sweaters() {
 
     return (
@@ -78,19 +91,19 @@ export default function Sweaters() {
                     </h1>
                     <p style={{ display: 'block', fontSize: '20px', fontWeight: '300' }}>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters are completely customizable upon request</p>
                 </Col>
-                <SweaterDiv designName="betty-bearliving" />
-                <SweaterDiv designName="betty-icy" />
+                <ProductDiv designName="betty-bearliving" />
+                <ProductDiv designName="betty-icy" />
             </Row>
             <Row className="justify-content-center">
-                <SweaterDiv designName="betty-strongService" />
-                <SweaterDiv designName="cake" />
-                <SweaterDiv designName="relentless" />
+                <ProductDiv designName="betty-strongService" />
+                <ProductDiv designName="cake" />
+                <ProductDiv designName="relentless" />
             </Row>
         </div>
     );
 }
 
-SweaterDiv.prototype = {
-    designName: PropTypes.string.isRequired,
+ProductDiv.prototype = {
+    designName: PropTypes.string.isRequired, // name for photo link
     style: PropTypes.object // optional
 };
