@@ -16,32 +16,32 @@ function Home() {
   return (
       <div>
         <CustomNavBar Logo={AppLogo} NavWithLinks={HomeNavWithLinks}/>
-        {/* <Header /> */}
+        <Header />
         <hr style={{ margin: '5rem 0'}}></hr>
         <Sweaters />
         <hr style={{ margin: '5rem 0'}}></hr>
-        <Posters />        
-        <hr style={{ margin: '5rem 0', marginBottom: '0'}}></hr>
+        {/* <Posters />         */}
+        {/* <hr style={{ margin: '5rem 0', marginBottom: '0'}}></hr> */}
         <ContactUs />
       </div>
   );
 }
 
-// function Header() {
-//   const headerPath = imagePath + '/branding/trees_and_logo_header.png';
-//   return (
-//     <Container fluid id="home">    
-//         <img src={headerPath} style={{ width: '100%', height: '100%'}}></img>
-//     </Container>
-//     );
-// }
+function Header() {
+  const headerPath = imagePath + '/branding/logo-icon.png';
+  return (
+    <Container fluid style={{ backgroundColor: 'white', justifyContent: 'center'}} id="home">    
+        <img src={headerPath} style={{ width: '50%', height: '30vw'}}></img>
+    </Container>
+    );
+}
 
 function AppLogo() {
   const logoPath = imagePath + '/branding/logo-icon.png';  
   return (
    <>
     <Logo 
-      imgSrc={logoPath}
+      // imgSrc={logoPath}
       customStyle={{ height: '50px' }} />
    </>
   );
@@ -67,9 +67,9 @@ function HomeNavWithLinks() {
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Sweaters
           </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+          {/* <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Posters
-          </ScrollLink>
+          </ScrollLink> */}
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} style={linkStyle}>
             Contact Us
           </ScrollLink>
