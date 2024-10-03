@@ -7,20 +7,14 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form'
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
-const sweaterPath = "/images/sweaters/";
-const stickerPath = "/images/stickers/";
-const sweaterExt = "-sweater";
+import SweaterMockData from '../mock_data/sweaters.json';
 
 /**
  * Functional component that renders a widget for a product.
- *    @param {ReactNode} props.designName - Name for design png to attach expected to be in /public/images/
+ *    @param {ReactNode} props.productInfo - product object with name: str, img_path: str, price: int, description: str, available_qty: int, available_sizes: array
  *    @param {ReactNode} props.style - Optional style for the image in case it does not fit as expected
  */
-function ProductDiv({ designName, style }) {
-    // const stickerExt = "-sticker";
-    const sweaterSrc = sweaterPath + designName + sweaterExt + ".png";
-    // const stickerSrc = stickerPath + designName + stickerExt + ".png";
+function ProductDiv({ productInfo, style }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -50,21 +44,20 @@ function ProductDiv({ designName, style }) {
                                     maxWidth: '100%',
                                     maxHeight: '100%',
                                 }}
-                                src={sweaterSrc}
+                                src={productInfo.img_path}
                             />
                             </Col>
                             <Col>
                             <Form>
-                                <Row><h1>$35</h1></Row>
+                                <Row><h1>{productInfo.price}</h1></Row>
                                 <Row><h2>Pick Size</h2></Row>
-                                <Row>Sizes</Row>
-                                <Row>Add Design</Row>
-                                <Row>Designs</Row>
+                                <Row>{productInfo.available_sizes.map((size, i) => 
+                                <Col value={i}>{size}</Col>)}</Row>
                                 <Row>
                                     <Col>
                                     <Form.Select aria-label="Default select example">
                                         <option>Quantity</option>
-                                        {[...Array(10)].map((x, i) =>
+                                        {[...Array(productInfo.available_qty)].map((x, i) =>
                                             <option value={i}>{i}</option>)}
                                     </Form.Select>
                                     </Col>
@@ -93,47 +86,12 @@ function ProductDiv({ designName, style }) {
                     maxWidth: '100%',
                     maxHeight: '100%',
                 }}
-                src={sweaterSrc}
-                // onMouseEnter={e => {
-                //     const imageElement = e.currentTarget;
-                //     imageElement.src = stickerSrc;
-                // }}
-                // onMouseLeave={e => {
-                //     e.currentTarget.src = sweaterSrc;
-                // }}
+                src={productInfo.img_path}
             />
         </Col>
     );
 }
 
-/**
-            </div> <Col>
-            <Image
-                style={style ? style : {
-                    width: '350px',
-                    height: '300px',
-                    padding: '10px',
-                    boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                    backgroundColor: 'rgb(72, 88, 14, 0.1)',
-                    transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                }}
-                src={sweaterSrc}
-            />
-            </Col>
-            <Col>
-            <Row>$35</Row>
-            <Row>Pick Size</Row>
-            <Row>Sizes</Row>
-            <Row>Add Design</Row>
-            <Row>Designs</Row>
-            <Row>
-                <Col>Quantity</Col>
-                <Col>Add to Cart</Col>
-            </Row>
-            </Col> */
-            
 /* Functional component that renders sweaters page.*/
 
 export default function Sweaters() {
@@ -154,15 +112,14 @@ export default function Sweaters() {
                 </Col>
             </Row>
             <Row className="justify-content-center">
-                <ProductDiv designName="template-grey" />
-                <ProductDiv designName="template-brown" />
-                <ProductDiv designName="template-red" />
+                {SweaterMockData.map(item => (
+                    <ProductDiv productInfo={item} />))}
             </Row>
         </div>
     );
 }
 
 ProductDiv.prototype = {
-    designName: PropTypes.string.isRequired, // name for photo link
+    productInfo: PropTypes.object.isRequired, // product details
     style: PropTypes.object // optional
 };

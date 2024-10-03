@@ -73,6 +73,9 @@ function HomeNavWithLinks() {
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} style={linkStyle}>
             Contact Us
           </ScrollLink>
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="cart" spy={true} smooth={true} duration={300} style={linkStyle}>
+            Cart
+          </ScrollLink>
       </Nav>
   );
 }
