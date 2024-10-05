@@ -1,0 +1,19 @@
+[{
+    "id": 1,
+    "email": "isabelhernandez123@gmail.com",
+    "first_name": "isabel",
+    "last_name": "hernandez"
+},{
+
+    "id": 2,
+    "email": "fabianhernandez123@gmail.com",
+    "first_name": "fabian",
+    "last_name": "hernandez"
+},{
+
+    "id": 3,
+    "email": "blancahernandez123@gmail.com",
+    "first_name": "blanca",
+    "last_name": "hernandez"
+}
+]

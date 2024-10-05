@@ -1,28 +1,37 @@
 [{
+    "id": 1,
     "name": "Brown Front",
     "img_path": "/images/sweaters/template-brown-sweater.png",
     "price": 40,
     "description": "Need a little accent but not too much because you're shy",
     "available_qty": 10,
     "available_colors": ["Black"],
-    "available_sizes": ["S", "M", "L", "XL", "2X", "3X"]
+    "available_sizes": ["S", "M", "L", "XL", "2X", "3X"],
+    "created_at": "10-05-2024",
+    "modified_at": "10-05-2024"
 },
 {
+    "id": 2,
     "name": "Grey Front",
     "img_path": "/images/sweaters/template-grey-sweater.png",
     "price": 45,
     "description": "You dont get out of your comfort zone but it's still cute",
     "available_qty": 10,
     "available_colors": ["Black"],
-    "available_sizes": ["S", "M", "L", "XL", "2X", "3X"]
+    "available_sizes": ["S", "M", "L", "XL", "2X", "3X"],
+    "created_at": "10-05-2024",
+    "modified_at": "10-05-2024"
 },
 {
+    "id": 3,
     "name": "Red Front",
     "img_path": "/images/sweaters/template-red-sweater.png",
     "price": 50,
     "description": "Add a little flavor you know you want to",
     "available_qty": 10,
     "available_colors": ["Black"],
-    "available_sizes": ["S", "M", "L", "XL", "2X", "3X"]
+    "available_sizes": ["S", "M", "L", "XL", "2X", "3X"],
+    "created_at": "10-05-2024",
+    "modified_at": "10-05-2024"
 }
 ]
