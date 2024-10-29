@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image';
  * Functional component that renders a photo collage
  *    @param {ReactNode} props.Style - The logo component style
  */
-export function LandingPage() {
+export default function LandingPage() {
     return (
       <>
       <div style={{ 

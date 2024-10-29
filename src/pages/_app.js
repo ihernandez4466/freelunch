@@ -10,6 +10,6 @@ export default function Home({ Component, pageProps }) {
     <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
     </Head>
-    <Component {...pageProps} />
+    <Component {...pageProps} userId={1}/>
   </>
 )}

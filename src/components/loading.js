@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
  * Functional component that renders loading animation
  */
 
-export function Loading() {
+export default function Loading() {
     const [activeSpinner, setActiveSpinner] = useState(0);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function Loading() {
     <Container>
       <Row> 
       {[0, 1, 2].map((index) => (
-        <Col>        
+        <Col key={index}>        
         <Spinner
           key={index}
           animation={activeSpinner === index ? 'grow' : ''}
