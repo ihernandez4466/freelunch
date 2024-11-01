@@ -2,43 +2,22 @@ import React, { useEffect, useState } from "react";
 import Link from 'next/link';
 import {Row, Image, Container, Nav }from "react-bootstrap"
 import Loading from '../components/loading'
+import DataFetcher from '../components/fetch'
 
 import Logo from '../components/logo';
 import CustomNavBar from '../components/navbar';
 
 export default function Cart(props) {
     const user = props.userId
-    const [cartItems, setCartItems] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const fetchData = async (endpoint) => {
-        setIsLoading(true);
-        try {
-          const response = await fetch(endpoint);
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const jsonData = await response.json();
-          setCartItems(jsonData.rows); // api returns object not array directly
-        } catch (err) {
-            console.log(err)
-            setError(err);
-        } finally {
-            setIsLoading(false);
-        }
-      }
-
-      useEffect(() => {
-        fetchData(`/api/cart?userId=${user}`)
-      }, [])
+    const [data, isLoading, error] = DataFetcher({endpoint:`/api/cart?userId=${user}`})
 
       return (
         <>
         <CustomNavBar Logo={Logo} NavWithLinks={NavWithHomeLink}/>
         <Container>            
             <h1>Your Cart</h1>
-            { error ? (<h1>Something went wrong</h1>) : isLoading ? (<Loading />) : (
-                cartItems && (cartItems.length > 0 ? (cartItems.map((product, idx) => 
+            { error ? (<h1>Something went wrong</h1>) : (isLoading ? (<Loading />) : (
+                data && (data.rows.length > 0 ? (data.rows.map((product, idx) => 
                     <Row key={idx}>
                         <h1>{product.name}</h1>
                         <Image
@@ -56,7 +35,7 @@ export default function Cart(props) {
                         <h2>{product.quantity}</h2>
                         <h2>{product.total}</h2>
                     </Row>  )) : <h1>No items in cart yet</h1> ) 
-            )}
+            ))}
        </Container>
  </>
     );

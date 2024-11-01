@@ -73,8 +73,8 @@ const handler = {
                         } else {
                             // update existing row in cart_items
                             const rowToUpdate = filteredItems[0]
-                            const newQuantity = rowToUpdate.quantity + quantity
-                            const newTotal = newQuantity * price
+                            const newQuantity = rowToUpdate.quantity + parseInt(quantity)
+                            const newTotal = newQuantity * parseFloat(price)
                             const rowId = rowToUpdate.itemid
                             let query = `UPDATE cart_items SET quantity=${newQuantity}, total=${newTotal} WHERE id=${rowId}`
                             await client.query(query)
@@ -95,6 +95,7 @@ const handler = {
                     }
                 }
                 catch(error) {
+                    console.log(error)
                     await client.query('ROLLBACK');
                     return res.status(500).json({ error: 'Internal server error' });
                 }

@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 
-export default DataFetcher = ({ endpoint, render }) => {
+export default function DataFetcher ({ endpoint }) {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -23,10 +24,8 @@ export default DataFetcher = ({ endpoint, render }) => {
   
       fetchData();
     }, [endpoint]);
+
+    return [data, isLoading, error];
   
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
-  
-    return <div>{render ? render(data) : <p>{JSON.stringify(data)}</p>}</div>;
   };
   
