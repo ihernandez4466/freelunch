@@ -2,6 +2,7 @@
 import { Container, Nav } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
 import Link from 'next/link';
+import { PiShoppingCartDuotone } from "react-icons/pi";
 
 import Logo from '../components/logo';
 import Sweaters from './sweaters';
@@ -36,36 +37,38 @@ function Header() {
 }
 
 const activeLinkStyle = {
-  color: 'var(--primaryDark)',
+  fontSize: '1.75vw',
+  fontWeight: '600',
+  color: 'var(--primary)',
   borderRadius: '5px',
   textAlign: 'center',
   textDecoration: 'none'
 };
 const linkStyle = {
-  fontSize: '2vw',
-  fontWeight: '800',
+  fontSize: '1.5vw',
+  fontWeight: '500',
   color: 'var(--textPrimary)',
-  padding: '5px'
+  padding: '2.5px'
 }
 
 function HomeNavWithLinks() {
   
   return (
-    <Nav variant="underline"style={{ fontFamily: 'merienda' }}>
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="home" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+    <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
+          {/* <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="home" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Home
-          </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} style={linkStyle}>
+          </ScrollLink> */}
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Sweaters
           </ScrollLink>
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Posters
           </ScrollLink>
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} style={linkStyle}>
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Contact Us
           </ScrollLink>
           <Link style={linkStyle} href="/cart">
-            Cart
+            <PiShoppingCartDuotone />
           </Link>
       </Nav>
   );

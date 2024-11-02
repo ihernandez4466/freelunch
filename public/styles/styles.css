@@ -71,7 +71,7 @@ body {
   /* light mode */
   --primary: #5C0606;
   --secondary: #001400;
-  --background: #F9FCED;
+  --background: white;
   --textPrimary: black;
  
   /* dark mode */

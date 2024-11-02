@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
  */
 export default function CustomNavBar({ Logo, NavWithLinks }) {
     return (
-      <Navbar sticky="top" style={{ height: '50px', backgroundColor:'rgb(242, 250, 240, 0.8)'}}>
+      <Navbar sticky="top" style={{ height: '50px', backgroundColor:'white'}}>
       <Container 
         fluid 
         style={{ justifyContent: 'space-between', display: 'flex' }}>

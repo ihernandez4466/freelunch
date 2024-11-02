@@ -9,7 +9,7 @@ const postersPath = imagePath + '/branding/posters.png';
 
 export default function Posters() {
     return(
-        <>
+        <div id="posters">
         <h1>Coming Soon</h1>
         {/* <Row id="posters" style={{ justifyContent: 'center'}}>
             <img src={postersPath} style={{
@@ -18,6 +18,6 @@ export default function Posters() {
                     backgroundColor: 'rgb(72, 88, 14, 0.1)',
             }}/>
         </Row> */}
-        </>
+        </div>
     );
 }

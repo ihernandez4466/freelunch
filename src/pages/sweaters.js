@@ -30,8 +30,8 @@ export default function Sweaters(props) {
         <div id="sweaters" style={{
             alignContent: 'center',
             alignItems: 'center',
-            height: '80vh',
-            padding: '10px 30px 30px 30px'
+            // height: '80vh',
+            padding: '50px 50px 50px 50px'
         }}>
             <Row style={{ padding: '20px' }} className="justify-content-center">
                 <Col>

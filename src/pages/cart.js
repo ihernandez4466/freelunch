@@ -29,7 +29,7 @@ export default function Cart(props) {
                                 maxWidth: '30%',
                                 maxHeight: '30%',
                             }}
-                            src={`/images/${product.img_path}`}
+                            src={`${product.img_path}`}
                         />
                         <h2>{product.size}</h2>
                         <h2>{product.quantity}</h2>

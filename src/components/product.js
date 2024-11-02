@@ -44,7 +44,7 @@ export default function ProductDiv({ productInfo, ...props }) {
     }
 
     return (
-        <Col xs={12} md={4} className="d-flex justify-content-center mb-3" style={{
+        <Col xs={12} md={4} className="d-flex justify-content-center mb-3 overflow-hidden" style={{
             borderRadius: '4px',
             //backgroundColor: 'var(--background)',
         }}>
@@ -67,7 +67,7 @@ export default function ProductDiv({ productInfo, ...props }) {
                                     maxWidth: '100%',
                                     maxHeight: '100%',
                                 }}
-                                src={`/images/${productInfo.img_path}`}
+                                src={`${productInfo.img_path}`}
                             />
                             </Col>
                             <Col>
@@ -108,16 +108,17 @@ export default function ProductDiv({ productInfo, ...props }) {
             <Image
                 onClick={handleShow}
                 style={props.style ? props.style : {
-                    width: '350px',
-                    height: '300px',
+                    // width: '50%',
+                    height: 'auto',
                     padding: '10px',
+                    objectFit: 'cover',
                     boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
                     backgroundColor: 'rgb(72, 88, 14, 0.1)',
                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                     maxWidth: '100%',
-                    maxHeight: '100%',
+                    // maxHeight: '100%',
                 }}
-                src={`/images/${productInfo.img_path}`}
+                src={`${productInfo.img_path}`}
             />
         </Col>
     );
