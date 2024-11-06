@@ -37,9 +37,9 @@ function Header() {
 }
 
 const activeLinkStyle = {
-  fontSize: '1.75vw',
+  fontSize: '1.5vw',
   fontWeight: '600',
-  color: 'var(--primary)',
+  color: 'var(--secondary)',
   borderRadius: '5px',
   textAlign: 'center',
   textDecoration: 'none'

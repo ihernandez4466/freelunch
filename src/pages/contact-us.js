@@ -18,7 +18,7 @@ export default function ContactUs() {
             <div style={{ padding: '30px', display: 'flex', justifyContent: 'center',}}>
                 <h1 style={{ color: 'var(--textPrimary)', fontSize: '30px', fontWeight: '600'}}>Join The Movement</h1>
             </div>
-            <div style={{ padding: '20px', backgroundColor: 'rgb(72, 88, 14, 0.2)', borderRadius: '20px 20px 20px 20px'}}>
+            <div style={{ padding: '20px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px'}}>
                 <p style={{ color: 'var(--textPrimary)',  fontSize: '20px', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters or posters, 
                     we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation. Purchases online will be coming soon and delivery is available.
                 </p>

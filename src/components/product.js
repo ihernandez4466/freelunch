@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Col, Container, Image, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Container, Image, Form, Modal, Row, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Loading from '../components/loading'
 
@@ -54,15 +54,14 @@ export default function ProductDiv({ productInfo, ...props }) {
                 <Modal.Body>
                     <Container>
                         <Row>
-                            <Col>
+                            <Col sm={12} md={6}>
                             <Image
                                 onClick={handleShow}
                                 style={props.style ? props.style : {
-                                    width: '100%',
-                                    height: '100%',
+                                    height: 'auto',
                                     padding: '10px',
                                     boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                                    backgroundColor: 'rgb(72, 88, 14, 0.1)',
+                                    backgroundColor: 'var(--primary-transparent)',
                                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                                     maxWidth: '100%',
                                     maxHeight: '100%',
@@ -70,39 +69,36 @@ export default function ProductDiv({ productInfo, ...props }) {
                                 src={`${productInfo.img_path}`}
                             />
                             </Col>
-                            <Col>
+                            <Col sm={12} md={6}>
                             <Form id={`${productInfo.id}-form`} onSubmit={handleSubmit}>
                                 <Row key={`${productInfo.id}-name`}>
                                     <input type="hidden" name="product" value={productInfo.id} />
                                     <input type="hidden" name="category" value={productInfo.category} />
-                                    <h1>{productInfo.name}</h1>
+                                    <h2>{productInfo.name}</h2>
                                 </Row>                                
                                 <Row key={`${productInfo.id}-price`}>
                                     <input type="hidden" name="price" value={productInfo.price} />
-                                    <h1>{productInfo.price}</h1>
+                                    <p>{`$${productInfo.price}`}</p>
                                 </Row>
-                                <Row key={`${productInfo.id}-size`}><h2>Pick Size</h2></Row>
-                                <Row key={`${productInfo.id}-availableSizes`}>{productInfo.available_sizes.map((size, i) => 
-                                    <Form.Check key={`size-${i}`} inline label={size} value={size} name="size" type="radio"/>)}</Row>
-                                <Row key={`${productInfo.id}-quantity`}>
-                                    <Col>
-                                    <Form.Select name="quantity" aria-label="Default select example">
+                                <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
+                                <ButtonGroup id="sizeInput"style={{ paddingBottom: '15px'}}>
+                                {productInfo.available_sizes.map((size, i) => 
+                                    <ToggleButton className="btn-neutral" key={`size-${i}`} type="radio" value={size} name="size" type="radio">{size}</ToggleButton>)}
+                                </ButtonGroup>
+                                <Form.Select name="quantity" aria-label="Default select example">
                                         <option value="">Quantity</option>
                                         {[...Array(productInfo.available_quantity)].map((x, i) =>
                                             <option key={`${productInfo.id}-quantity-${i+1}`} value={i+1}>{i+1}</option>)}
-                                    </Form.Select>
-                                    </Col>
-                                    <Col><Button type="submit">Add To Cart</Button></Col>
-                                </Row>
+                                </Form.Select>
+                                <div className="d-grid gap-2" style={{ marginTop: '10px', marginBottom: '10'}}>
+                                    <Button className="btn-primary" type="submit">Add To Cart</Button>
+                                </div>
                             </Form>
                             </Col>
                     </Row>
                     </Container>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
                 </Modal.Footer>
             </Modal>
             <Image
@@ -113,7 +109,7 @@ export default function ProductDiv({ productInfo, ...props }) {
                     padding: '10px',
                     objectFit: 'cover',
                     boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                    backgroundColor: 'rgb(72, 88, 14, 0.1)',
+                    backgroundColor: 'var(--primary-transparent)',
                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                     maxWidth: '100%',
                     // maxHeight: '100%',
