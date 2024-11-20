@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from 'next/link';
-import {Row, Image, Container, Nav }from "react-bootstrap"
+import {Button, Container, Nav, Card }from "react-bootstrap"
 import Loading from '../components/loading'
 import DataFetcher from '../components/fetch'
 
@@ -10,31 +10,48 @@ import CustomNavBar from '../components/navbar';
 export default function Cart(props) {
     const user = props.userId
     const [data, isLoading, error] = DataFetcher({endpoint:`/api/cart?userId=${user}`})
+    const handleRemove = async (id) => {
+        try {
+            const response = await fetch(`/api/cart?id=${id}`, {
+                method: 'DELETE'
+            });
 
-      return (
+            if (!response.ok) {
+                throw new Error("Failed to delete item from cart")             
+            }
+
+            const result = await response.json();
+            console.log(`Successfully deleted item from cart: ${result}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    return (
         <>
         <CustomNavBar Logo={Logo} NavWithLinks={NavWithHomeLink}/>
         <Container>            
             <h1>Your Cart</h1>
             { error ? (<h1>Something went wrong</h1>) : (isLoading ? (<Loading />) : (
                 data && (data.rows.length > 0 ? (data.rows.map((product, idx) => 
-                    <Row key={idx}>
-                        <h1>{product.name}</h1>
-                        <Image
+                    <Card key={idx} >
+                        <Card.Header><Button onClick={() => handleRemove(product.id)}>X</Button></Card.Header>
+                        <Card.Title className="text-center">{product.name}</Card.Title>
+                        <Card.Img
                             style={{
                                 padding: '10px',
                                 boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                                backgroundColor: 'rgb(72, 88, 14, 0.1)',
+                                backgroundColor: 'var(--primary-transparent)',
                                 transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
-                                maxWidth: '30%',
-                                maxHeight: '30%',
+                                maxWidth: '85%',
+                                maxHeight: 'auto',
                             }}
                             src={`${product.img_path}`}
                         />
-                        <h2>{product.size}</h2>
-                        <h2>{product.quantity}</h2>
-                        <h2>{product.total}</h2>
-                    </Row>  )) : <h1>No items in cart yet</h1> ) 
+                        <Card.Subtitle>{product.price}</Card.Subtitle>
+                        <Card.Subtitle>{`Quantity: ${product.quantity}`}</Card.Subtitle>
+                        <Card.Subtitle>{`Total: ${product.total}`}</Card.Subtitle>
+                    </Card>  )) : <h1>No items in cart yet</h1> ) 
             ))}
        </Container>
  </>

@@ -80,9 +80,9 @@ body {
   color: var(--textPrimary);
   border: 1px solid #000 !important; /* Change to desired color and width */
 }
-.btn-neutral:hover, .btn-neutral:focus, .btn-neutral:active, .btn-neutral.active, .open>.dropdown-toggle.btn-neutral {
+.btn-neutral:hover, .btn-neutral:focus, .btn-neutral.checked, .btn-neutral.active, .open>.dropdown-toggle.btn-neutral {
   background-color: var(--primary) !important;
-  border: 1px solid #000 !important; /* Change to desired color and width */
+  border: 1px solid #000 !important;
   color: var(--textSecondary);
 }
 

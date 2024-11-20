@@ -1,22 +1,28 @@
 import { useState } from 'react';
-import { Button, Col, Container, Image, Form, Modal, Row, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button, Col, Container, Image, Form, Modal, Row, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import Loading from '../components/loading'
 
 /**
  * Functional component that renders a widget for a product.
  *    @param {ReactNode} props.productInfo - product object with name: str, img_path: str, price: int, description: str, available_qty: int, available_sizes: array
  *    @param {ReactNode} props.style - Optional style for the image in case it does not fit as expected
  */
-export default function ProductDiv({ productInfo, ...props }) {
+export default function ProductDiv({ productInfo, setter, ...props }) {
     const user = props.userId
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    setter('Data from Child');
+
+    const [value, setValue] = useState(['S']);
+    const handleChange = (val) => {
+        console.log(`changing value to :${val}`);
+        setValue(val);
+    }
     
     const handleSubmit = async (e) => {
-    
-        //e.preventDefault();
+        setter('Data from Child when Form is called');
+        e.preventDefault();
         // add this to the cart :)
         const data = {
             userId: user,
@@ -37,9 +43,11 @@ export default function ProductDiv({ productInfo, ...props }) {
             }
 
             const result = await response.json();
-            console.log('Form submitted successfully:', result);
+            console.log(`Form submitted successfully: ${result}`);
         } catch (error) {
             console.error('Error submitting form:', error);
+        } finally {
+            handleClose() // hide modal
         }
     }
 
@@ -81,10 +89,11 @@ export default function ProductDiv({ productInfo, ...props }) {
                                     <p>{`$${productInfo.price}`}</p>
                                 </Row>
                                 <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
-                                <ButtonGroup id="sizeInput"style={{ paddingBottom: '15px'}}>
+                                <ToggleButtonGroup id="sizeInput" name="size" type="radio" value={value}
+                                     onChange={handleChange} style={{ paddingBottom: '15px'}}>
                                 {productInfo.available_sizes.map((size, i) => 
-                                    <ToggleButton className="btn-neutral" key={`size-${i}`} type="radio" value={size} name="size" type="radio">{size}</ToggleButton>)}
-                                </ButtonGroup>
+                                    <ToggleButton className="btn-neutral" id={`size-${i}`} value={size}>{size}</ToggleButton>)}                                
+                                </ToggleButtonGroup>
                                 <Form.Select name="quantity" aria-label="Default select example">
                                         <option value="">Quantity</option>
                                         {[...Array(productInfo.available_quantity)].map((x, i) =>

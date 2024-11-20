@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Fade } from 'react-bootstrap';
 
 function MyAlert({ success, message, showAlert}) {
-  const [showAlert, setShowAlert] = useState(showAlert);
+  const [show, setShow] = useState(showAlert);
   
   useEffect(() => {
-    if(showAlert){
-     setShowAlert(false) 
+    if(show){
+     handleClose()
     }
   }, [showAlert])
 
   function handleClose() {
     setTimeout(() => {
-      setShowAlert(false);  
+      setShow(false);  
     }, 3000); 
   } 
 
   return (
-    <Fade in={showAlert}>
+    <Fade in={show}>
       <Alert variant={success ? "success": "danger"} dismissible onClose={handleClose}>
         {message}
       </Alert>

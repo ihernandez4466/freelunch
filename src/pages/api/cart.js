@@ -8,7 +8,7 @@ const handler = {
         if (userId == undefined || userId == null) {
             return res.status(400).json("Missing userid")
         }
-        const query = `
+        let query = `
             SELECT session_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path
             FROM cart_items
             JOIN shopping_session
@@ -20,11 +20,12 @@ const handler = {
         const client = await pool.connect() // Get a client from the pool
         try {
             await client.query('BEGIN')
-            const response = await client.query(query)
+            let response = await client.query(query)
             const rows = response.rows
             await client.query('COMMIT')
             return res.status(200).json({ rows })
         } catch(error) {
+            console.log(error)
             await client.query('ROLLBACK')
             throw error;
         } 
@@ -54,7 +55,7 @@ const handler = {
 
                 try {
                     await client.query('BEGIN')
-                    const response = await client.query(firstQuery)
+                    let response = await client.query(firstQuery)
                     if (response.rows.length > 0) {
                         // find item already added to session
                         const filteredItems = response.rows.filter((item) => {
@@ -83,10 +84,19 @@ const handler = {
                             return res.status(201).json("Successfully Updated Cart Item")
                         }
                     } else {
+                        // check if session exists
+                        let sessionQuery = `SELECT * FROM shopping_session WHERE user_id=${userId}`
                         // no session has been created insert into session and into cart items
-                        let sessionQuery = `INSERT INTO shopping_session (user_id, session_expiration) VALUES (${userId}, to_timestamp(${Date.now()})) RETURNING id`
-                        let response = await client.query(sessionQuery)
-                        let sessionid = response.rows[0].id
+                        let sessionQueryResponse = await client.query(sessionQuery)
+                        let sessionid = null
+                        if(sessionQueryResponse.rows.length == 0){
+                            // insert a session
+                            let addSessionQuery = `INSERT INTO shopping_session (user_id, session_expiration) VALUES (${userId}, to_timestamp(${Date.now()})) RETURNING id`
+                            let response = await client.query(addSessionQuery)
+                            sessionid = response.rows[0].id
+                        } else {
+                            sessionid = sessionQueryResponse.rows[0].id
+                        }
                         let cartQuery = `INSERT INTO cart_items (session_id, product_id, size, quantity, total, category)
                         VALUES (${sessionid}, ${productId}, '${size}', ${quantity}, ${price*quantity}, '${category}')`
                         await client.query(cartQuery)
@@ -97,13 +107,35 @@ const handler = {
                 catch(error) {
                     console.log(error)
                     await client.query('ROLLBACK');
-                    return res.status(500).json({ error: 'Internal server error' });
+                    throw error;
                 }
                 finally {
                     client.release()
                 }
             }
+    },
+    delete: async (req, res) => {
+        const params = req.query
+        const { id } = params
+        if (id == undefined) {
+            return res.status(400).json("Missing cart item id to delete")
+        }
+        let query = `DELETE FROM cart_items WHERE id=${id}` 
+        const client = await pool.connect() // Get a client from the pool
+        try {
+            await client.query('BEGIN')
+            let response = client.query(query)
+            await client.query('COMMIT')
+            return res.status(200).json({ response })
+        } catch (error){
+            console.log(error)
+            await client.query('ROLLBACK');
+            throw error;
+        } finally {
+            client.release()
+        }
     }
+
 }
 
 export default ApiMiddleware(handler);

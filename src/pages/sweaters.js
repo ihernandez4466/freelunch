@@ -1,12 +1,20 @@
+import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Loading from '../components/loading';
 import ProductDiv from '../components/product';
 import DataFetcher from '../components/fetch';
+import MyAlert from '../components/alert';
 /* Functional component that renders sweaters page.*/
 
 export default function Sweaters(props) {
     
     const [data, isLoading, error] = DataFetcher({endpoint:'/api/product?category=sweaters'})
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState(null);
+    const [errorAlter, setErrorAlert] = useState(false);
+    const data_from_child = (data) => {
+        console.log(data); // or set the data to a state
+    }
     
     function renderProductWithRows(products) {
         // calculate number of rows
@@ -17,7 +25,7 @@ export default function Sweaters(props) {
         const renderResult = resultOfN.map((row, rowIndex) => (
             <Row key={`productdiv-${rowIndex}`}>
                 {row.map((item, idx) => (
-                    <ProductDiv productInfo={item} {...props}/>
+                    <ProductDiv productInfo={item} setter={data_from_child} {...props}/>
                 ))}
             </Row>
         ));
