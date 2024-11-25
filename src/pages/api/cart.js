@@ -9,7 +9,7 @@ const handler = {
             return res.status(400).json("Missing userid")
         }
         let query = `
-            SELECT session_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path
+            SELECT session_id, cart_items.id as cart_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path
             FROM cart_items
             JOIN shopping_session
             ON shopping_session.id = cart_items.session_id
@@ -118,13 +118,13 @@ const handler = {
         const params = req.query
         const { id } = params
         if (id == undefined) {
-            return res.status(400).json("Missing cart item id to delete")
+            return res.status(400).json("Missing cart item param to delete")
         }
         let query = `DELETE FROM cart_items WHERE id=${id}` 
         const client = await pool.connect() // Get a client from the pool
         try {
             await client.query('BEGIN')
-            let response = client.query(query)
+            let response = await client.query(query)
             await client.query('COMMIT')
             return res.status(200).json({ response })
         } catch (error){

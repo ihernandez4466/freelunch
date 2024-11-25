@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
-import Link from 'next/link';
 import {Button, Container, Nav, Card }from "react-bootstrap"
 import Loading from '../components/loading'
-import DataFetcher from '../components/fetch'
+import useDataFetcher from '../components/fetch'
 
-import Logo from '../components/logo';
-import CustomNavBar from '../components/navbar';
 
 export default function Cart(props) {
     const user = props.userId
-    const [data, isLoading, error] = DataFetcher({endpoint:`/api/cart?userId=${user}`})
-    const handleRemove = async (id) => {
+    const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`})
+    const handleRemove = async (item_id) => {
         try {
-            const response = await fetch(`/api/cart?id=${id}`, {
+            const response = await fetch(`/api/cart?id=${item_id}`, {
                 method: 'DELETE'
             });
-
             if (!response.ok) {
-                throw new Error("Failed to delete item from cart")             
+                throw new Error(`Failed to delete item from cart, error: ${response.statusText}`)             
             }
 
             const result = await response.json();
+            if(data){
+                const updatedData = {
+                    ...data,
+                    rows: data.rows.filter((product) => product.cart_id !== item_id),
+                  };
+                  setData(updatedData);    
+            }
             console.log(`Successfully deleted item from cart: ${result}`);
         } catch (error) {
             console.error(error);
@@ -29,13 +32,12 @@ export default function Cart(props) {
 
     return (
         <>
-        <CustomNavBar Logo={Logo} NavWithLinks={NavWithHomeLink}/>
         <Container>            
             <h1>Your Cart</h1>
             { error ? (<h1>Something went wrong</h1>) : (isLoading ? (<Loading />) : (
                 data && (data.rows.length > 0 ? (data.rows.map((product, idx) => 
                     <Card key={idx} >
-                        <Card.Header><Button onClick={() => handleRemove(product.id)}>X</Button></Card.Header>
+                        <Card.Header><Button onClick={() => handleRemove(product.cart_id)}>&times</Button></Card.Header>
                         <Card.Title className="text-center">{product.name}</Card.Title>
                         <Card.Img
                             style={{
@@ -57,20 +59,3 @@ export default function Cart(props) {
  </>
     );
 }
-
-const linkStyle = {
-fontSize: '2vw',
-fontWeight: '800',
-color: 'var(--textPrimary)',
-padding: '5px'
-}
- 
-function NavWithHomeLink() {
-  
-  return (
-    <Nav variant="underline"style={{ fontFamily: 'merienda' }}>
-          <Link href="home" style={linkStyle}>
-          Home
-          </Link>
-    </Nav>
-  )}

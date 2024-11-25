@@ -1,5 +1,5 @@
 import Row from 'react-bootstrap/Row';
-
+import { motion } from "framer-motion";
 const imagePath = '/images';
 const postersPath = imagePath + '/branding/posters.png';
 
@@ -10,7 +10,13 @@ const postersPath = imagePath + '/branding/posters.png';
 export default function Posters() {
     return(
         <div id="posters">
-        <h1>Coming Soon</h1>
+        <motion.h1 style={{ fontSize: '30px', fontWeight: '600' }}
+                    inital={{ y: 25, opacity: 0}}
+                    animate={{ y: 0, opacity: 1}}
+                    transition={{ duration: 1, ease: "easeInOut"}}
+                    >
+                        Posters Coming Soon
+                    </motion.h1>
         {/* <Row id="posters" style={{ justifyContent: 'center'}}>
             <img src={postersPath} style={{
                     width: '60%', height: '60%',

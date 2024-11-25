@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function DataFetcher ({ endpoint }) {
+export default function useDataFetcher ({ endpoint }) {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -25,7 +25,7 @@ export default function DataFetcher ({ endpoint }) {
       fetchData();
     }, [endpoint]);
 
-    return [data, isLoading, error];
+    return [data, isLoading, error, setData];
   
   };
   

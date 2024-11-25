@@ -1,5 +1,6 @@
 'use client'
-import { Container, Nav } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Container, Nav, Offcanvas } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
 import Link from 'next/link';
 import { PiShoppingCartDuotone } from "react-icons/pi";
@@ -9,6 +10,7 @@ import Sweaters from './sweaters';
 import Posters from './posters';
 import ContactUs from './contact-us';
 import CustomNavBar from '../components/navbar';
+import Cart from './cart';
 
 const imagePath = '/images';
 
@@ -52,7 +54,11 @@ const linkStyle = {
 }
 
 function HomeNavWithLinks() {
-  
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
           {/* <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="home" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
@@ -67,9 +73,18 @@ function HomeNavWithLinks() {
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Contact Us
           </ScrollLink>
-          <Link style={linkStyle} href="/cart">
-            <PiShoppingCartDuotone />
-          </Link>
+          <Button variant="primary" onClick={handleShow}>
+            <PiShoppingCartDuotone/>
+          </Button>
+
+      <Offcanvas show={show} onHide={handleClose} placement="end">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Cart</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+        <Cart />
+        </Offcanvas.Body>
+      </Offcanvas>
       </Nav>
   );
 }
