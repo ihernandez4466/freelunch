@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {Button, Container, Nav, Card }from "react-bootstrap"
+import {Button, Container, Row, Col, Image }from "react-bootstrap"
 import Loading from '../components/loading'
 import useDataFetcher from '../components/fetch'
 
 
-export default function Cart(props) {
-    const user = props.userId
+export default function Cart({ userId }) {
+    const user = userId
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`})
+    
     const handleRemove = async (item_id) => {
         try {
             const response = await fetch(`/api/cart?id=${item_id}`, {
@@ -32,28 +33,34 @@ export default function Cart(props) {
 
     return (
         <>
-        <Container>            
-            <h1>Your Cart</h1>
-            { error ? (<h1>Something went wrong</h1>) : (isLoading ? (<Loading />) : (
-                data && (data.rows.length > 0 ? (data.rows.map((product, idx) => 
-                    <Card key={idx} >
-                        <Card.Header><Button onClick={() => handleRemove(product.cart_id)}>&times</Button></Card.Header>
-                        <Card.Title className="text-center">{product.name}</Card.Title>
-                        <Card.Img
-                            style={{
+        <Container>
+            { error ? (<h2>Something went wrong</h2>) : (isLoading ? (<Loading />) : (
+                data && (data.rows.length > 0 ? 
+                    <>
+                    {data.rows.map((product, idx) => 
+                    <Row key={idx}>
+                        <Col sm={6} md={4} lg={4}>
+                            <Image style={{
                                 padding: '10px',
                                 boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
                                 backgroundColor: 'var(--primary-transparent)',
                                 transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
-                                maxWidth: '85%',
-                                maxHeight: 'auto',
+                                maxWidth: '100%',
+                                maxHeight: '100%',
                             }}
                             src={`${product.img_path}`}
-                        />
-                        <Card.Subtitle>{product.price}</Card.Subtitle>
-                        <Card.Subtitle>{`Quantity: ${product.quantity}`}</Card.Subtitle>
-                        <Card.Subtitle>{`Total: ${product.total}`}</Card.Subtitle>
-                    </Card>  )) : <h1>No items in cart yet</h1> ) 
+                            ></Image>
+                            <Button onClick={() => handleRemove(product.cart_id)}>Remove</Button>
+                        </Col>
+                        <Col sm={6} md={8} lg={8}>
+                            <p>{product.name}</p>
+                            <p>{`price: $${product.price}`}</p>
+                            <p>{`size: ${product.size}`}</p>
+                            <p>{`QTY: ${product.quantity}`}</p>
+                        </Col>
+                        </Row>)}
+                        <h2>{`Total: $${data.rows.reduce((acc, item) => acc + (Number(item.total) || 0), 0)}`}</h2>
+                        </> : <h2>No items in cart yet</h2> ) 
             ))}
        </Container>
  </>

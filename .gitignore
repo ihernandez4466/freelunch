@@ -27,3 +27,4 @@ yarn-error.log*
 
 # mac development
 *.cloud
+*.png.icloud
