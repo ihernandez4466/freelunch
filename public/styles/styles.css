@@ -95,6 +95,7 @@ body {
   --secondary: #bc0404;
   --secondary-transparent: rgb(188,4,4, 0.1);
   --background: rgb(239,209,209,0.1);
+  --background-nontransparent: rgb(216, 200, 187);
   --textPrimary: #383030;
   --textSecondary: white;
 
