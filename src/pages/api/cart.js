@@ -84,24 +84,7 @@ const handler = {
                             return res.status(201).json("Successfully Updated Cart Item")
                         }
                     } else {
-                        // check if session exists
-                        let sessionQuery = `SELECT * FROM shopping_session WHERE user_id=${userId}`
-                        // no session has been created insert into session and into cart items
-                        let sessionQueryResponse = await client.query(sessionQuery)
-                        let sessionid = null
-                        if(sessionQueryResponse.rows.length == 0){
-                            // insert a session
-                            let addSessionQuery = `INSERT INTO shopping_session (user_id, session_expiration) VALUES (${userId}, to_timestamp(${Date.now()})) RETURNING id`
-                            let response = await client.query(addSessionQuery)
-                            sessionid = response.rows[0].id
-                        } else {
-                            sessionid = sessionQueryResponse.rows[0].id
-                        }
-                        let cartQuery = `INSERT INTO cart_items (session_id, product_id, size, quantity, total, category)
-                        VALUES (${sessionid}, ${productId}, '${size}', ${quantity}, ${price*quantity}, '${category}')`
-                        await client.query(cartQuery)
-                        await client.query('COMMIT')
-                        return res.status(201).json("Successfully added cart item and session")
+                        return res.status(400).json("Session for user does not exist")
                     }
                 }
                 catch(error) {

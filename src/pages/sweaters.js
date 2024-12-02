@@ -54,8 +54,8 @@ export default function Sweaters(props) {
                     <p style={{ fontSize: '20px', fontWeight: '300' }}>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters are completely customizable upon request</p>
                 </Col>
             </Row>
-            { error ? (<h1>Products Coming Soon</h1>) : (isLoading ? <Loading /> : 
-            ( data && renderProductWithRows(data.rows)))}
+            { error ? (<h3>Something went wrong <TfiFaceSad/></h3>) : (isLoading ? <Loading /> : 
+            ( data ? renderProductWithRows(data.rows) : <h3>Products Coming Soon </h3>))}
         </div>
     );
 }

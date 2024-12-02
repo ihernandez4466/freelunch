@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import {Button, Container, Row, Col, Image }from "react-bootstrap"
 import Loading from '../components/loading'
 import useDataFetcher from '../components/fetch'
+import { TfiFaceSad } from "react-icons/tfi";
+import { GiShoppingBag } from "react-icons/gi";
 
 
 export default function Cart({ userId }) {
@@ -34,7 +36,7 @@ export default function Cart({ userId }) {
     return (
         <>
         <Container>
-            { error ? (<h2>Something went wrong</h2>) : (isLoading ? (<Loading />) : (
+            { error ? (<h3>Something went wrong <TfiFaceSad/></h3>) : (isLoading ? (<Loading />) : (
                 data && (data.rows.length > 0 ? 
                     <>
                     {data.rows.map((product, idx) => 
@@ -60,7 +62,7 @@ export default function Cart({ userId }) {
                         </Col>
                         </Row>)}
                         <h2>{`Total: $${data.rows.reduce((acc, item) => acc + (Number(item.total) || 0), 0)}`}</h2>
-                        </> : <h2>No items in cart yet</h2> ) 
+                        </> : <h3>No items in cart yet <GiShoppingBag/></h3> ) 
             ))}
        </Container>
  </>
