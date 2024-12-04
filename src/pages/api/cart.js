@@ -114,6 +114,34 @@ const handler = {
                 }
             }
     },
+    put: async (req, res) => {
+        const body = JSON.parse(req.body);
+        const validColumns = ['quantity', 'size', 'total']
+        if (!body || !body.id) {
+            return res.status(400).json({ error: "Invalid request body" });
+        }
+        const columnsToUpdate = Object.keys(body).filter(column => validColumns.includes(column));
+
+        if (columnsToUpdate.length === 0) {
+            return res.status(400).json({ error: "No valid columns provided for update" });
+        }
+        
+        const setClauses = columnsToUpdate.map((column, index) => `${column}=${body[column]}`).join(", ");
+        let query = `UPDATE cart_items SET ${setClauses} WHERE id=${body.id}`
+        const client = await pool.connect() // Get a client from the pool
+        try {
+            await client.query('BEGIN')
+            await client.query(query)
+            await client.query('COMMIT')
+            return res.status(200).json("Successfully Updated")
+        } catch (error){
+            console.log(error)
+            await client.query('ROLLBACK');
+            throw error;
+        } finally {
+            client.release()
+        }
+    },
     delete: async (req, res) => {
         const params = req.query
         const { id } = params

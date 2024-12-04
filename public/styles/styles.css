@@ -74,6 +74,12 @@ body {
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
   background-color: var(--secondary);
 }
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+  color: white;
+  background-color: var(--primary);
+  outline: 0;
+  box-shadow: var(--primary-transparent);
+}
 
 .btn-neutral {
   background-color: var(--background);
