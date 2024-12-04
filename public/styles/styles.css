@@ -1,0 +1,116 @@
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Regular.ttf') format('truetype'); /* Regular */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Light.ttf') format('truetype'); /* Light */
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Medium.ttf') format('truetype'); /* Medium */
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-SemiBold.ttf') format('truetype'); /* Semi-Bold */
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-Bold.ttf') format('truetype'); /* Bold */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merienda';
+  src: url('../fonts/meriendaStatic/Merienda-ExtraBold.ttf') format('truetype'); /* Extra-Bold */
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'creamcake';
+  src: url('../fonts/creamcake.otf') format('truetype');
+}
+
+h1 {
+  font-family: 'merienda';
+  font-size: '30px';
+  font-weight: '600';
+}
+
+h2 {
+  font-family: 'merienda';
+  font-size: '20px';
+  font-weight: '500';
+}
+
+body {
+  font-family: 'serif';
+  background-color: white;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevents horizontal scrollbar */
+  overflow-y: scroll; 
+}
+
+.btn-primary{
+  background-color: var(--primary);
+  border-radius: 15px;
+  border: none;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  background-color: var(--secondary);
+}
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+  color: white;
+  background-color: var(--primary);
+  outline: 0;
+  box-shadow: var(--primary-transparent);
+}
+
+.btn-neutral {
+  background-color: var(--background);
+  color: var(--textPrimary);
+  border: 1px solid #000 !important; /* Change to desired color and width */
+}
+.btn-neutral:hover, .btn-neutral:focus, .btn-neutral.checked, .btn-neutral.active, .open>.dropdown-toggle.btn-neutral {
+  background-color: var(--primary) !important;
+  border: 1px solid #000 !important;
+  color: var(--textSecondary);
+}
+
+
+
+:root {
+  /* light mode */
+  --primary: #7e4040;
+  --primary-transparent: rgb(126,64,64,0.1);  
+  --secondary: #bc0404;
+  --secondary-transparent: rgb(188,4,4, 0.1);
+  --background: rgb(239,209,209,0.1);
+  --background-nontransparent: rgb(216, 200, 187);
+  --textPrimary: #383030;
+  --textSecondary: white;
+
+  /*logo: #bc0404 rgb(188,4,4);
+  light-logo: #cc3232 rgb(204,50,50);
+  logo-dark: #961e1e rgb(150,30,30);
+  light: #efd1d1 rgb(239,209,209);
+  black: #383030 rgb(56,48,48);
+  brown: #7e4040 rgb(126,64,64);
+  brown-transparent: rgb(126,64,64) 
+  */
+}
