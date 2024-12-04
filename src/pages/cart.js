@@ -31,7 +31,7 @@ export default function Cart({ userId }) {
                     rows: data.rows.filter((product) => product.cart_id !== item_id),
                   };
                   setData(updatedData);
-                  newTotal = calculateTotal(data.rows)
+                  let newTotal = calculateTotal(data.rows)
                   setTotal(newTotal)
             }
             console.log(`Successfully deleted item from cart: ${result}`);
@@ -67,7 +67,7 @@ export default function Cart({ userId }) {
                 ),
             
             }));
-            cartTotal = calculateTotal(data.rows)
+            let cartTotal = calculateTotal(data.rows)
             setTotal(cartTotal)
         } catch (error) {
             console.log(error)

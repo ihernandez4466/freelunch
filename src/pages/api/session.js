@@ -27,7 +27,7 @@ const handler = {
     post: async(req, res) => {
         const body = JSON.parse(req.body);
         // handle POST
-        res.status(201).json(requestMethod)
+        res.status(201).json({body})
     }
 }
 export default ApiMiddleware(handler);
