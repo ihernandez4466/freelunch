@@ -4,11 +4,52 @@ import Sweaters from './sweaters';
 import Posters from './posters';
 import ContactUs from './contact-us';
 import CustomNavBar from '../components/navbar';
+import { useEffect, useState } from 'react';
+import { setCookieInBrowser, getCookie, deleteCookie } from '../components/useCookie';
+import { v4 as uuidv4 } from 'uuid';
 
 const imagePath = '/images';
 
 // Parent component for website
 export default function Home(props) {
+  const [cookie, setCookie] = useState(null)
+
+  const setNewCookie = async () => {
+      // create new cookie
+      const sessionToken = uuidv4();
+      setCookieInBrowser('userId', sessionToken);
+      newCookie = getCookie('userId')
+      setCookie(newCookie)
+      // insert into user
+      // insert into session body {sessionToken, sessionExpiration}
+      // setCookie state
+  }
+
+  useEffect(() => {
+    const cookieStuff = async () => {
+      let currentCookie = getCookie('userId')
+      if(!currentCookie){
+        await setNewCookie()
+      } else {
+          // if in db setCookie state
+          try {
+            let response = await fetch(`/api/session?sessionToken=${currentCookie}`)
+            if(!response.ok){
+              // no se
+            } else if (response && response.rows){
+              // already exists yay
+            }
+          } catch (error) {
+            // no se
+          }
+          // if not in db delete cookie
+            // create new cookie
+            // insert into db
+            // setCookie state
+      }
+    }
+    cookieStuff()
+  }, [])
   return (
       <div id="home">
         <CustomNavBar {...props}/>
