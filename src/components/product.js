@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Button, Col, Container, Image, Form, Modal, Row, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button, ButtonGroup, Col, Container, Image, Form, Modal, Row, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { GrSubtractCircle } from "react-icons/gr";
 
 /**
  * Functional component that renders a widget for a product.
@@ -12,13 +14,22 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [size, setSize] = useState(['S']);
+    const [quantity, setQuantity] = useState(1);
     setter('Data from Child');
 
-    const [value, setValue] = useState(['S']);
-    const handleChange = (val) => {
+    const handleSize = (val) => {
         console.log(`changing value to :${val}`);
-        setValue(val);
+        setSize(val);
     }
+
+    const handleQuantity = (action) => {
+        if (action === "add") {
+            setQuantity(quantity + 1);
+        } else if (action === "subtract") {
+            setQuantity(quantity - 1);
+        }
+  };
     
     const handleSubmit = async (e) => {
         setter('Data from Child when Form is called');
@@ -33,6 +44,7 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
             category: e.target.category.value
         }
         try {
+            console.log(data);
             const response = await fetch('/api/cart', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -57,12 +69,13 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
             //backgroundColor: 'var(--background)',
         }}>
             <Modal centered show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+            <Form id={`${productInfo.id}-form`} onSubmit={handleSubmit}>
+                <Modal.Header style={{ borderBottom: 'none'}} closeButton>
                 </Modal.Header>
                 <Modal.Body>
                     <Container>
                         <Row>
-                            <Col sm={12} md={6}>
+                            <Col md={6}>
                             <Image
                                 onClick={handleShow}
                                 style={props.style ? props.style : {
@@ -77,38 +90,38 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
                                 src={`${productInfo.img_path}`}
                             />
                             </Col>
-                            <Col sm={12} md={6}>
-                            <Form id={`${productInfo.id}-form`} onSubmit={handleSubmit}>
-                                <Row key={`${productInfo.id}-name`}>
+                            <Col md={6}>
+                                <Row inline key={`${productInfo.id}-name`}>
                                     <input type="hidden" name="product" value={productInfo.id} />
                                     <input type="hidden" name="category" value={productInfo.category} />
-                                    <h2>{productInfo.name}</h2>
-                                </Row>                                
-                                <Row key={`${productInfo.id}-price`}>
+                                    <h2>{`$${productInfo.price} ${productInfo.name}`}</h2>
                                     <input type="hidden" name="price" value={productInfo.price} />
-                                    <p>{`$${productInfo.price}`}</p>
+                                </Row>                                
+                                <Row>
+                                    <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
+                                    <ToggleButtonGroup id="sizeInput" name="size" type="radio" value={size}
+                                        onChange={handleSize} style={{ paddingBottom: '15px'}}>
+                                    {productInfo.available_sizes.map((size, i) => 
+                                        <ToggleButton size="sm" className="btn-neutral" id={`size-${i}`} value={size}>{size}</ToggleButton>)}                                
+                                    </ToggleButtonGroup>
                                 </Row>
-                                <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
-                                <ToggleButtonGroup id="sizeInput" name="size" type="radio" value={value}
-                                     onChange={handleChange} style={{ paddingBottom: '15px'}}>
-                                {productInfo.available_sizes.map((size, i) => 
-                                    <ToggleButton className="btn-neutral" id={`size-${i}`} value={size}>{size}</ToggleButton>)}                                
-                                </ToggleButtonGroup>
-                                <Form.Select name="quantity" aria-label="Default select example">
-                                        <option value="">Quantity</option>
-                                        {[...Array(productInfo.available_quantity)].map((x, i) =>
-                                            <option key={`${productInfo.id}-quantity-${i+1}`} value={i+1}>{i+1}</option>)}
-                                </Form.Select>
-                                <div className="d-grid gap-2" style={{ marginTop: '10px', marginBottom: '10'}}>
-                                    <Button className="btn-primary" type="submit">Add To Cart</Button>
-                                </div>
-                            </Form>
+                                <Row>
+                                    <ButtonGroup>
+                                        <input type="hidden" name="quantity" value={quantity} />
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle /></Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled>{`QTY: ${quantity}`}</Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
+                                    </ButtonGroup>
+                                </Row>
+                                <Row style={{ margin: '1rem 0rem 1rem 0rem'}}>
+                                    <Button size="sm" className="btn-neutral" type="submit">Add To Cart</Button>
+                                </Row>
                             </Col>
                     </Row>
+                   
                     </Container>
                 </Modal.Body>
-                <Modal.Footer>
-                </Modal.Footer>
+                </Form>
             </Modal>
             <Image
                 onClick={handleShow}

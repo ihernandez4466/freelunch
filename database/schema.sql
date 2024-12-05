@@ -5,13 +5,12 @@ CREATE TABLE users (
     last_name VARCHAR NOT NULL
 );
 
-
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     price decimal,
     description VARCHAR(200),
-    category int,
+    category VARCHAR(50) NOT NULL,
     created_at timestamp NOT NULL,
     modified_at timestamp,
     img_path VARCHAR(100) NOT NULL,
@@ -33,14 +32,12 @@ CREATE TABLE order_items (
     product_id int
 );
 
-CREATE TABLE cart_items (
+CREATE TABLE shopping_session (
     id SERIAL PRIMARY KEY,
-    session_id int REFERENCES shopping_session(id),
-    product_id int REFERENCES products(id),
-    size VARCHAR(10),
-    quantity int,
-    addition_id int REFERENCES additions(id),
-    total decimal
+    user_id int REFERENCES users(id),
+    session_token VARCHAR(100),
+    session_expiration timestamp,
+    UNIQUE(user_id)
 );
 
 CREATE TABLE additions (
@@ -50,10 +47,13 @@ CREATE TABLE additions (
     price decimal
 );
 
-CREATE TABLE shopping_session (
+CREATE TABLE cart_items (
     id SERIAL PRIMARY KEY,
-    user_id int REFERENCES users(id),
-    session_token VARCHAR(100),
-    session_expiration timestamp,
-    UNIQUE(user_id)
+    session_id int REFERENCES shopping_session(id),
+    product_id int REFERENCES products(id),
+    size VARCHAR(10),
+    quantity int,
+    addition_id int REFERENCES additions(id),
+    category text,
+    total decimal
 );

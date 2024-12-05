@@ -39,7 +39,7 @@ export default function CustomNavBar(props) {
 
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Cart</Offcanvas.Title>
+          <Offcanvas.Title><h2>Cart</h2></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
         <Cart userId={userId}/>
