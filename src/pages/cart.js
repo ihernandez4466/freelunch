@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-import {Button, Container, Row, Col, Image }from "react-bootstrap"
-import Loading from '../components/loading'
-import useDataFetcher from '../components/fetch'
-import { TfiFaceSad } from "react-icons/tfi";
-import { GiShoppingBag } from "react-icons/gi";
-=======
 import {React, useState} from "react";
 import {Button, Container, Row, Col, Image, ButtonGroup }from "react-bootstrap"
 import Loading from '../components/loading'
 import useDataFetcher from '../components/fetch'
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
->>>>>>> main
 
 
 export default function Cart({ userId }) {

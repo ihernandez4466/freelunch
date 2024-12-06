@@ -26,21 +26,18 @@ const handler = {
     },
     post: async(req, res) => {
         const body = JSON.parse(req.body);
-        const { sessionToken, sessionExpiration } = body
-        if(!sessionToken || !sessionExpiration){
+        const { userId, sessionToken, sessionExpiration } = body
+        if(!userId || !sessionToken || !sessionExpiration){
             return res.status(400).json("Missing fields")
         }
-        //  insert into user and session for now until users are authenticated
+        const client = await pool.connect() // Get a client from the pool
         try {
-             // insert into users (id) values (sessionToken)
-            const userQuery = `insert into users (id) values (${sessionToken})`
             const sessionQuery = ```insert into shopping_session(user_id, session_token, session_expiration)
             values (${sessionToken}, ${sessionToken}, ${sessionExpiration})```
             await client.query('BEGIN')
-            await client.query(userQuery)
             await client.query(sessionQuery)
             await client.query('COMMIT')
-            res.status(201).json(requestMethod)
+            res.status(201).json("Successful insert into shopping_session")
         } catch (error) {
             await client.query('ROLLBACK')
             throw error;

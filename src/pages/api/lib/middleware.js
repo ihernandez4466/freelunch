@@ -1,5 +1,5 @@
-export const ApiMiddleware = (handler) => async (req, res) => {
-    try {
+export const ApiMiddleware = (handler) => async (req, res) => { 
+  try {
       switch (req.method) {
         case 'GET':
           return await handler.get(req, res)
@@ -18,3 +18,4 @@ export const ApiMiddleware = (handler) => async (req, res) => {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+

@@ -5,56 +5,72 @@ import Posters from './posters';
 import ContactUs from './contact-us';
 import CustomNavBar from '../components/navbar';
 import { useEffect, useState } from 'react';
-import { setCookieInBrowser, getCookie, deleteCookie } from '../components/useCookie';
+import { setCookieInBrowser, getCookie } from '../components/useCookie';
 import { v4 as uuidv4 } from 'uuid';
 
 const imagePath = '/images';
 
 // Parent component for website
 export default function Home(props) {
-  const [cookie, setCookie] = useState(null)
-
-  const setNewCookie = async () => {
+  const [userId, setUserId] = useState(null);
+  
+  const persistCookieDatabase = async (sessionToken, expirationDate) => {
+      try { // insert into session + user tables
+        const userData = {id: `'${sessionToken}'`}
+        let userResponse = await fetch('/api/user', {
+            method: 'POST',
+            body: JSON.stringify(userData),
+        });
+        const sessionData = {userId: `'${sessionToken}'`, sessionToken: `'${sessionToken}'`, sessionExpiration: expirationDate}
+        let sessionResponse = await fetch('/api/session', {
+            method: 'POST',
+            body: JSON.stringify(sessionData),
+        });
+        if(!userResponse.ok || !sessionResponse.ok){
+          throw error("Sorry bad response")
+        } 
+      } catch (error){
+        console.log(error)
+      }
+  }
+  const setNewCookie = () => {
       // create new cookie
       const sessionToken = uuidv4();
-      setCookieInBrowser('userId', sessionToken);
-      newCookie = getCookie('userId')
-      setCookie(newCookie)
-      // insert into user
-      // insert into session body {sessionToken, sessionExpiration}
-      // setCookie state
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 7); // expire in 7 days
+      setCookieInBrowser('userId', sessionToken, expirationDate);
+      return {
+        userId: sessionToken, 
+        expiration: expirationDate
+      }
   }
 
   useEffect(() => {
-    const cookieStuff = async () => {
-      let currentCookie = getCookie('userId')
-      if(!currentCookie){
-        await setNewCookie()
-      } else {
-          // if in db setCookie state
-          try {
-            let response = await fetch(`/api/session?sessionToken=${currentCookie}`)
-            if(!response.ok){
-              // no se
-            } else if (response && response.rows){
-              // already exists yay
-            }
-          } catch (error) {
-            // no se
-          }
-          // if not in db delete cookie
-            // create new cookie
-            // insert into db
-            // setCookie state
+    const curCookie = getCookie('userId')
+    if(!curCookie){
+      const newCookie = setNewCookie()
+      const userId = newCookie.userId
+      const date = newCookie.expiration
+      if(userId && date){
+        persistCookieDatabase(userId, userId, date)
+        setUserId(userId)
+      }
+    } else {
+      if(!userId){
+        let user = curCookie.split('userId=')[1]
+        setUserId(user)
       }
     }
-    cookieStuff()
   }, [])
+
+
+  const enhancedProps = { ...props, userId };  
+  
   return (
       <div id="home">
-        <CustomNavBar {...props}/>
+        <CustomNavBar {...enhancedProps}/>
         {/* <Header /> */}
-        <Sweaters {...props}/>
+        <Sweaters {...enhancedProps}/>
         <hr style={{ margin: '5rem 0'}}></hr>
         <Posters />        
         <hr style={{ margin: '5rem 0', marginBottom: '0'}}></hr>

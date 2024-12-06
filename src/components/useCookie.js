@@ -1,18 +1,16 @@
-  export const setCookieInBrowser = (cookieName, value) => {
-    const expirationDate = new Date();
-    expirationDate.setDate(expirationDate.getDate() + 7); // this is 7 months not 7 days 
-    const cookie = document.cookie = `${cookieName}=${value}; Secure; HttpOnly; expires=${expirationDate.toUTCString()}; path=/`;
-    return cookie;
-  };
+export const setCookieInBrowser = (cookieName, value, expirationDate) => {
+  const cookie = document.cookie = `${cookieName}=${value}; expires=${expirationDate.toUTCString()}; path=/`;
+  return cookie;
+};
 
-  export const deleteCookie = (cookieName) => {
-    document.cookie = `${cookieName}=; path=/`;
-  };
+export const deleteCookie = (cookieName) => {
+  document.cookie = `${cookieName}=; path=/`;
+};
 
-  export const getCookie = (cookieName) => {
-    const cookie = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${cookieName}=`));
+export const getCookie = (cookieName) => {
+  const cookie = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith(`${cookieName}=`));
 
-    return cookie ? cookie : null
-  }
+  return cookie ? cookie : null
+}
