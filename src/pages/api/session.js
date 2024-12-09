@@ -15,8 +15,8 @@ const handler = {
             await client.query('BEGIN')
             const response = await client.query(query)
             const rows = response.rows
-            res.status(200).json({ rows })
             await client.query('COMMIT')
+            res.status(200).json({ rows })
         } catch (error) {
             await client.query('ROLLBACK')
             throw error;
@@ -26,10 +26,11 @@ const handler = {
     },
     post: async(req, res) => {
         const body = JSON.parse(req.body);
-        const { userId, sessionToken, sessionExpiration } = body
-        if(!userId || !sessionToken || !sessionExpiration){
+        const { userId, sessionToken} = body //sessionExpiration } = body
+        if(!userId || !sessionToken){ //|| !sessionExpiration){
             return res.status(400).json("Missing fields")
         }
+        const sessionExpiration = new Date();
         const client = await pool.connect() // Get a client from the pool
         try {
             const sessionQuery = ```insert into shopping_session(user_id, session_token, session_expiration)

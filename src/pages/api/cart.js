@@ -8,15 +8,13 @@ const handler = {
         if (userId == undefined || userId == null) {
             return res.status(400).json("Missing userid")
         }
-        let query = `
-            SELECT session_id, cart_items.id as cart_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path
+        let query = `SELECT session_id, cart_items.id as cart_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path
             FROM cart_items
             JOIN shopping_session
             ON shopping_session.id = cart_items.session_id
             JOIN products
             ON cart_items.product_id = products.id
-            WHERE user_id=${userId}
-        `
+            WHERE user_id='${userId}'`
         const client = await pool.connect() // Get a client from the pool
         try {
             await client.query('BEGIN')
@@ -51,7 +49,7 @@ const handler = {
                 const firstQuery = `SELECT cart_items.id AS itemid, shopping_session.id AS sessionid, user_id, product_id, size, quantity, total, category FROM shopping_session 
                     JOIN cart_items
                     ON shopping_session.id = cart_items.session_id 
-                    WHERE user_id=${userId}`
+                    WHERE user_id='${userId}'`
 
                 try {
                     await client.query('BEGIN')
