@@ -12,8 +12,10 @@ export default function Cart({ userId }) {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        calculateTotal()
-    }, [])
+        if(data){
+            calculateTotal()
+        }
+    }, [data])
 
     const calculateTotal = () => {
         const items = data ? data.rows : []  

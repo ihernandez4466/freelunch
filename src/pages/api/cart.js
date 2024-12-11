@@ -47,42 +47,38 @@ const handler = {
             case 'sweaters':
                 const client = await pool.connect() // Get a client from the pool
                 const firstQuery = `SELECT cart_items.id AS itemid, shopping_session.id AS sessionid, user_id, product_id, size, quantity, total, category FROM shopping_session 
-                    JOIN cart_items
+                    LEFT JOIN cart_items
                     ON shopping_session.id = cart_items.session_id 
                     WHERE user_id='${userId}'`
-
                 try {
                     await client.query('BEGIN')
                     let response = await client.query(firstQuery)
-                    if (response.rows.length > 0) {
-                        // find item already added to session
-                        const filteredItems = response.rows.filter((item) => {
-                            return item.product_id == productId && item.size == size
-                        })
-                        console.log(`filteredRows: ${filteredItems}`);
-                        if (filteredItems.length == 0) { // item is new insert new row
-                            const rowOne = response.rows[0]
-                            let sessionid = rowOne.sessionid
-                            let cartQuery = `INSERT INTO cart_items (session_id, product_id, size, quantity, total, category)
-                            VALUES (${sessionid}, ${productId}, '${size}', ${quantity}, ${price*quantity}, '${category}')`
-                            await client.query(cartQuery)
-                            console.log(`new row add another column of session id: ${sessionid} productid: ${productId} size=${size} quantity=${quantity} price=${price * quantity}`)
-                            await client.query('COMMIT')
-                            return res.status(201).json("Successfully added cart item and session")
-                        } else {
-                            // update existing row in cart_items
-                            const rowToUpdate = filteredItems[0]
-                            const newQuantity = rowToUpdate.quantity + parseInt(quantity)
-                            const newTotal = newQuantity * parseFloat(price)
-                            const rowId = rowToUpdate.itemid
-                            let query = `UPDATE cart_items SET quantity=${newQuantity}, total=${newTotal} WHERE id=${rowId}`
-                            await client.query(query)
-                            console.log(`updating item quantity=${newQuantity}, total=${newTotal}, id=${rowId}`)
-                            await client.query('COMMIT')
-                            return res.status(201).json("Successfully Updated Cart Item")
-                        }
+                    if(response.rows.length == 0){
+                        throw new Error("Session does not exist")
+                    }
+                    const sessionId = response.rows[0].sessionid
+                    const filteredItems = response.rows.filter((item) => {
+                        return item.product_id == productId && item.size == size
+                    })
+                    if(filteredItems.length > 0){
+                        // update existing row in cart_items
+                        const rowToUpdate = filteredItems[0]
+                        const newQuantity = rowToUpdate.quantity + parseInt(quantity)
+                        const newTotal = newQuantity * parseFloat(price)
+                        const rowId = rowToUpdate.itemid
+                        let query = `UPDATE cart_items SET quantity=${newQuantity}, total=${newTotal} WHERE id=${rowId}`
+                        await client.query(query)
+                        console.log(`updating item quantity=${newQuantity}, total=${newTotal}, id=${rowId}`)
+                        await client.query('COMMIT')
+                        return res.status(201).json("Successfully updated item in cart")
                     } else {
-                        return res.status(400).json("Session for user does not exist")
+                        // insert new row
+                        let cartQuery = `INSERT INTO cart_items (session_id, product_id, size, quantity, total, category)
+                        VALUES (${sessionId}, ${productId}, '${size}', ${quantity}, ${price*quantity}, '${category}')`
+                        await client.query(cartQuery)
+                        console.log(`new row add another column of session id: ${userId} productid: ${productId} size=${size} quantity=${quantity} price=${price * quantity}`)
+                        await client.query('COMMIT')
+                        return res.status(201).json("Successfully added item to cart")
                     }
                 }
                 catch(error) {

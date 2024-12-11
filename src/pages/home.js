@@ -24,21 +24,22 @@ export default function Home(props) {
           body: JSON.stringify(userData),
       });
       let userAdded = await userResponse.json()
-      const sessionData = {userId: `'${sessionToken}'`, sessionToken: `'${sessionToken}'`, sessionExpiration: expirationDate}
+      const sessionData = {userId: `'${sessionToken}'`, sessionToken: `'${sessionToken}'`, sessionExpiration: `'${expirationDate}'`}
       let sessionResponse = await fetch('/api/session', {
           method: 'POST',
           body: JSON.stringify(sessionData),
       });
       let sessionAdded = await sessionResponse.json()
       if(!sessionResponse.ok || !sessionAdded){
-        throw error("session could not be added")
+        throw new Error('session could not be added')
       } 
       if(!userResponse.ok || !userAdded){
-        throw error("user could not be added")
+        throw new Error('user could not be added')
       } 
       setUserId(sessionToken)
+      console.log(`Session ${sessionToken} persisted successfully`);
     } catch (error){
-      console.log(error)
+      console.log(`Session ${sessionToken} unable to persist: ${error.message}`);
       deleteCookie('userId') // retry on errors
       setSession(null)
     }
@@ -51,46 +52,53 @@ export default function Home(props) {
       const expirationDate = new Date();  
       expirationDate.setDate(expirationDate.getDate() + 7); // expire in 7 days
       const newSession = setCookieInBrowser('userId', sessionToken, expirationDate);
-      setSession(newSession)
+      console.log(`Session ${sessionToken} set in browser`);
       return newSession
   }
 
   /* validate session state is a persisted user or session */
   const validateSession = async () => {
+    const values = splitCookieValues(session)
     try {
-      const values = splitCookieValues(session)
-      const user = values.length >= 1 ? values[0] : null
-      if (user === null || user === undefined) {
-        throw error("session value is empty")
-      }
-      let userResponse = await fetch(`/api/user?id=${user}`)
-      let userRow = await userResponse.json()
-      let validUser = userRow ? userRow.rows.length > 0 : false
-      if(validUser){
-        setUserId(user) 
-      } else {
-        throw error("user does not exist in database")
-      }
+        const user = values.length >= 1 ? values[0] : null
+        if (user === null || user === undefined) {
+          throw new Error('session value is empty')
+        }
+        let userResponse = await fetch(`/api/user?id=${user}`)
+        let userRow = await userResponse.json()
+        let validUser = userRow ? userRow.rows.length > 0 : false
+        if(validUser){
+          setUserId(user) 
+        } else {
+          throw new Error('user does not exist in database')
+        }
+        console.log(`Session ${user} successfully validated`);
     } catch (error) {
-      console.log(error)
-      deleteCookie('userId') // retry on errors
-      setSession(null)
+        console.log(`Session invalid: ${error.message}`);
+        deleteCookie('userId') // retry on errors
+        setSession(null)
     }
   }
 
   useEffect(() => {
-    const curCookie = getCookie('userId')
-    if(!curCookie){
-      const setSession = setNewSession()
-      const values = splitCookieValues(setSession)
-      const user = values[0]
-      const expiration = values[1]
-      persistSession(user, user, expiration)
-    } else {
-      if(!userId){
-        setSession(curCookie)
+    const initializeSession = async () => {
+      const curCookie = getCookie('userId')
+      if(!curCookie){
+        const newSession = setNewSession();
+        const values = splitCookieValues(newSession);
+        const user = values[0];
+        const expiration = values[1];
+        await persistSession(user, expiration);
+        setSession(newSession)
+      } else {
+        console.log(`Session already set: ${curCookie}`);
+        if(!userId){
+          setSession(curCookie)
+        }
       }
-    }
+    };
+
+    initializeSession()
   }, [session])
 
   useEffect(() => {

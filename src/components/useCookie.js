@@ -16,9 +16,9 @@ export const getCookie = (cookieName) => {
 }
 
 export const splitCookieValues = (cookie) => {
-  const parts = cookie.split(";");
+  const parts = cookie.split(';');
   const values = parts.map((attribute) => {
-    let val = attribute.split("=")
+    let val = attribute.split('=')
     let returnVal = val.length >= 1 ? val[1] : null
     return returnVal
   })

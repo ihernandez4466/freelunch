@@ -26,15 +26,13 @@ const handler = {
     },
     post: async(req, res) => {
         const body = JSON.parse(req.body);
-        const { userId, sessionToken} = body //sessionExpiration } = body
-        if(!userId || !sessionToken){ //|| !sessionExpiration){
+        const { userId, sessionToken, sessionExpiration } = body
+        if(!userId || !sessionToken|| !sessionExpiration){
             return res.status(400).json("Missing fields")
         }
-        const sessionExpiration = new Date();
         const client = await pool.connect() // Get a client from the pool
         try {
-            const sessionQuery = ```insert into shopping_session(user_id, session_token, session_expiration)
-            values (${sessionToken}, ${sessionToken}, ${sessionExpiration})```
+            const sessionQuery = `insert into shopping_session(user_id, session_token, session_expiration) values (${sessionToken}, ${sessionToken}, CAST(${sessionExpiration} AS DATE))`
             await client.query('BEGIN')
             await client.query(sessionQuery)
             await client.query('COMMIT')
