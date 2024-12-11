@@ -45,17 +45,17 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
         }
         try {
             console.log(data);
-            // const response = await fetch('/api/cart', {
-            //     method: 'POST',
-            //     body: JSON.stringify(data),
-            // });
+            const response = await fetch('/api/cart', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            });
 
-            // if (!response.ok) {
-            //     throw new Error("Failed to submit form")             
-            // }
+            if (!response.ok) {
+                throw new Error("Failed to submit form")             
+            }
 
-            // const result = await response.json();
-            // console.log(`Form submitted successfully: ${result}`);
+            const result = await response.json();
+            console.log(`Form submitted successfully: ${result}`);
         } catch (error) {
             console.error('Error submitting form:', error);
         } finally {

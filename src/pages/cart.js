@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import {Button, Container, Row, Col, Image, ButtonGroup }from "react-bootstrap"
 import Loading from '../components/loading'
 import useDataFetcher from '../components/fetch'
@@ -11,8 +11,16 @@ export default function Cart({ userId }) {
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`})
     const [total, setTotal] = useState(0);
 
-    const calculateTotal = (items) => {
-        return items.reduce((acc, item) => acc + (Number(item.total) || 0), 0)
+    useEffect(() => {
+        if(data){
+            calculateTotal()
+        }
+    }, [data])
+
+    const calculateTotal = () => {
+        const items = data ? data.rows : []  
+        const newTotal = items.reduce((acc, item) => acc + (Number(item.total) || 0), 0)
+        setTotal(newTotal)
     }
 
     const handleRemove = async (item_id) => {
@@ -31,8 +39,7 @@ export default function Cart({ userId }) {
                     rows: data.rows.filter((product) => product.cart_id !== item_id),
                   };
                   setData(updatedData);
-                  let newTotal = calculateTotal(data.rows)
-                  setTotal(newTotal)
+                  calculateTotal(data.rows)
             }
             console.log(`Successfully deleted item from cart: ${result}`);
         } catch (error) {
@@ -67,8 +74,7 @@ export default function Cart({ userId }) {
                 ),
             
             }));
-            let cartTotal = calculateTotal(data.rows)
-            setTotal(cartTotal)
+            calculateTotal(data.rows)
         } catch (error) {
             console.log(error)
         }
@@ -111,7 +117,7 @@ export default function Cart({ userId }) {
                     (
                     <>
                         {renderItems()}
-                        <h2>{`Total: $${calculateTotal(data.rows)}`}</h2>
+                        <h2>{`Total: $${total}`}</h2>
                     </>
                     ) 
                     : (<h2>No items in cart yet</h2> ) )

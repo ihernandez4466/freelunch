@@ -1,27 +1,27 @@
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(100) NOT NULL,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR NOT NULL
+    id text PRIMARY KEY,
+    email text,
+    first_name text,
+    last_name text
 );
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    price decimal,
-    description VARCHAR(200),
-    category VARCHAR(50) NOT NULL,
+    name text NOT NULL,
+    price decimal NOT NULL,
+    description text,
+    category text NOT NULL,
     created_at timestamp NOT NULL,
     modified_at timestamp,
-    img_path VARCHAR(100) NOT NULL,
-    available_quantity int NOT NULL,
+    img_path text NOT NULL,
+    available_quantity int DEFAULT 10,
     available_sizes text ARRAY NOT NULL
 );
 
 CREATE TABLE order_details (
     id SERIAL PRIMARY KEY,
-    user_id int REFERENCES users(id),
-    payment_used VARCHAR(100) NOT NULL,
+    user_id text REFERENCES users(id),
+    payment_used text NOT NULL,
     created_at timestamp NOT NULL,
     amount decimal NOT NULL
 );
@@ -29,21 +29,21 @@ CREATE TABLE order_details (
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
     order_details_id int REFERENCES order_details(id),
-    product_id int
+    product_id int NOT NULL
 );
 
 CREATE TABLE shopping_session (
     id SERIAL PRIMARY KEY,
-    user_id int REFERENCES users(id),
-    session_token VARCHAR(100),
+    user_id text REFERENCES users(id) NOT NULL,
+    session_token text NOT NULL,
     session_expiration timestamp,
     UNIQUE(user_id)
 );
 
 CREATE TABLE additions (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(10),
-    img_path VARCHAR(100),
+    name text,
+    img_path text,
     price decimal
 );
 
