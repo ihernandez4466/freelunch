@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Row from 'react-bootstrap/Row';
 
 /**
@@ -5,14 +6,21 @@ import Row from 'react-bootstrap/Row';
  */
 
 export default function Posters() {
+    const [error, setError] = useState(null)
+    const [data, setData] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+
     return(
-        <Row id="posters" style={{ justifyContent: 'center'}}>
-            {/* <img style={{
-                    width: '60%', height: '60%',
-                    boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                    backgroundColor: 'rgb(72, 88, 14, 0.1)',
-            }}/> */}
-            <h3>Posters Coming Soon</h3>
-        </Row>
+        <div id="posters" style={{
+            alignContent: 'center',
+            alignItems: 'center',
+        }}>
+            {/* <Row>
+                    <h1>
+                        Posters
+                    </h1>
+            </Row> */}
+            <Row><div style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}><h2>Posters Coming Soon</h2></div></Row>
+        </div>
     );
 }

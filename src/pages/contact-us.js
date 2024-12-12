@@ -12,14 +12,14 @@ export default function ContactUs() {
         <div id="contact-us" style={{
             alignContent: 'center',
             alignItems: 'center',
-            height: '80vh',
-            padding: '10px 30px 30px 30px'
+            // height: '60vh',
+            marginBottom: '40vh' // need this for link scroll to work :()
         }}>
-            <div style={{ padding: '30px', display: 'flex', justifyContent: 'center',}}>
-                <h1 style={{ color: 'var(--textPrimary)', fontSize: '30px', fontWeight: '600'}}>Join The Movement</h1>
+            <div style={{ padding: '30px', display: 'flex', justifyContent: 'center'}}>
+                <h1 style={{ color: 'var(--textPrimary)', fontSize: '30px'}}>Join The Movement</h1>
             </div>
             <div style={{ padding: '20px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px'}}>
-                <p style={{ color: 'var(--textPrimary)',  fontSize: '20px', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters or posters, 
+                <p style={{ color: 'var(--textPrimary)', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters or posters, 
                     we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation. Purchases online will be coming soon and delivery is available.
                 </p>
             </div>
