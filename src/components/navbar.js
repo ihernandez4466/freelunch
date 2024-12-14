@@ -52,7 +52,7 @@ export default function CustomNavBar(props) {
 }
 
 const activeLinkStyle = {
-  //fontSize: 'auto',
+  fontSize: 'auto',
   fontWeight: '700',
   color: 'var(--secondary)',
   borderRadius: '5px',
@@ -61,7 +61,7 @@ const activeLinkStyle = {
 };
 
 const linkStyle = {
-  //fontSize: '1.5vw',
+  fontSize: 'auto',
   fontWeight: '600',
   color: 'var(--textPrimary)',
   padding: '2.5px',
