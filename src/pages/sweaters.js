@@ -12,9 +12,9 @@ export default function Sweaters(props) {
     // const [showAlert, setShowAlert] = useState(false);
     // const [alertMessage, setAlertMessage] = useState(null);
     // const [errorAlter, setErrorAlert] = useState(false);
-    // const data_from_child = (data) => {
-    //     console.log(data); // or set the data to a state
-    // }
+    const data_from_child = (data) => {
+        console.log(data); // or set the data to a state
+    }
     
     function renderProductWithRows(products) {
         // calculate number of rows
