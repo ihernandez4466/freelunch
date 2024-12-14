@@ -12,7 +12,6 @@ export default function ContactUs() {
         <div id="contact-us" style={{
             alignContent: 'center',
             alignItems: 'center',
-            // height: '60vh',
             marginBottom: '40vh' // need this for link scroll to work :()
         }}>
             <div style={{ padding: '30px', display: 'flex', justifyContent: 'center'}}>

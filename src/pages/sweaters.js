@@ -9,12 +9,12 @@ import MyAlert from '../components/alert';
 export default function Sweaters(props) {
     
     const [data, isLoading, error] = DataFetcher({endpoint:'/api/product?category=sweaters'})
-    const [showAlert, setShowAlert] = useState(false);
-    const [alertMessage, setAlertMessage] = useState(null);
-    const [errorAlter, setErrorAlert] = useState(false);
-    const data_from_child = (data) => {
-        console.log(data); // or set the data to a state
-    }
+    // const [showAlert, setShowAlert] = useState(false);
+    // const [alertMessage, setAlertMessage] = useState(null);
+    // const [errorAlter, setErrorAlert] = useState(false);
+    // const data_from_child = (data) => {
+    //     console.log(data); // or set the data to a state
+    // }
     
     function renderProductWithRows(products) {
         // calculate number of rows
@@ -37,9 +37,7 @@ export default function Sweaters(props) {
     return (
         <div id="sweaters" style={{
             alignContent: 'center',
-            alignItems: 'center',
-            // height: '80vh',
-            // padding: '50px 50px 50px 50px'
+            alignItems: 'center'
         }}>
             <Row>
                     <h1>

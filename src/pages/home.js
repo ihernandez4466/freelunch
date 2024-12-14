@@ -98,7 +98,7 @@ export default function Home(props) {
       }
     };
 
-    // initializeSession()
+    initializeSession()
   }, [session])
 
   useEffect(() => {
