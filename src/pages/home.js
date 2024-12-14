@@ -110,14 +110,16 @@ export default function Home(props) {
   const enhancedProps = { ...props, userId };  
   
   return (
-      <div id="home">
+      <div>
         <CustomNavBar {...enhancedProps}/>
         {/* <Header /> */}
-        <Sweaters {...enhancedProps}/>
-        <hr style={{ margin: '5rem 0'}}></hr>
-        <Posters {...enhancedProps}/>        
-        <hr style={{ margin: '5rem 0', marginBottom: '0'}}></hr>
-        <ContactUs {...enhancedProps}/>
+        <div style={{padding:'50px 50px 50px 50px'}}>
+          <Sweaters {...enhancedProps}/>
+          <hr style={{ margin: '4rem 0'}}></hr>
+          <Posters {...enhancedProps}/>        
+          <hr style={{ margin: '4rem 0'}}></hr>
+          <ContactUs {...enhancedProps}/>
+        </div>
       </div>
   );
 }
