@@ -112,7 +112,7 @@ export default function Home(props) {
   return (
       <div>
         <CustomNavBar {...enhancedProps}/>
-        {/* <Header /> */}
+        <Header />
         <div style={{padding:'50px 50px 50px 50px'}}>
           <Sweaters {...enhancedProps}/>
           <hr style={{ margin: '4rem 0'}}></hr>
@@ -125,10 +125,10 @@ export default function Home(props) {
 }
 
 function Header() {
-  const headerPath = imagePath + '/branding/logo-icon.png';
+  const headerPath = imagePath + '/branding/header_presale.png';
   return (
-    <Container fluid style={{ justifyContent: 'center', display: 'flex', background: 'linear-gradient(var(--background) 40%, white 18%, var(--primary) 70%)'}} id="home">    
-        <img src={headerPath} style={{ padding: '15px', width: '35%', height: '20vw', WebkitMaskImage: 'linear-gradient(transparent 0%, black 40%, transparent 90%)'}}></img>
+    <Container fluid style={{margin: '0px', padding: '0px'}}>         
+      <img src={headerPath} style={{ width: '100%', height: '40vw', WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'}}></img>
     </Container>
     );
   }
