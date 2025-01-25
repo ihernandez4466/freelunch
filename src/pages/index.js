@@ -24,6 +24,10 @@ export default function Home(props) {
     setShowCart(!show);
     setShowCheckout(show);
   }
+  const options = {
+    // passing the client secret obtained from the server
+    clientSecret: 'process.env.STRIPE_CLIENT_SECRET',
+  };
 
   /* insert into session + user tables */
   const persistSession = async (sessionToken, expirationDate) => {
@@ -149,7 +153,7 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId, handleShowCheckout, showCart};  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, options};  
   
   return (
       <div>

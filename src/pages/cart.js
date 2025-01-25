@@ -5,18 +5,9 @@ import useDataFetcher from '../components/fetch';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
 import MyAlert from "../components/alert";
-// home is the parent of navbar and checkout
-// navbar is the parent of cart
-// cart wants to trigger navbar function
-// cart wants to trigger home function
-
-// checkout has a prop function called handleCheckout
-// cart defines the prop function handleCheckout so checkout can trigger this function
-// cart has a prop function called handleCanvas
-// navbar defined the prop function handleCanvas so cart can trigger this function
-
-// parent defines function that is triggered by child 
-
+import { loadStripe } from "@stripe/stripe-js";
+import {Elements} from '@stripe/react-stripe-js';
+require('dotenv').config();
 
 export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
     const user = userId
@@ -36,12 +27,6 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
         return () => clearTimeout(timer);
     }, [showAlert])
 
-    useEffect(() => {
-        if(data){
-            calculateTotal()
-        }
-    }, [data])
-
     const handleCheckout = (show) => {
         if(show){
             setShowCheckout(true);
@@ -56,6 +41,23 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
         const items = data ? data.rows : []  
         const newTotal = items.reduce((acc, item) => acc + (Number(item.total) || 0), 0)
         setTotal(newTotal)
+    }
+
+    const processCheckout = async () => {
+        if(data){
+            const checkoutTotal = total
+            const stripePromise = loadStripe(process.env.STRIPE_SECRET_KEY);
+            const body = {
+                total: checkoutTotal
+            }
+            const response = await fetch(`/api/stripe`, {
+                method: 'POST',
+                body: JSON.stringify(body)
+            });
+
+        } else {
+            console.log("nothing to check out homie")
+        }
     }
 
     const handleRemove = async (item_id) => {
@@ -151,6 +153,11 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
             </Row>))
     }
 
+    // return (
+    //     <Elements stripe={stripePromise} options={options}>
+    //       <CheckoutForm />
+    //     </Elements>
+    //   );
     return (
         <>
         <Container>
