@@ -7,6 +7,7 @@ import CustomNavBar from '../components/navbar';
 import { useEffect, useState } from 'react';
 import { setCookieInBrowser, getCookie, deleteCookie, splitCookieValues} from '../components/useCookie';
 import { v4 as uuidv4 } from 'uuid';
+require('dotenv').config();
 
 const imagePath = '/images';
 
@@ -14,6 +15,10 @@ const imagePath = '/images';
 export default function Home(props) {
   const [userId, setUserId] = useState(null);
   const [session, setSession] = useState(null);
+  const options = {
+    // passing the client secret obtained from the server
+    clientSecret: 'process.env.STRIPE_CLIENT_SECRET',
+  };
 
   /* insert into session + user tables */
   const persistSession = async (sessionToken, expirationDate) => {
@@ -107,7 +112,7 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId };  
+  const enhancedProps = { ...props, userId, options };  
   
   return (
       <div>

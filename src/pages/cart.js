@@ -4,12 +4,15 @@ import Loading from '../components/loading'
 import useDataFetcher from '../components/fetch'
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
+import { loadStripe } from "@stripe/stripe-js";
+import {Elements} from '@stripe/react-stripe-js';
+require('dotenv').config();
 
-
-export default function Cart({ userId }) {
+export default function Cart({ userId, options }) {
     const user = userId
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`})
     const [total, setTotal] = useState(0);
+    // const [checkoutForm, showCheckoutForm] = useState(false)
 
     useEffect(() => {
         if(data){
@@ -21,6 +24,23 @@ export default function Cart({ userId }) {
         const items = data ? data.rows : []  
         const newTotal = items.reduce((acc, item) => acc + (Number(item.total) || 0), 0)
         setTotal(newTotal)
+    }
+
+    const processCheckout = async () => {
+        if(data){
+            const checkoutTotal = total
+            const stripePromise = loadStripe(process.env.STRIPE_SECRET_KEY);
+            const body = {
+                total: checkoutTotal
+            }
+            const response = await fetch(`/api/stripe`, {
+                method: 'POST',
+                body: JSON.stringify(body)
+            });
+
+        } else {
+            console.log("nothing to check out homie")
+        }
     }
 
     const handleRemove = async (item_id) => {
@@ -109,6 +129,11 @@ export default function Cart({ userId }) {
             </Row>))
     }
 
+    // return (
+    //     <Elements stripe={stripePromise} options={options}>
+    //       <CheckoutForm />
+    //     </Elements>
+    //   );
     return (
         <>
         <Container>
@@ -118,6 +143,7 @@ export default function Cart({ userId }) {
                     <>
                         {renderItems()}
                         <h2>{`Total: $${total}`}</h2>
+                        <Button onClick={() => processCheckout()}>Checkout</Button>
                     </>
                     ) 
                     : (<h2>No items in cart yet</h2> ) )
