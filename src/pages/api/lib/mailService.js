@@ -6,7 +6,7 @@ class MailService {
       if (!MailService.instance) {
         // Initialize the transporter only once
         this.transporter = nodemailer.createTransport({
-          service: process.env.SMTP_SERVICE,
+          // service: process.env.SMTP_SERVICE,
           host: process.env.SMTP_HOST,
           port: process.env.SMTP_PORT,
           secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
@@ -14,6 +14,8 @@ class MailService {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASSWORD
           },
+          logger: true,
+          debug: true, // Enable detailed logs
         });
   
         MailService.instance = this; // Save the instance
@@ -35,7 +37,7 @@ class MailService {
       * attachments - An array of attachment objects (see Using attachments for details). Attachments can be used for embedding images as well.
      * @returns {Promise} - A promise that resolves if the email is sent successfully.
      */
-    async sendMail(options) {
+    async send(options) {
       try {
         const mailOptions = {
           from: process.env.EMAIL_USER,
@@ -44,10 +46,10 @@ class MailService {
   
         const info = await this.transporter.sendMail(mailOptions);
         console.log("Email sent: ", info.response);
-        return info;
+        return "Email Sent";
       } catch (error) {
-        console.error("Error sending email: ", error);
-        return error;
+        console.error(error);
+        return "Error Sending Email";
       }
     }
 }
