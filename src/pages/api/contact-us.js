@@ -1,6 +1,7 @@
 import { ApiMiddleware} from '../../lib/middleware'
 import { validateParams } from './lib/validateParams';
 import mailServiceInstance from './lib/mailService';
+require('dotenv').config();
 
 const handler = {
     post: async (req, res) => {
@@ -18,8 +19,8 @@ const handler = {
         </html>
         `
         const response = await mailServiceInstance.send({
-          to: 'isabelhernandez123@gmail.com',
-          subject: 'freelunch test contact us',
+          to: process.env.EMAIL_USER,
+          subject: 'Freelunch Customer Contact',
           html: html
         })
 
