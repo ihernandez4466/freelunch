@@ -118,6 +118,7 @@ export default function Cart({ userId }) {
                     <>
                         {renderItems()}
                         <h2>{`Total: $${total}`}</h2>
+                        <button>Checkout</button>
                     </>
                     ) 
                     : (<h2>No items in cart yet</h2> ) )
