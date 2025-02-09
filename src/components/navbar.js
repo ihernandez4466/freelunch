@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from "next/navigation";
 import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
 import { PiShoppingCartDuotone } from "react-icons/pi";
@@ -42,7 +43,7 @@ export default function CustomNavBar(props) {
           <Offcanvas.Title><h2>Cart</h2></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-        <Cart userId={userId}/>
+        <Cart userId={userId} />
         </Offcanvas.Body>
       </Offcanvas>
       </Nav>

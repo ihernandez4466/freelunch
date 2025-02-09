@@ -4,18 +4,27 @@ import Loading from '../components/loading'
 import useDataFetcher from '../components/fetch'
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
+import Checkout from "./checkout";
 
-
-export default function Cart({ userId }) {
+export default function Cart({ userId, handleShowCanvas }) {
     const user = userId
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`})
     const [total, setTotal] = useState(0);
+    const [showCheckout, setShowCheckout] = useState(false);
 
     useEffect(() => {
         if(data){
             calculateTotal()
         }
     }, [data])
+
+    const handleCheckout = (show) => {
+        if(show){
+            setShowCheckout(true);
+        } else{
+            setShowCheckout(false);
+        }
+    }
 
     const calculateTotal = () => {
         const items = data ? data.rows : []  
@@ -116,9 +125,15 @@ export default function Cart({ userId }) {
                 (data && (data.rows.length > 0 ? 
                     (
                     <>
-                        {renderItems()}
-                        <h2>{`Total: $${total}`}</h2>
-                        <button>Checkout</button>
+                    {showCheckout ? 
+                        (<Checkout data={data} handleCheckout={handleCheckout}/>)
+                        :
+                        <>
+                            {renderItems()}
+                            <h2>{`Total: $${total}`}</h2>
+                            <Button onClick={handleCheckout}>Checkout</Button>
+                        </>
+                    }
                     </>
                     ) 
                     : (<h2>No items in cart yet</h2> ) )
