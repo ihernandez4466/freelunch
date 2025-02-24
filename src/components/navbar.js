@@ -4,6 +4,7 @@ import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
 import Link from 'next/link';
 import { PiShoppingCartDuotone } from "react-icons/pi";
+import { IoMdArrowBack } from "react-icons/io";
 import Logo from '../components/logo';
 import Cart from '../pages/cart';
 
@@ -32,7 +33,7 @@ export default function CustomNavBar(props) {
             <Logo />
         </Navbar.Brand>
         <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
-          { showHomeLink && <Button onClick={() => window.location.reload()}>Home</Button> }
+          { showHomeLink && <Button onClick={() => window.location.reload()}><IoMdArrowBack /></Button> }
           { showSweatersLink && 
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Sweaters
@@ -48,7 +49,7 @@ export default function CustomNavBar(props) {
           </ScrollLink> }
           { showCartLink && 
           <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button class="btn-cart" onClick={handleShow}>
               <PiShoppingCartDuotone/>
             </Button> 
             <Offcanvas show={showCart} onHide={handleClose} placement="end">

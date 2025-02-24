@@ -5,11 +5,11 @@ import useDataFetcher from '../components/fetch'
 import ContactForm from "../components/contact-form";
 
 export default function Checkout({ userId }) {
-    const user = userId
+    const user = '3d153c13-2dfe-485c-822f-03210c5d9790' // userId
     const [salesTax, setSalesTax] = useState(0);
-    const [total, setTotal] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
     const [salesTaxTotal, setSalesTaxTotal] = useState(0);
-    const [finalPrice, setFinalPrice] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`});
 
     useEffect(() => {
@@ -32,32 +32,32 @@ export default function Checkout({ userId }) {
 
     useEffect(() => {
         salesTaxCalculator();
-    }, [salesTax, total])
+    }, [salesTax, subTotal])
 
     useEffect(() => {
         totalPriceCalulator();
-    }, [total, salesTaxTotal])
+    }, [subTotal, salesTaxTotal])
 
     const handleContact = (e) => {
         console.log(e.target)
     }
     const totalPriceCalulator = () => {
-        setFinalPrice(salesTaxTotal + total)
+        setTotalPrice(salesTaxTotal + subTotal)
     }
     const totalCalculator = () => {
         const items = data ? data.rows : []  
         const total = items.reduce((acc, item) => acc + (Number(item.total) || 0), 0)
-        setTotal(total);
+        setSubTotal(total);
     }
     const salesTaxCalculator = () => {
-        const taxAmount = total * salesTax;
+        const taxAmount = subTotal * salesTax;
         setSalesTaxTotal(taxAmount);
     }
       
     const renderItems = (data) => {
         return data.map((product, idx) => (
-        <Row key={idx} style={{ borderBottom: '0.5px black solid'}}>
-            <Col style={{ margin: '10px 0px 10px 0px'}}>
+        <Row key={idx} style={{ borderTop:'0.5px black solid', borderBottom: '0.5px black solid'}}>
+            <Col style={{ margin: '10px 0px 10px 0px'}} className="d-flex justify-content-end align-items-center">
                 <Image style={{
                     padding: '10px',
                     boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
@@ -69,7 +69,7 @@ export default function Checkout({ userId }) {
                 src={`${product.img_path}`}
                 ></Image>
             </Col>
-            <Col style={{ margin: '10px 0px 10px 0px'}}>
+            <Col style={{ margin: '10px 0px 10px 0px'}} className="d-flex flex-column justify-content-center align-items-start">
                 <p>{product.name}</p>
                 <p>{`price: $${product.price}`}</p>
                 <p>{`size: ${product.size}`}</p>
@@ -79,28 +79,49 @@ export default function Checkout({ userId }) {
     }
     
     return (
-        <Container fluid>
-            { error ? (<h2>Something went wrong</h2>) : (isLoading ? (<Loading />) : 
-            (
-            <>
-            <h1>Order Details</h1>
-            <Row>
-                {data && data.rows ? (
-                    <>
-                    {renderItems(data.rows)}
-                    <div>
-                        <h2>Total Price: ${total}</h2>
-                        <h2>{`Tax (${salesTax}): ${salesTaxTotal}`}</h2>
-                        <h2>Final Price: ${finalPrice}</h2>
-                    </div>
-                    </>
-                ) : <p>No Items to Checkout</p>}
-            </Row>
-            <Row>
-                <ContactForm handleSubmit={handleContact} submitString="Checkout"/>
-            </Row>
-            </>))
-            }
-        </Container>
-    )
+        <Container fluid className="d-flex flex-column align-items-center py-5">
+            {error ? (
+                <h2 className="text-danger text-center">Something went wrong</h2>
+            ) : isLoading ? (
+                <Loading />
+            ) : (
+                <>
+                <h1 className="mb-4">Order Summary</h1>
+
+                <Row className="justify-content-center w-100">
+                    <Col md={8} lg={6} className="p-4 border rounded shadow-sm bg-light">
+                    {data && data.rows ? (
+                        <>
+                        <div className="mb-4">{renderItems(data.rows)}</div>
+
+                        <div className="text-center">
+                            <p className="mb-2">Sub Total: ${subTotal}</p>
+                            <p className="mb-2">{`Tax (${(salesTax * 100).toFixed(2)}%): $${salesTaxTotal}`}</p>
+                            <h3>Order Total: <strong>${totalPrice}</strong></h3>
+                        </div>
+                        </>
+                    ) : (
+                        <p className="text-muted text-center">No items to checkout</p>
+                    )}
+                    </Col>
+                </Row>
+                <h1 className="mt-4">Contact Information</h1>
+                <Row className="justify-content-center w-100 mt-4">
+                    <Col md={6} lg={4} className="p-4">
+                    <ContactForm handleSubmit={handleContact} submitString="Complete Order" />
+                    </Col>
+                </Row>
+                <Row className="justify-content-center w-50" style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>
+                <p>Your order details will be sent to our official email address for further processing.
+
+                    Once we receive your order, our team will reach out to you with the next steps to complete your order. 
+
+                    We appreciate your understanding as we work to enhance our checkout system and ensure a safe and seamless experience for all our customers.
+
+                    If you have any questions or concerns, feel free to contact us at <strong>freelunch707@gmail.com</strong></p>
+                </Row>
+                </>
+            )}
+            </Container>
+            )
 }
