@@ -1,20 +1,61 @@
-import {Row, Col, Image, Modal }from "react-bootstrap"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {Row, Col, Image, Container }from "react-bootstrap"
+import Loading from '../components/loading'
+import useDataFetcher from '../components/fetch'
 import ContactForm from "../components/contact-form";
 
-export default function Checkout({data, handleCheckout}) {
-    const [show, setShow] = useState(false);
+export default function Checkout({ userId }) {
+    const user = userId
+    const [salesTax, setSalesTax] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [salesTaxTotal, setSalesTaxTotal] = useState(0);
+    const [finalPrice, setFinalPrice] = useState(0);
+    const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`});
+
+    useEffect(() => {
+        const getTaxRate = async () => {
+            try {
+                const response = await fetch('/api/payment/tax');
+                const taxInfo = await response.json(); // Parse JSON response
+                setSalesTax(taxInfo.rate); // Update state
+            } catch (error) {
+                console.error("Failed to fetch tax rate:", error);
+                setSalesTax(null); // Handle failure gracefully
+            }
+        }
+
+        getTaxRate();
+    }, [])
+    useEffect(() => {
+        totalCalculator();
+    }, [data])
+
+    useEffect(() => {
+        salesTaxCalculator();
+    }, [salesTax, total])
+
+    useEffect(() => {
+        totalPriceCalulator();
+    }, [total, salesTaxTotal])
 
     const handleContact = (e) => {
         console.log(e.target)
     }
-    const handleClose = () => {
-        setShow(false);
-        handleCheckout(false);
+    const totalPriceCalulator = () => {
+        setFinalPrice(salesTaxTotal + total)
     }
-
-    const renderItems = () => {
-        return data.rows.map((product, idx) => (
+    const totalCalculator = () => {
+        const items = data ? data.rows : []  
+        const total = items.reduce((acc, item) => acc + (Number(item.total) || 0), 0)
+        setTotal(total);
+    }
+    const salesTaxCalculator = () => {
+        const taxAmount = total * salesTax;
+        setSalesTaxTotal(taxAmount);
+    }
+      
+    const renderItems = (data) => {
+        return data.map((product, idx) => (
         <Row key={idx} style={{ borderBottom: '0.5px black solid'}}>
             <Col style={{ margin: '10px 0px 10px 0px'}}>
                 <Image style={{
@@ -38,13 +79,28 @@ export default function Checkout({data, handleCheckout}) {
     }
     
     return (
-        <div>
-             <Modal centered show={show} onHide={handleClose}>
-                <div>
-                    {renderItems()}
-                </div>
-                <ContactForm handleSubmit={handleContact}/>
-            </Modal>
-        </div>
+        <Container fluid>
+            { error ? (<h2>Something went wrong</h2>) : (isLoading ? (<Loading />) : 
+            (
+            <>
+            <h1>Order Details</h1>
+            <Row>
+                {data && data.rows ? (
+                    <>
+                    {renderItems(data.rows)}
+                    <div>
+                        <h2>Total Price: ${total}</h2>
+                        <h2>{`Tax (${salesTax}): ${salesTaxTotal}`}</h2>
+                        <h2>Final Price: ${finalPrice}</h2>
+                    </div>
+                    </>
+                ) : <p>No Items to Checkout</p>}
+            </Row>
+            <Row>
+                <ContactForm handleSubmit={handleContact} submitString="Checkout"/>
+            </Row>
+            </>))
+            }
+        </Container>
     )
 }

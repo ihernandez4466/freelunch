@@ -1,6 +1,6 @@
 import { Col, Row, Form, Button, FloatingLabel } from 'react-bootstrap';
 
-export default function ContactForm({handleSubmit}) {
+export default function ContactForm({handleSubmit, submitString}) {
     return (
             <Form id="contact-form" onSubmit={handleSubmit}>
             <Row className="mb-3">
@@ -40,7 +40,7 @@ export default function ContactForm({handleSubmit}) {
                 </FloatingLabel>
                 <div style={{ padding: '20px', display: 'flex', justifyContent: 'center'}}>
                     <Button type="submit">
-                        Contact Us
+                        {submitString ? submitString : "Contact Us"}
                     </Button>
                 </div>
             </Form>
