@@ -3,13 +3,16 @@ import {Row, Col, Image, Container }from "react-bootstrap"
 import Loading from '../components/loading'
 import useDataFetcher from '../components/fetch'
 import ContactForm from "../components/contact-form";
+import OrderComplete from "./order-complete";
 
 export default function Checkout({ userId }) {
-    const user = '3d153c13-2dfe-485c-822f-03210c5d9790' // userId
-    const [salesTax, setSalesTax] = useState(0);
-    const [subTotal, setSubTotal] = useState(0);
-    const [salesTaxTotal, setSalesTaxTotal] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
+    const user = userId
+    const [salesTax, setSalesTax] = useState(false);
+    const [subTotal, setSubTotal] = useState(false);
+    const [salesTaxTotal, setSalesTaxTotal] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(false);
+    const [orderComplete, setOrderComplete] = useState(false);
+    const [recipient, setRecipient] = useState(null);
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`});
 
     useEffect(() => {
@@ -38,8 +41,36 @@ export default function Checkout({ userId }) {
         totalPriceCalulator();
     }, [subTotal, salesTaxTotal])
 
-    const handleContact = (e) => {
-        console.log(e.target)
+    const handleContact = async (e) => {
+        e.preventDefault();
+        //console.log(data);
+        const orderData = {
+            customer_first: e.target.customer_first.value, 
+            customer_last: e.target.customer_last.value, 
+            customer_email: e.target.customer_email.value,
+            customer_phone: e.target.customer_phone.value,
+            customer_comments: e.target.customer_comments.value,
+            customer_order: data ? data.rows : data
+        }
+        try {
+            console.log(orderData);
+            const response = await fetch('/api/payment/checkout', {
+                method: 'POST',
+                body: JSON.stringify(orderData),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to submit form")             
+            }
+
+            const result = await response.json();
+            console.log(`Order submitted successfully: ${result}`);
+            setRecipient(e.target.customer_email.value)
+            setOrderComplete(true)
+            setData(null)
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
     }
     const totalPriceCalulator = () => {
         setTotalPrice(salesTaxTotal + subTotal)
@@ -82,46 +113,48 @@ export default function Checkout({ userId }) {
         <Container fluid className="d-flex flex-column align-items-center py-5">
             {error ? (
                 <h2 className="text-danger text-center">Something went wrong</h2>
-            ) : isLoading ? (
-                <Loading />
-            ) : (
-                <>
-                <h1 className="mb-4">Order Summary</h1>
+            ) : 
+            (isLoading ? (<Loading />) : 
+                (orderComplete && recipient ? 
+                    <OrderComplete recipient={recipient}/> :
+                    (<>
+                        <h1 className="mb-4">Order Summary</h1>
 
-                <Row className="justify-content-center w-100">
-                    <Col md={8} lg={6} className="p-4 border rounded shadow-sm bg-light">
-                    {data && data.rows ? (
-                        <>
-                        <div className="mb-4">{renderItems(data.rows)}</div>
+                        <Row className="justify-content-center w-100">
+                        <Col md={8} lg={6} className="p-4 border rounded shadow-sm bg-light">
+                        {data && data.rows ? (
+                            <>
+                            <div className="mb-4">{renderItems(data.rows)}</div>
 
-                        <div className="text-center">
-                            <p className="mb-2">Sub Total: ${subTotal}</p>
-                            <p className="mb-2">{`Tax (${(salesTax * 100).toFixed(2)}%): $${salesTaxTotal}`}</p>
-                            <h3>Order Total: <strong>${totalPrice}</strong></h3>
-                        </div>
-                        </>
-                    ) : (
-                        <p className="text-muted text-center">No items to checkout</p>
-                    )}
-                    </Col>
-                </Row>
-                <h1 className="mt-4">Contact Information</h1>
-                <Row className="justify-content-center w-100 mt-4">
-                    <Col md={6} lg={4} className="p-4">
-                    <ContactForm handleSubmit={handleContact} submitString="Complete Order" />
-                    </Col>
-                </Row>
-                <Row className="justify-content-center w-50" style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>
-                <p>Your order details will be sent to our official email address for further processing.
+                            <div className="text-center">
+                                <p className="mb-2">Sub Total: ${subTotal}</p>
+                                <p className="mb-2">{`Tax (${(salesTax * 100).toFixed(2)}%): $${salesTaxTotal}`}</p>
+                                <h3>Order Total: <strong>${totalPrice}</strong></h3>
+                            </div>
+                            </>
+                        ) : (
+                            <p className="text-muted text-center">No items to checkout</p>
+                        )}
+                        </Col>
+                        </Row>
+                        <h1 className="mt-4">Contact Information</h1>
+                        <Row className="justify-content-center w-100 mt-4">
+                            <Col md={6} lg={4} className="p-4">
+                            <ContactForm handleSubmit={handleContact} submitString="Complete Order" />
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-center w-50" style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>
+                        <p>Your order details will be sent to our official email address for further processing.
 
-                    Once we receive your order, our team will reach out to you with the next steps to complete your order. 
+                            Once we receive your order, our team will reach out to you with the next steps to complete your order. 
 
-                    We appreciate your understanding as we work to enhance our checkout system and ensure a safe and seamless experience for all our customers.
+                            We appreciate your understanding as we work to enhance our checkout system and ensure a safe and seamless experience for all our customers.
 
-                    If you have any questions or concerns, feel free to contact us at <strong>freelunch707@gmail.com</strong></p>
-                </Row>
-                </>
+                            If you have any questions or concerns, feel free to contact us at <strong>freelunch707@gmail.com</strong></p>
+                        </Row>
+                    </>)
+                )
             )}
             </Container>
-            )
+        )
 }
