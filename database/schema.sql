@@ -23,13 +23,19 @@ CREATE TABLE order_details (
     user_id text REFERENCES users(id),
     payment_used text NOT NULL,
     created_at timestamp NOT NULL,
-    amount decimal NOT NULL
+    amount decimal NOT NULL,
+    contact_email text NOT NULL,
+    contact_phone text,
+    contact_first text NOT NULL,
+    contact_last text NOT NULL
 );
 
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
     order_details_id int REFERENCES order_details(id),
-    product_id int NOT NULL
+    product_id int NOT NULL,
+    product_quantity int NOT NULL,
+    product_size text NOT NULL
 );
 
 CREATE TABLE shopping_session (
