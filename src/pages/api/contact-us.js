@@ -1,4 +1,4 @@
-import { ApiMiddleware} from '../../lib/middleware'
+import { ApiMiddleware } from '../api/lib/middleware'
 import { validateParams } from './lib/validateParams';
 import mailServiceInstance from './lib/mailService';
 require('dotenv').config();

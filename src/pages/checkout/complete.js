@@ -1,7 +1,7 @@
 import { Row } from "react-bootstrap";
-import CustomNavBar from "../components/navbar";
+import CustomNavBar from "../../components/navbar";
 
-export default function OrderComplete({ recipient_email, recipient_first }) {
+export default function CheckoutComplete({ recipient_email, recipient_first }) {
     return (
         <>
         <CustomNavBar showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false}/>
@@ -14,6 +14,9 @@ export default function OrderComplete({ recipient_email, recipient_first }) {
                 We appreciate your understanding as we work to enhance our checkout system and ensure a safe and seamless experience for all our customers.
 
                 If you have any questions or concerns, feel free to contact us at <strong>freelunch707@gmail.com</strong></p>
+            </Row>
+            <Row>
+                <Button>Continue Shopping</Button>
             </Row>
         </div>
         </>

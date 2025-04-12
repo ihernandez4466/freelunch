@@ -33,7 +33,7 @@ export default function CustomNavBar(props) {
             <Logo />
         </Navbar.Brand>
         <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
-          { showHomeLink && <Button onClick={() => window.location.reload()}><IoMdArrowBack /></Button> }
+          { showHomeLink && <Link href="/"><IoMdArrowBack /></Link>}
           { showSweatersLink && 
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Sweaters
@@ -49,7 +49,7 @@ export default function CustomNavBar(props) {
           </ScrollLink> }
           { showCartLink && 
           <>
-            <Button class="btn-cart" onClick={handleShow}>
+            <Button className="btn-cart" onClick={handleShow}>
               <PiShoppingCartDuotone/>
             </Button> 
             <Offcanvas show={showCart} onHide={handleClose} placement="end">

@@ -2,7 +2,7 @@
 import { Container } from 'react-bootstrap';
 import Sweaters from './sweaters';
 import Posters from './posters';
-import Checkout from "./checkout";
+import CheckoutProcess from "./checkout/process";
 import ContactUs from './contact-us';
 import CustomNavBar from '../components/navbar';
 import { useEffect, useState } from 'react';
@@ -128,7 +128,7 @@ export default function Home(props) {
         {showCheckout ? 
          (<>
             <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
-            <Checkout userId={userId} /> 
+            <CheckoutProcess userId={userId} /> 
           </>)
           : 
           (<>

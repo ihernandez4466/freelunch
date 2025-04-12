@@ -1,5 +1,5 @@
 
-import { ApiMiddleware } from '../../../lib/middleware'
+import { ApiMiddleware } from '../../api/lib/middleware'
 
 const handler = {
     get: async (req, res) => {

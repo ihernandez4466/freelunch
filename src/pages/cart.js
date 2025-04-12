@@ -31,7 +31,6 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
     }, [data])
 
     const handleCheckout = (show) => {
-        console.log(`show inside cart is: ${show}`)
         if(show){
             setShowCheckout(true);
             handleShowCheckout(true, data);

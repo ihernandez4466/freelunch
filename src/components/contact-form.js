@@ -31,7 +31,6 @@ export default function ContactForm({handleSubmit, submitString}) {
 
                 <FloatingLabel label="Comments">
                     <Form.Control
-                    required
                     as="textarea"
                     name="customer_comments" 
                     placeholder="Leave a comment here"
