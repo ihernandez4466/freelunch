@@ -34,6 +34,19 @@ body {
   color: var(--textSecondary);
 }
 
+.btn-cart {
+  background-color: white;
+  color: var(--textPrimary);
+  border-radius: 15px;
+  border: none;
+}
+.btn-cart:hover {
+  background-color: var(--secondary);
+  color: var(--textSecondary);
+  border: none;
+}
+
+
 
 
 :root {

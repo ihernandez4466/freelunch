@@ -2,6 +2,7 @@
 import { Container } from 'react-bootstrap';
 import Sweaters from './sweaters';
 import Posters from './posters';
+import CheckoutProcess from "./checkout/process";
 import ContactUs from './contact-us';
 import CustomNavBar from '../components/navbar';
 import { useEffect, useState } from 'react';
@@ -15,6 +16,18 @@ const imagePath = '/images';
 export default function Home(props) {
   const [userId, setUserId] = useState(null);
   const [session, setSession] = useState(null);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  // const [checkoutData, setCheckoutData] = useState(null);
+
+  const handleShowCheckout = (show, data) => {
+    console.log(`inside handleShowCheckout at home: show: ${show} data: ${data}`);
+    console.log(`before changes are made to showCart :${showCart}`);
+    setShowCart(!show);
+    setShowCheckout(show);
+    // setCheckoutData(data);
+    // console.log(`after changes are made to showCart :${showCart} showCheckout: ${showCheckout}`);
+  }
 
   /* insert into session + user tables */
   const persistSession = async (sessionToken, expirationDate) => {
@@ -68,7 +81,10 @@ export default function Home(props) {
         let userResponse = await fetch(`/api/user?id=${user}`)
         let userRow = await userResponse.json()
         let validUser = userRow ? userRow.rows.length > 0 : false
-        if(validUser){
+        let sessionResponse = await fetch(`/api/session?userId=${user}`)
+        let sessionRow = await sessionResponse.json()
+        let validSession = sessionRow ? sessionRow.rows.length > 0 : false
+        if(validUser && validSession){
           setUserId(user) 
         } else {
           throw new Error('user does not exist in database')
@@ -108,19 +124,28 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId };  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart};  
   
   return (
       <div>
-        <CustomNavBar {...enhancedProps}/>
-        <Header />
-        <div style={{padding:'50px 50px 50px 50px'}}>
-          <Sweaters {...enhancedProps}/>
-          <hr style={{ margin: '4rem 0'}}></hr>
-          <Posters {...enhancedProps}/>        
-          <hr style={{ margin: '4rem 0'}}></hr>
-          <ContactUs {...enhancedProps}/>
-        </div>
+        {showCheckout ? 
+         (<>
+            <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
+            <CheckoutProcess userId={userId} /> 
+          </>)
+          : 
+          (<>
+            <CustomNavBar {...enhancedProps}/>
+            <Header />
+            <div style={{ padding: '50px 50px 50px 50px' }}>
+              <Sweaters {...enhancedProps} />
+              <hr style={{ margin: '4rem 0' }}></hr>
+              <Posters {...enhancedProps} />
+              <hr style={{ margin: '4rem 0' }}></hr>
+              <ContactUs {...enhancedProps} />
+            </div>
+          </>)
+        }
       </div>
   );
 }
