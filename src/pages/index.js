@@ -81,7 +81,10 @@ export default function Home(props) {
         let userResponse = await fetch(`/api/user?id=${user}`)
         let userRow = await userResponse.json()
         let validUser = userRow ? userRow.rows.length > 0 : false
-        if(validUser){
+        let sessionResponse = await fetch(`/api/session?userId=${user}`)
+        let sessionRow = await sessionResponse.json()
+        let validSession = sessionRow ? sessionRow.rows.length > 0 : false
+        if(validUser && validSession){
           setUserId(user) 
         } else {
           throw new Error('user does not exist in database')

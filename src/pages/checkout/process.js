@@ -11,7 +11,7 @@ export default function CheckoutProcess({ userId }) {
         <Container fluid className="d-flex flex-column align-items-center py-5">
             {
                 (orderComplete && recipient) ? 
-                <CheckoutComplete recipient={recipient}/> : 
+                <CheckoutComplete /> : 
                 <CheckoutSummary 
                     user={userId}
                     setOrderCompleteCallback={setOrderComplete} 

@@ -11,6 +11,7 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
     const [salesTaxTotal, setSalesTaxTotal] = useState(null);
     const [data, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`});
     const [taxIsLoading, setTaxIsLoading] = useState(false);
+    const [checkoutSubmitLoading, setCheckoutSubmitLoading] = useState(false);
 
     const renderItems = (data) => {
             return data.map((product, idx) => (
@@ -80,7 +81,9 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
         setSalesTaxTotal(taxAmount);
     }
     const handleCompleteOrder = async (e) => {
+        setCheckoutSubmitLoading(true);
         e.preventDefault();
+        const session_id = data ? data.rows[0].session_id : 0
         const orderData = {
             customer_first: e.target.customer_first.value, 
             customer_last: e.target.customer_last.value, 
@@ -89,7 +92,8 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
             customer_comments: e.target.customer_comments.value,
             customer_order: data ? data.rows : data,
             order_total: totalPrice,
-            session_id: user
+            user_id: user,
+            session_id: session_id
         }
         try {
             console.log(orderData);
@@ -106,9 +110,11 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
             setRecipientCallback(e.target.customer_email.value)
             setOrderCompleteCallback(true)
             setData(null)
+            console.log("Successfully submitted order!");
         } catch (error) {
-            console.error('Error submitting form:', error);
+            console.error('Error submitting order:', error);
         }
+        setCheckoutSubmitLoading(false);
     }
     return (
         <>
@@ -116,7 +122,7 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
             (
             <Container style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
             <h1 className="mb-4">Order Summary</h1>
-            {taxIsLoading ? <Loading /> : (
+            {(taxIsLoading || checkoutSubmitLoading) ? <Loading /> : (
                 <>
                 <Row className="justify-content-center w-100">
                     <Col md={8} lg={6} className="p-4 border rounded shadow-sm bg-light">

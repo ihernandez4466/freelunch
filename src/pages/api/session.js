@@ -7,7 +7,7 @@ const handler = {
         const { id, userId, sessionToken } = params
         let where = ""
         where += id ? `id=${id} `: ""
-        where += userId ? `${where ? 'AND ' : ""}user_id=${userId} `: ""
+        where += userId ? `${where ? 'AND ' : ""}user_id='${userId}' `: ""
         where += sessionToken ? `${where ? 'AND ' : ""}session_token=${sessionToken}`: ""
         const query = `SELECT * FROM shopping_session ${where ? `WHERE ${where}`: ""}`
         const client = await pool.connect() // Get a client from the pool

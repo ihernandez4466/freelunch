@@ -1,24 +1,26 @@
-import { Row } from "react-bootstrap";
-import CustomNavBar from "../../components/navbar";
+import { Row, Button } from "react-bootstrap";
+import { useRouter } from 'next/router';
 
-export default function CheckoutComplete({ recipient_email, recipient_first }) {
+export default function CheckoutComplete(){
     return (
-        <>
-        <CustomNavBar showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false}/>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-            <h1 className="mb-4 mt-4">Thank you, {recipient_first}. Your Order has been Submitted</h1>
-            <Row className="justify-content-center w-50" style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>
-            <p>Your order confirmation has been sent to: <strong>{recipient_email}</strong>.
-                Once we receive your order, our team will reach out to you with the next steps to complete your order. 
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h1 className="mb-4 mt-4 text-center">Thank you, Your Order has been Submitted</h1>
 
-                We appreciate your understanding as we work to enhance our checkout system and ensure a safe and seamless experience for all our customers.
-
-                If you have any questions or concerns, feel free to contact us at <strong>freelunch707@gmail.com</strong></p>
-            </Row>
-            <Row>
-                <Button>Continue Shopping</Button>
-            </Row>
+            <div className="w-100 d-flex justify-content-center">
+                <Row className="w-75" style={{
+                padding: '30px',
+                backgroundColor: 'var(--primary-transparent)',
+                borderRadius: '20px',
+                }}>
+                <p>
+                    Once we receive your order, our team will reach out to you with the next steps to complete your order.
+                    <br /><br />
+                    We appreciate your understanding as we work to enhance our checkout system and ensure a safe and seamless experience for all our customers.
+                    <br /><br />
+                    If you have any questions or concerns, feel free to contact us at <strong>freelunch707@gmail.com</strong>
+                </p>
+                </Row>
+            </div>
         </div>
-        </>
     )
 }

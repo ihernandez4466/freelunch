@@ -23,7 +23,10 @@ export default function CustomNavBar(props) {
       if(show) handleShow();
       else handleClose();
     }
-
+    const router = useRouter();
+    const handleHomeClick = () => {
+      router.replace(router.asPath);
+    };
     return (
       <Navbar sticky="top" style={{ height: '50px', backgroundColor:'white'}}>
       <Container 
@@ -33,7 +36,7 @@ export default function CustomNavBar(props) {
             <Logo />
         </Navbar.Brand>
         <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
-          { showHomeLink && <Link href="/"><IoMdArrowBack /></Link>}
+          { showHomeLink && <Link href='/' onClick={handleHomeClick}><IoMdArrowBack className='btn-primary' style={{ color: 'white', fontSize: '20px'}}/></Link>}
           { showSweatersLink && 
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Sweaters
