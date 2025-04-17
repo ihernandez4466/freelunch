@@ -105,14 +105,14 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
                                         <ToggleButton size="sm" className="btn-neutral" id={`size-${i}`} value={size}>{size}</ToggleButton>)}                                
                                     </ToggleButtonGroup>
                                 </Row>
-                                <Row>
-                                    <ButtonGroup>
+                                <Col>
+                                    <ButtonGroup className="d-inline-flex">
                                         <input type="hidden" name="quantity" value={quantity} />
-                                        <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle /></Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle /></Button>
                                         <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled>{`QTY: ${quantity}`}</Button>
                                         <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
                                     </ButtonGroup>
-                                </Row>
+                                </Col>
                                 <Row style={{ margin: '1rem 0rem 1rem 0rem'}}>
                                     <Button size="sm" className="btn-neutral" type="submit">Add To Cart</Button>
                                 </Row>
@@ -123,6 +123,7 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
                 </Modal.Body>
                 </Form>
             </Modal>
+            <div>
             <Image
                 onClick={handleShow}
                 style={props.style ? props.style : {
@@ -138,6 +139,11 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
                 }}
                 src={`${productInfo.img_path}`}
             />
+                <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', paddingTop: '10px'}}>
+                <p style={{ textAlign: 'center', fontSize: 'large'}}>${productInfo.price}</p>
+                <p style={{ textAlign: 'center', paddingLeft: '5px', fontSize: 'large'}}>{productInfo.name}</p>
+                </div>
+            </div>
         </Col>
     );
 }

@@ -43,7 +43,7 @@ export default function ContactUs() {
     return (
         <Row id="contact-us" style={{
             //alignContent: 'center',
-            padding: '15px',
+            padding: '30px',
             backgroundColor: 'var(--background)',
             borderRadius: '15px',
             marginBottom: '40vh' // need this for link scroll to work :()
