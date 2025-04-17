@@ -5,17 +5,40 @@ import useDataFetcher from '../components/fetch'
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
 
+// home is the parent of navbar and checkout
+// navbar is the parent of cart
+// cart wants to trigger navbar function
+// cart wants to trigger home function
 
-export default function Cart({ userId }) {
+// checkout has a prop function called handleCheckout
+// cart defines the prop function handleCheckout so checkout can trigger this function
+// cart has a prop function called handleCanvas
+// navbar defined the prop function handleCanvas so cart can trigger this function
+
+// parent defines function that is triggered by child 
+
+
+export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
     const user = userId
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`})
     const [total, setTotal] = useState(0);
+    const [showCheckout, setShowCheckout] = useState(false);
 
     useEffect(() => {
         if(data){
             calculateTotal()
         }
     }, [data])
+
+    const handleCheckout = (show) => {
+        if(show){
+            setShowCheckout(true);
+            handleShowCheckout(true, data);
+        } else{
+            setShowCheckout(false);
+            handleShowCheckout(false, null);
+        }
+    }
 
     const calculateTotal = () => {
         const items = data ? data.rows : []  
@@ -116,9 +139,16 @@ export default function Cart({ userId }) {
                 (data && (data.rows.length > 0 ? 
                     (
                     <>
-                        {renderItems()}
-                        <h2>{`Total: $${total}`}</h2>
-                        <button>Checkout</button>
+                    {!showCheckout &&
+                        <>
+                            {renderItems()}
+                            <h2>{`Total: $${total}`}</h2>
+                            <Button onClick={() => {
+                                handleShowCart(false);
+                                handleCheckout(true);
+                            }}>Checkout</Button>
+                        </>
+                    }
                     </>
                     ) 
                     : (<h2>No items in cart yet</h2> ) )

@@ -1,4 +1,4 @@
-import { ApiMiddleware } from '../../lib/middleware'
+import { ApiMiddleware } from '../api/lib/middleware'
 import pool from '../../../database/db'
 
 const handler = {

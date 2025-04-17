@@ -1,0 +1,23 @@
+<html>
+    <body>
+      <p>Order has been placed by {{customer_first}} {{customer_last}}</p>
+      <hr/>
+      <p>Their contact information</p>
+      <p>Email: {{customer_email}}</p>
+      <p>Phone: {{customer_phone}}</p>
+      <p>Comments: {{customer_comments}}</p>
+      <hr/>
+      <p>Their order</p>
+      <p>Order Details ID: {{order_details_id}}</p>
+      <p>Their order total: {{order_total}}</p>
+      {{#each customer_order}}
+        <div style="padding: 10px;">
+          <p>Product ID: {{product_id}}</p>
+          <p>Name: {{name}}</p>
+          <p>Price: ${{price}}</p>
+          <p>Size: {{size}}</p>
+          <p>QTY: {{quantity}}</p>
+        </div>
+      {{/each}}
+    </body>
+  </html>
