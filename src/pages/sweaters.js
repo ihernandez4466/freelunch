@@ -9,12 +9,18 @@ import MyAlert from '../components/alert';
 export default function Sweaters(props) {
     
     const [data, isLoading, error] = DataFetcher({endpoint:'/api/product?category=sweaters'})
-    // const [showAlert, setShowAlert] = useState(false);
-    // const [alertMessage, setAlertMessage] = useState(null);
-    // const [errorAlter, setErrorAlert] = useState(false);
-    const data_from_child = (data) => {
-        console.log(data); // or set the data to a state
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+    const [isSuccess, setIsSuccess] = useState(null);
+    const successFromChild = (success, message) => {
+        setAlertMessage(message);
+        setIsSuccess(success);
+        setShowAlert(true);
     }
+
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    };
     
     function renderProductWithRows(products) {
         // calculate number of rows
@@ -25,7 +31,7 @@ export default function Sweaters(props) {
         const renderResult = resultOfN.map((row, rowIndex) => (
             <Row key={`productdiv-${rowIndex}`}>
                 {row.map((item, idx) => (
-                    <ProductDiv productInfo={item} setter={data_from_child} {...props}/>
+                    <ProductDiv productInfo={item} successSetter={successFromChild} {...props}/>
                 ))}
             </Row>
         ));
@@ -47,6 +53,14 @@ export default function Sweaters(props) {
             </Row>
         { error ? (<Row><div><h2 style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>Products Coming Soon</h2></div></Row>) : (isLoading ? <Loading /> : 
             ( data && renderProductWithRows(data.rows)))}
+             { showAlert &&
+             <MyAlert 
+                success={isSuccess} 
+                message={alertMessage} 
+                showAlert={showAlert} 
+                onClose={handleCloseAlert}
+            />
+            }
         </div>
     );
 }
