@@ -123,7 +123,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                 </Modal.Body>
                 </Form>
             </Modal>
-            <div style={{ padding: '0px 0px 5px 0px', backgroundColor: 'var(--primary-transparent)', boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)'}}>
+            <div style={{ padding: '0px 0px 5px 0px'}}>
             {/* <div> */}
             <Image
                 onClick={handleShow}
@@ -131,7 +131,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                     // width: '50%',
                     height: 'auto',
                     objectFit: 'cover',
-                    // boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
+                    boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
                     // backgroundColor: 'var(--primary-transparent)',
                     backgroundColor: 'white',
                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function

@@ -53,14 +53,14 @@ export default function Sweaters(props) {
             </Row>
         { error ? (<Row><div><h2 style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>Products Coming Soon</h2></div></Row>) : (isLoading ? <Loading /> : 
             ( data && renderProductWithRows(data.rows)))}
-             { showAlert &&
+             {/* { showAlert &&
              <MyAlert 
                 success={isSuccess} 
                 message={alertMessage} 
                 showAlert={showAlert} 
                 onClose={handleCloseAlert}
             />
-            }
+            } */}
         </div>
     );
 }
