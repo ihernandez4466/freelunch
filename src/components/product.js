@@ -9,14 +9,13 @@ import { GrSubtractCircle } from "react-icons/gr";
  *    @param {ReactNode} props.productInfo - product object with name: str, img_path: str, price: int, description: str, available_qty: int, available_sizes: array
  *    @param {ReactNode} props.style - Optional style for the image in case it does not fit as expected
  */
-export default function ProductDiv({ productInfo, setter, ...props }) {
+export default function ProductDiv({ productInfo, successSetter, ...props }) {
     const user = props.userId
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [size, setSize] = useState(['S']);
     const [quantity, setQuantity] = useState(1);
-    setter('Data from Child');
 
     const handleSize = (val) => {
         console.log(`changing value to :${val}`);
@@ -32,7 +31,6 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
   };
     
     const handleSubmit = async (e) => {
-        setter('Data from Child when Form is called');
         e.preventDefault();
         // add this to the cart :)
         const data = {
@@ -56,8 +54,10 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
 
             const result = await response.json();
             console.log(`Form submitted successfully: ${result}`);
+            successSetter(true, "Product Added to Cart")
         } catch (error) {
             console.error('Error submitting form:', error);
+            successSetter(false, "Unable to add Product to Cart")
         } finally {
             handleClose() // hide modal
         }
@@ -81,8 +81,8 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
                                 style={props.style ? props.style : {
                                     height: 'auto',
                                     padding: '10px',
-                                    boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                                    backgroundColor: 'var(--primary-transparent)',
+                                    boxShadow: '5px 5px 5px 5px rgb(190, 187, 187, 0.5)',
+                                    backgroundColor: 'white',
                                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                                     maxWidth: '100%',
                                     maxHeight: '100%',
@@ -123,16 +123,17 @@ export default function ProductDiv({ productInfo, setter, ...props }) {
                 </Modal.Body>
                 </Form>
             </Modal>
-            <div>
+            <div style={{ padding: '0px 0px 5px 0px', backgroundColor: 'var(--primary-transparent)', boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)'}}>
+            {/* <div> */}
             <Image
                 onClick={handleShow}
                 style={props.style ? props.style : {
                     // width: '50%',
                     height: 'auto',
-                    padding: '10px',
                     objectFit: 'cover',
-                    boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                    backgroundColor: 'var(--primary-transparent)',
+                    // boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
+                    // backgroundColor: 'var(--primary-transparent)',
+                    backgroundColor: 'white',
                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                     maxWidth: '100%',
                     // maxHeight: '100%',
