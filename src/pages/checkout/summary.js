@@ -118,7 +118,7 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
     }
     return (
         <>
-        {error ?  <h1 className="mb-4">An Error has Occured</h1> :
+        {error ? <></> :
             (
             <Container style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
             <h1 className="mb-4">Order Summary</h1>

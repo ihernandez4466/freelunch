@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Loading from '../components/loading';
 import ProductDiv from '../components/product';
@@ -10,17 +10,22 @@ export default function Sweaters(props) {
     
     const [data, isLoading, error] = DataFetcher({endpoint:'/api/product?category=sweaters'})
     const [showAlert, setShowAlert] = useState(false);
-    const [alertMessage, setAlertMessage] = useState("");
-    const [isSuccess, setIsSuccess] = useState(null);
-    const successFromChild = (success, message) => {
+    const [alertSuccess, setAlertSuccess] = useState(false);
+    const [alertMessage, setAlertMessage] = useState(null);
+    
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowAlert(false);
+            setAlertSuccess(false);
+            setAlertMessage(null);    
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, [showAlert])
+    const successFromProduct = (success, message) => {
+        setAlertSuccess(success);
         setAlertMessage(message);
-        setIsSuccess(success);
         setShowAlert(true);
     }
-
-    const handleCloseAlert = () => {
-        setShowAlert(false);
-    };
     
     function renderProductWithRows(products) {
         // calculate number of rows
@@ -31,7 +36,7 @@ export default function Sweaters(props) {
         const renderResult = resultOfN.map((row, rowIndex) => (
             <Row key={`productdiv-${rowIndex}`}>
                 {row.map((item, idx) => (
-                    <ProductDiv productInfo={item} successSetter={successFromChild} {...props}/>
+                    <ProductDiv productInfo={item} successSetter={successFromProduct} {...props}/>
                 ))}
             </Row>
         ));
@@ -53,14 +58,12 @@ export default function Sweaters(props) {
             </Row>
         { error ? (<Row><div><h2 style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>Products Coming Soon</h2></div></Row>) : (isLoading ? <Loading /> : 
             ( data && renderProductWithRows(data.rows)))}
-             {/* { showAlert &&
-             <MyAlert 
-                success={isSuccess} 
-                message={alertMessage} 
-                showAlert={showAlert} 
-                onClose={handleCloseAlert}
-            />
-            } */}
+        { showAlert && 
+            <MyAlert 
+                success={alertSuccess}
+                message={alertMessage}
+                duration={1500}
+            />}
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from "react";
-import {Button, Container, Row, Col, Image, ButtonGroup }from "react-bootstrap"
-import Loading from '../components/loading'
-import useDataFetcher from '../components/fetch'
+import {Button, Container, Row, Col, Image, ButtonGroup }from "react-bootstrap";
+import Loading from '../components/loading';
+import useDataFetcher from '../components/fetch';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
 
@@ -62,7 +62,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                     rows: data.rows.filter((product) => product.cart_id !== item_id),
                   };
                   setData(updatedData);
-                  calculateTotal(data.rows)
+                  calculateTotal(data.rows);
             }
             console.log(`Successfully deleted item from cart: ${result}`);
         } catch (error) {
