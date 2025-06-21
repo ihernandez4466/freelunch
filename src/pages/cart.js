@@ -4,7 +4,7 @@ import Loading from '../components/loading';
 import useDataFetcher from '../components/fetch';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
-
+import MyAlert from "../components/alert";
 // home is the parent of navbar and checkout
 // navbar is the parent of cart
 // cart wants to trigger navbar function
@@ -23,6 +23,18 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
     const [data, isLoading, error, setData] = useDataFetcher({endpoint:`/api/cart?userId=${user}`})
     const [total, setTotal] = useState(0);
     const [showCheckout, setShowCheckout] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertSuccess, setAlertSuccess] = useState(false);
+    const [alertMessage, setAlertMessage] = useState(null);
+    
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowAlert(false);
+            setAlertSuccess(false);
+            setAlertMessage(null);    
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, [showAlert])
 
     useEffect(() => {
         if(data){
@@ -64,8 +76,14 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                   setData(updatedData);
                   calculateTotal(data.rows);
             }
+            setAlertMessage("Item Removed")
+            setAlertSuccess(true);
+            setShowAlert(true);
             console.log(`Successfully deleted item from cart: ${result}`);
         } catch (error) {
+            setAlertMessage("Failed to remove item")
+            setAlertSuccess(false);
+            setShowAlert(true);
             console.error(error);
         }
     }
@@ -154,6 +172,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                     : (<h2>No items in cart yet</h2> ) )
                 ))
             }
+            {showAlert && <MyAlert message={alertMessage} success={alertSuccess} duration={1500}/>}
        </Container>
  </>
     );
