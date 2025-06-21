@@ -1,14 +1,27 @@
+import { useEffect, useState } from 'react';
 import { Card, Col, Row, Form, Button, FloatingLabel } from 'react-bootstrap';
 import { MdEmail } from "react-icons/md";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
-
+import MyAlert from "./../components/alert";
 
 /**
  * Functional component that renders the Contact Us Page
  */
 export default function ContactUs() {
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertSuccess, setAlertSuccess] = useState(false);
+    const [alertMessage, setAlertMessage] = useState(null);
     
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowAlert(false);
+            setAlertSuccess(false);
+            setAlertMessage(null);    
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, [showAlert])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
@@ -33,8 +46,13 @@ export default function ContactUs() {
             const result = await response.json();
             console.log(`Form submitted successfully: ${result}`);
             e.target.reset();
-
+            setAlertSuccess(true);
+            setAlertMessage("Thank you for reaching out!");    
+            setShowAlert(true);
         } catch (error) {
+            setAlertSuccess(false);
+            setAlertMessage("An Error Occured, Sorry!");    
+            setShowAlert(true);
             console.error('Error submitting form:', error);
         }
     }
@@ -110,6 +128,11 @@ export default function ContactUs() {
             </Form>
             </Card.Body>
             </Card>
+            { showAlert && <MyAlert 
+                success={alertSuccess}
+                message={alertMessage}
+                duration={1500}
+            />}
             </Col>
         </Row>
     );
