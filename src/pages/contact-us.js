@@ -68,7 +68,7 @@ export default function ContactUs() {
         }}>
             <Col style={{ paddingTop: '15px', paddingBottom: '15px'}}>
             {/* <div style={{ padding: '30px', display: 'flex', justifyContent: 'center'}}> */}
-                <h1 style={{ color: 'var(--textPrimary)', fontSize: '30px'}}>Join The Movement</h1>
+                <h1 style={{ color: 'var(--textPrimary)'}}>Join The Movement</h1>
             {/* </div> */}
             {/* <div style={{ padding: '20px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px'}}> */}
                 <p style={{ color: 'var(--textPrimary)', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters or posters, 

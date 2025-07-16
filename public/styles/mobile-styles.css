@@ -1,0 +1,19 @@
+@import "./root.css";
+@media (max-width: 768px) {
+    h1 {
+        font-size: 4.5vmin;
+    }
+    h2 {
+        font-size: 3vmin;
+    }
+    .header {
+        width: 100%;
+        /* width: 100% !important; */
+        height: 50vw;
+        /* height: 50vw !important; */
+    }
+    p {
+        font-size: 2vmin;
+    }
+
+}

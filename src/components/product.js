@@ -75,7 +75,14 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                 <Modal.Body>
                     <Container>
                         <Row>
-                            <Col md={6}>
+                            <Col md={6} className="d-flex justify-content-center flex-wrap">
+                                <Row inline key={`${productInfo.id}-name`}>
+                                    <input type="hidden" name="product" value={productInfo.id} />
+                                    <input type="hidden" name="category" value={productInfo.category} />
+                                    <h1>{`$${productInfo.price} ${productInfo.name}`}</h1>
+                                    <input type="hidden" name="price" value={productInfo.price} />
+                                </Row>
+                                <Row>
                             <Image
                                 onClick={handleShow}
                                 style={props.style ? props.style : {
@@ -89,14 +96,9 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                 }}
                                 src={`${productInfo.img_path}`}
                             />
+                                </Row>                                
                             </Col>
                             <Col md={6}>
-                                <Row inline key={`${productInfo.id}-name`}>
-                                    <input type="hidden" name="product" value={productInfo.id} />
-                                    <input type="hidden" name="category" value={productInfo.category} />
-                                    <h2>{`$${productInfo.price} ${productInfo.name}`}</h2>
-                                    <input type="hidden" name="price" value={productInfo.price} />
-                                </Row>                                
                                 <Row>
                                     <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
                                     <ToggleButtonGroup id="sizeInput" name="size" type="radio" value={size}
@@ -141,8 +143,8 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                 src={`${productInfo.img_path}`}
             />
                 <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', paddingTop: '10px'}}>
-                <p style={{ textAlign: 'center', fontSize: 'large'}}>${productInfo.price}</p>
-                <p style={{ textAlign: 'center', paddingLeft: '5px', fontSize: 'large'}}>{productInfo.name}</p>
+                <h3 style={{ textAlign: 'center'}}>${productInfo.price}</h3>
+                <h3 style={{ textAlign: 'center', paddingLeft: '5px'}}>{productInfo.name}</h3>
                 </div>
             </div>
         </Col>

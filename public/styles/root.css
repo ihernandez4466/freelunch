@@ -1,0 +1,20 @@
+:root {
+  /* light mode */
+  --primary: #7e4040;
+  --primary-transparent: rgb(126,64,64,0.1);  
+  --secondary: #bc0404;
+  --secondary-transparent: rgb(188,4,4, 0.1);
+  --background: rgb(239,209,209,0.1);
+  --background-nontransparent: rgb(216, 200, 187);
+  --textPrimary: #383030;
+  --textSecondary: white;
+
+  /*logo: #bc0404 rgb(188,4,4);
+  light-logo: #cc3232 rgb(204,50,50);
+  logo-dark: #961e1e rgb(150,30,30);
+  light: #efd1d1 rgb(239,209,209);
+  black: #383030 rgb(56,48,48);
+  brown: #7e4040 rgb(126,64,64);
+  brown-transparent: rgb(126,64,64) 
+  */
+}
