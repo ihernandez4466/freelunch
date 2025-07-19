@@ -26,13 +26,14 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
                         maxHeight: '100%',
                     }}
                     src={`${product.img_path}`}
+                    alt="cart item"
                     ></Image>
                 </Col>
                 <Col style={{ margin: '10px 0px 10px 0px'}} className="d-flex flex-column justify-content-center align-items-start">
-                    <p>{product.name}</p>
-                    <p>{`price: $${product.price}`}</p>
-                    <p>{`size: ${product.size}`}</p>
-                    <p>{`QTY: ${product.quantity}`}</p>
+                    <h3>{product.name}</h3>
+                    <h3>{`price: $${product.price}`}</h3>
+                    <h3>{`size: ${product.size}`}</h3>
+                    <h3>{`QTY: ${product.quantity}`}</h3>
                 </Col>
                 </Row>))
     }
@@ -130,13 +131,13 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
                             <>
                             <div className="mb-4">{renderItems(data.rows)}</div>
                                 <div className="text-center">
-                                    <p className="mb-2">Sub Total: ${subTotal}</p>
-                                    <p className="mb-2">{`Tax (${salesTax * 100}%): $${salesTaxTotal}`}</p>
-                                    <h3>Order Total: <strong>${totalPrice.toFixed(2)}</strong></h3>
+                                    <h3 className="mb-2">Sub Total: ${subTotal}</h3>
+                                    <h3 className="mb-2">{`Tax (${salesTax * 100}%): $${salesTaxTotal}`}</h3>
+                                    <h2>Order Total: <strong>${totalPrice.toFixed(2)}</strong></h2>
                                 </div>
                             </>
                             ) : (
-                                <p className="text-muted text-center">No items to checkout</p>
+                                <h3 className="text-muted text-center">No items to checkout</h3>
                             )
                         }
                     </Col>

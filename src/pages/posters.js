@@ -30,6 +30,7 @@ export default function Posters() {
                     maxHeight: '100%',
                 }}
                 src="/images/branding/poster_tease.png"
+                alt="poster tease"
             />
             </Col>
         </div>

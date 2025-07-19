@@ -1,10 +1,13 @@
 @import "./root.css";
 @media (max-width: 768px) {
     h1 {
-        font-size: 4.5vmin;
+        font-size: 4.5vmax;
     }
     h2 {
-        font-size: 3vmin;
+        font-size: 3vmax;
+    }
+    h3 {
+        font-size: 3vmin; 
     }
     .header {
         width: 100%;
@@ -13,7 +16,7 @@
         /* height: 50vw !important; */
     }
     p {
-        font-size: 2vmin;
+        font-size: 2vmax;
     }
 
 }

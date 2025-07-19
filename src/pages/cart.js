@@ -134,6 +134,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                     maxHeight: '100%',
                 }}
                 src={`${product.img_path}`}
+                alt="cart item"
                 ></Image>
             </Col>
             <Col style={{ margin: '10px 0px 10px 0px'}}>

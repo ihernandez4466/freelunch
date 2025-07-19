@@ -168,13 +168,7 @@ function Header() {
         <h2 style={{ margin: '0'}}>Pre-sales are live! Secure your merch at checkout!</h2>
         <FaFire style={{ marginRight: '2.5px'}}/>
       </div>
-      <img
-        src={headerPath}
-        className="header"
-        loading="lazy"
-        alt="Header banner"
-      />
-
+      <img src={headerPath} loading="lazy" alt="freelunch header"style={{ width: '100%', height: '30vw', WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'}}></img>
     </Container>
     );
   }

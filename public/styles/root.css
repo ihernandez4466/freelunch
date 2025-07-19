@@ -18,3 +18,7 @@
   brown-transparent: rgb(126,64,64) 
   */
 }
+
+.branded-link {
+    color: var(--secondary) !important;
+}
