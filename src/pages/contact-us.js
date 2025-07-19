@@ -68,18 +68,18 @@ export default function ContactUs() {
         }}>
             <Col style={{ paddingTop: '15px', paddingBottom: '15px'}}>
             {/* <div style={{ padding: '30px', display: 'flex', justifyContent: 'center'}}> */}
-                <h1 style={{ color: 'var(--textPrimary)', fontSize: '30px'}}>Join The Movement</h1>
+                <h1 style={{ color: 'var(--textPrimary)'}}>Join The Movement</h1>
             {/* </div> */}
             {/* <div style={{ padding: '20px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px'}}> */}
                 <p style={{ color: 'var(--textPrimary)', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters or posters, 
                     we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation. Purchases online will be coming soon and delivery is available.
                 </p>
             {/* </div> */}
-            <div style={{ display: 'flex', alignItems: 'center'}}><MdEmail /><p style={{ margin: '0px 0px 0px 10px'}}>freelunch707@gmail.com</p></div>
-            <div style={{ display: 'flex', alignItems: 'center'}}><BiSolidPhoneCall /><p style={{ margin: '0px 0px 0px 10px'}}>+1 (707) 931-8265</p></div>
-            <div style={{ display: 'flex', alignItems: 'center'}}><MdLocationPin /><p style={{ margin: '0px 0px 0px 10px'}}><a href={'https://www.google.com/maps/place/Sonoma,+CA+95476/@38.2910861,-122.4902991,13z/data=!3m1!4b1!4m6!3m5!1s0x8085ac43817b9d77:0x380ed210ee6e045!8m2!3d38.291859!4d-122.4580356!16zL20vMHI3OGs?entry=ttu'} target="_blank" rel="noopener noreferrer">
+            <div style={{ display: 'flex', alignItems: 'center'}}><MdEmail /><h3 style={{ margin: '0px 0px 0px 10px'}}>freelunch707@gmail.com</h3></div>
+            <div style={{ display: 'flex', alignItems: 'center'}}><BiSolidPhoneCall /><h3 style={{ margin: '0px 0px 0px 10px'}}>+1 (707) 931-8265</h3></div>
+            <div style={{ display: 'flex', alignItems: 'center'}}><MdLocationPin /><h3 style={{ margin: '0px 0px 0px 10px'}}><a className="branded-link" href={'https://www.google.com/maps/place/Sonoma,+CA+95476/@38.2910861,-122.4902991,13z/data=!3m1!4b1!4m6!3m5!1s0x8085ac43817b9d77:0x380ed210ee6e045!8m2!3d38.291859!4d-122.4580356!16zL20vMHI3OGs?entry=ttu'} target="_blank" rel="noopener noreferrer">
                         Sonoma, California
-                    </a></p></div>
+                    </a></h3></div>
             </Col>
             <Col>
             <Card style={{ height: '100%' }}>

@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../public/styles/styles.css';
+import '../../public/styles/mobile-styles.css';
 import Head from 'next/head';
 
  

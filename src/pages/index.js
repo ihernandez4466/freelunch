@@ -151,7 +151,7 @@ export default function Home(props) {
 }
 
 function Header() {
-  const headerPath = imagePath + '/branding/header_smaller.png';
+  const headerPath = imagePath + '/branding/header_smaller.webp';
   return (
     <Container fluid style={{margin: '0px', padding: '0px'}}>        
        <div style={{
@@ -162,14 +162,13 @@ function Header() {
         backgroundColor: 'var(--secondary)',
         color: 'white',
         padding: '10px 0',
-        fontSize: '24px',
         fontWeight: 'bold',
       }}>
         <FaFire style={{ marginLeft: '2.5px'}}/>
-        <h1 style={{ margin: '0', fontSize: 'inherit' }}>Pre-sales are live! Secure your merch at checkout!</h1>
+        <h2 style={{ margin: '0'}}>Pre-sales are live! Secure your merch at checkout!</h2>
         <FaFire style={{ marginRight: '2.5px'}}/>
       </div>
-      <img src={headerPath} style={{ width: '100%', height: '30vw', WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'}}></img>
+      <img src={headerPath} loading="lazy" alt="freelunch header"style={{ width: '100%', height: '30vw', WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'}}></img>
     </Container>
     );
   }

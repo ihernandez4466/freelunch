@@ -14,7 +14,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [size, setSize] = useState(['S']);
+    const [size, setSize] = useState(productInfo.available_sizes[0]);
     const [quantity, setQuantity] = useState(1);
 
     const handleSize = (val) => {
@@ -75,7 +75,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                 <Modal.Body>
                     <Container>
                         <Row>
-                            <Col md={6}>
+                            <Col md={6} className="d-flex justify-content-center flex-wrap">
                             <Image
                                 onClick={handleShow}
                                 style={props.style ? props.style : {
@@ -88,15 +88,15 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                     maxHeight: '100%',
                                 }}
                                 src={`${productInfo.img_path}`}
-                            />
+                            />                            
                             </Col>
                             <Col md={6}>
-                                <Row inline key={`${productInfo.id}-name`}>
+                               <Row inline key={`${productInfo.id}-name`}>
                                     <input type="hidden" name="product" value={productInfo.id} />
                                     <input type="hidden" name="category" value={productInfo.category} />
-                                    <h2>{`$${productInfo.price} ${productInfo.name}`}</h2>
+                                    <h1>{`$${productInfo.price} ${productInfo.name}`}</h1>
                                     <input type="hidden" name="price" value={productInfo.price} />
-                                </Row>                                
+                                </Row>
                                 <Row>
                                     <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
                                     <ToggleButtonGroup id="sizeInput" name="size" type="radio" value={size}
@@ -113,14 +113,18 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                         <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
                                     </ButtonGroup>
                                 </Col>
-                                <Row style={{ margin: '1rem 0rem 1rem 0rem'}}>
-                                    <Button size="sm" className="btn-neutral" type="submit">Add To Cart</Button>
-                                </Row>
                             </Col>
                     </Row>
                    
                     </Container>
                 </Modal.Body>
+                <Modal.Footer>
+                    <Row className="w-100 d-flex justify-content-center my-3">
+                        <Button size="sm" className="btn-neutral" type="submit">
+                        Add To Cart
+                        </Button>
+                    </Row>
+                </Modal.Footer>
                 </Form>
             </Modal>
             <div style={{ padding: '0px 0px 5px 0px'}}>
@@ -139,10 +143,11 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                     // maxHeight: '100%',
                 }}
                 src={`${productInfo.img_path}`}
+                alt="product"
             />
                 <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', paddingTop: '10px'}}>
-                <p style={{ textAlign: 'center', fontSize: 'large'}}>${productInfo.price}</p>
-                <p style={{ textAlign: 'center', paddingLeft: '5px', fontSize: 'large'}}>{productInfo.name}</p>
+                <h3 style={{ textAlign: 'center'}}>${productInfo.price}</h3>
+                <h3 style={{ textAlign: 'center', paddingLeft: '5px'}}>{productInfo.name}</h3>
                 </div>
             </div>
         </Col>
