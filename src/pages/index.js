@@ -18,45 +18,37 @@ export default function Home(props) {
   const [session, setSession] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  // const [checkoutData, setCheckoutData] = useState(null);
+  const [sessionRetryCount, setSessionRetryCount] = useState(0);
+  const [sessionError, setSessionError] = useState(null);
 
   const handleShowCheckout = (show, data) => {
-    console.log(`inside handleShowCheckout at home: show: ${show} data: ${data}`);
-    console.log(`before changes are made to showCart :${showCart}`);
     setShowCart(!show);
     setShowCheckout(show);
-    // setCheckoutData(data);
-    // console.log(`after changes are made to showCart :${showCart} showCheckout: ${showCheckout}`);
   }
 
   /* insert into session + user tables */
   const persistSession = async (sessionToken, expirationDate) => {
-    try {
-      const userData = {id: `'${sessionToken}'`}
-      let userResponse = await fetch('/api/user', {
-          method: 'POST',
-          body: JSON.stringify(userData),
-      });
-      let userAdded = await userResponse.json()
-      const sessionData = {userId: `'${sessionToken}'`, sessionToken: `'${sessionToken}'`, sessionExpiration: `'${expirationDate}'`}
-      let sessionResponse = await fetch('/api/session', {
-          method: 'POST',
-          body: JSON.stringify(sessionData),
-      });
-      let sessionAdded = await sessionResponse.json()
-      if(!sessionResponse.ok || !sessionAdded){
-        throw new Error('session could not be added')
-      } 
-      if(!userResponse.ok || !userAdded){
-        throw new Error('user could not be added')
-      } 
-      setUserId(sessionToken)
-      console.log(`Session ${sessionToken} persisted successfully`);
-    } catch (error){
-      console.log(`Session ${sessionToken} unable to persist: ${error.message}`);
-      deleteCookie('userId') // retry on errors
-      setSession(null)
-    }
+    const userData = {id: `'${sessionToken}'`}
+    let userResponse = await fetch('/api/user', {
+        method: 'POST',
+        body: JSON.stringify(userData),
+    });
+    let userAdded = await userResponse.json()
+    if(!userResponse.ok || !userAdded){
+      throw new Error('user could not be added')
+    } 
+    // do not try to persist session if user could not be added
+    const sessionData = {userId: `'${sessionToken}'`, sessionToken: `'${sessionToken}'`, sessionExpiration: `'${expirationDate}'`}
+    let sessionResponse = await fetch('/api/session', {
+        method: 'POST',
+        body: JSON.stringify(sessionData),
+    });
+    let sessionAdded = await sessionResponse.json()
+    if(!sessionResponse.ok || !sessionAdded){
+      throw new Error('session could not be added')
+    } 
+    setUserId(sessionToken)
+    console.log(`Session ${sessionToken} persisted successfully`);
   }
 
   /* set cookie only in browser */
@@ -98,25 +90,59 @@ export default function Home(props) {
   }
 
   useEffect(() => {
+    const MAX_RETRY_ATTEMPTS = 10;
+    
     const initializeSession = async () => {
+      // If we've exceeded max retries or there's a permanent error, don't retry
+      if (sessionRetryCount >= MAX_RETRY_ATTEMPTS) {
+        if (!sessionError) {
+          setSessionError('Maximum session initialization attempts exceeded. Please refresh the page to try again.');
+          console.error('Session initialization failed after maximum attempts');
+        }
+        return;
+      }
+
       const curCookie = getCookie('userId')
       if(!curCookie){
-        const newSession = setNewSession();
-        const values = splitCookieValues(newSession);
-        const user = values[0];
-        const expiration = values[1];
-        await persistSession(user, expiration);
-        setSession(newSession)
+        try {
+          const newSession = setNewSession();
+          const values = splitCookieValues(newSession);
+          const user = values[0];
+          const expiration = values[1];
+          await persistSession(user, expiration);
+          setSession(newSession);
+          // Reset retry count on success
+          setSessionRetryCount(0);
+          setSessionError(null);
+        } catch (error) {
+          console.error(`Session initialization attempt ${sessionRetryCount + 1} failed:`, error.message);
+          
+          // Clean up on error
+          deleteCookie('userId');
+          setSession(null);
+          
+          // Increment retry count
+          setSessionRetryCount(prev => prev + 1);
+          
+          // Add exponential backoff delay before next retry
+          const delay = Math.min(1000 * Math.pow(2, sessionRetryCount), 10000); // Max 10 seconds
+          setTimeout(() => {
+            // This will trigger the useEffect again due to sessionRetryCount change
+          }, delay);
+        }
       } else {
         console.log(`Session already set: ${curCookie}`);
         if(!userId){
           setSession(curCookie)
         }
+        // Reset retry count when session exists
+        setSessionRetryCount(0);
+        setSessionError(null);
       }
     };
 
     initializeSession()
-  }, [session])
+  }, [session, sessionRetryCount, sessionError, userId])
 
   useEffect(() => {
     if (session) {
