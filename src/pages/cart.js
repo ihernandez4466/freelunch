@@ -5,17 +5,6 @@ import useDataFetcher from '../components/fetch';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrSubtractCircle } from "react-icons/gr";
 import MyAlert from "../components/alert";
-// home is the parent of navbar and checkout
-// navbar is the parent of cart
-// cart wants to trigger navbar function
-// cart wants to trigger home function
-
-// checkout has a prop function called handleCheckout
-// cart defines the prop function handleCheckout so checkout can trigger this function
-// cart has a prop function called handleCanvas
-// navbar defined the prop function handleCanvas so cart can trigger this function
-
-// parent defines function that is triggered by child 
 
 
 export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
