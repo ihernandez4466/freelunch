@@ -1,5 +1,4 @@
-import { Row, Button } from "react-bootstrap";
-import { useRouter } from 'next/router';
+import { Row } from "react-bootstrap";
 
 export default function CheckoutComplete(){
     return (
