@@ -83,7 +83,7 @@ const activeLinkStyle = {
 const linkStyle = {
   fontSize: '2.5vmin',
   fontWeight: '600',
-  color: 'var(--textPrimary)',
+  color: 'var(--textSecondary)',
   padding: '2.5px',
   textAlign: 'center',
   display: 'flex',

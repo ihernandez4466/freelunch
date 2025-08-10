@@ -1,5 +1,4 @@
 'use client'
-import { Container } from 'react-bootstrap';
 import Sweaters from './sweaters';
 import Posters from './posters';
 import CheckoutProcess from "./checkout/process";
@@ -8,7 +7,7 @@ import CustomNavBar from '../components/navbar';
 import { useEffect, useState } from 'react';
 import { setCookieInBrowser, getCookie, deleteCookie, splitCookieValues} from '../components/useCookie';
 import { v4 as uuidv4 } from 'uuid';
-import { FaFire } from "react-icons/fa";
+import Header from '../components/header';
 
 const imagePath = '/images';
 
@@ -162,7 +161,7 @@ export default function Home(props) {
           : 
           (<>
             <CustomNavBar {...enhancedProps}/>
-            <Header />
+            <Header imagePath={imagePath}/>
             <div style={{ padding: '50px 50px 50px 50px' }}>
               <Sweaters {...enhancedProps} />
               <hr style={{ margin: '4rem 0' }}></hr>
@@ -175,26 +174,3 @@ export default function Home(props) {
       </div>
   );
 }
-
-function Header() {
-  const headerPath = imagePath + '/branding/header_smaller.webp';
-  return (
-    <Container fluid style={{margin: '0px', padding: '0px'}}>        
-       <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '10px', // Space between icons and text
-        backgroundColor: 'var(--secondary)',
-        color: 'white',
-        padding: '10px 0',
-        fontWeight: 'bold',
-      }}>
-        <FaFire style={{ marginLeft: '2.5px'}}/>
-        <h2 style={{ margin: '0'}}>Pre-sales are live! Secure your merch at checkout!</h2>
-        <FaFire style={{ marginRight: '2.5px'}}/>
-      </div>
-      <img src={headerPath} loading="lazy" alt="freelunch header"style={{ width: '100%', height: '30vw', WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'}}></img>
-    </Container>
-    );
-  }
