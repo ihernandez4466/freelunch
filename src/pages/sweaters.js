@@ -47,8 +47,11 @@ export default function Sweaters(props) {
     
     return (
         <div id="sweaters" style={{
+            padding: '30px',
             alignContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            backgroundColor: 'var(--background)',
+            borderRadius: '20px 20px 20px 20px', 
         }}>
             <Row>
                     <h1>
@@ -56,7 +59,7 @@ export default function Sweaters(props) {
                     </h1>
                     <h3>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters are completely customizable upon request</h3>
             </Row>
-        { error ? (<Row><div><h2 style={{ padding: '30px', backgroundColor: 'var(--primary-transparent)', borderRadius: '20px 20px 20px 20px', display: 'flex', justifyContent: 'center'}}>Products Coming Soon</h2></div></Row>) : (isLoading ? <Loading /> : 
+        { error ? (<Row><div><h2 style={{ padding: '30px', display: 'flex', justifyContent: 'center', backgroundColor: 'var(--background)', borderRadius: '20px 20px 20px 20px'}}>Products Coming Soon</h2></div></Row>) : (isLoading ? <Loading /> : 
             ( data && renderProductWithRows(data.rows)))}
         { showAlert && 
             <MyAlert 

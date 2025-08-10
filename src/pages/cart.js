@@ -138,15 +138,15 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                 ></Image>
             </Col>
             <Col style={{ margin: '10px 0px 10px 0px'}}>
-                <p>{product.name}</p>
-                <p>{`price: $${product.price}`}</p>
-                <p>{`size: ${product.size}`}</p>
+                <p style={{ color: 'var(--textSecondary)'}}>{product.name}</p>
+                <p style={{ color: 'var(--textSecondary)'}}>{`price: $${product.price}`}</p>
+                <p style={{ color: 'var(--textSecondary)'}}>{`size: ${product.size}`}</p>
                 <ButtonGroup style={{ padding: '0px 1rem 1rem 0px'}}>
                     <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={product.quantity <= 1} onClick={() => handleQuantity(product, "subtract")}><GrSubtractCircle /></Button>
                     <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled >{`QTY: ${product.quantity}`}</Button>
                     <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={product.quantity >= 100} onClick={() => handleQuantity(product, "add")}><IoIosAddCircleOutline /></Button>
                 </ButtonGroup>
-                <Button size="sm" style={{ margin: '0px 1rem 1rem 0px'}} onClick={() => handleRemove(product.cart_id)}>Remove</Button>
+                <Button size="sm" style={{ margin: '0px 1rem 1rem 0px', backgroundColor: 'var(--secondary)'}} onClick={() => handleRemove(product.cart_id)}>Remove</Button>
             </Col>
             </Row>))
     }
@@ -154,15 +154,15 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
     return (
         <>
         <Container>
-            { error ? (<h2>Something went wrong</h2>) : (isLoading ? (<Loading />) : 
+            { error ? (<h2 style={{ color: 'var(--textSecondary)'}}>Something went wrong</h2>) : (isLoading ? (<Loading />) : 
                 (data && (data.rows.length > 0 ? 
                     (
                     <>
                     {!showCheckout &&
                         <>
                             {renderItems()}
-                            <h2>{`Total: $${total}`}</h2>
-                            <Button onClick={() => {
+                            <h2 style={{ color: 'var(--textSecondary)'}}>{`Total: $${total}`}</h2>
+                            <Button style={{ backgroundColor: 'var(--secondary)'}} onClick={() => {
                                 handleShowCart(false);
                                 handleCheckout(true);
                             }}>Checkout</Button>
@@ -170,7 +170,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                     }
                     </>
                     ) 
-                    : (<h2>No items in cart yet</h2> ) )
+                    : (<h2 style={{ color: 'var(--textSecondary)'}}>No items in cart yet</h2> ) )
                 ))
             }
             {showAlert && <MyAlert message={alertMessage} success={alertSuccess} duration={1500}/>}

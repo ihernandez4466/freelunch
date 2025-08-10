@@ -11,6 +11,7 @@ export default function Posters() {
             padding: '30px', 
             border: '2px solid var(--primary-transparent)', 
             borderRadius: '20px 20px 20px 20px', 
+            backgroundColor: 'var(--background)',
             display: 'flex', 
             justifyContent: 'center',
             alignItems: 'center'

@@ -57,7 +57,7 @@ export default function CustomNavBar(props) {
             </Button> 
             <Offcanvas show={showCart} onHide={handleClose} placement="end">
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title><h1>Cart</h1></Offcanvas.Title>
+                <Offcanvas.Title><h1 style={{color: 'var(--textSecondary)'}}>Cart</h1></Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
               <Cart userId={userId} handleShowCheckout={handleShowCheckout} handleShowCart={handleShowCart}/>
@@ -83,7 +83,7 @@ const activeLinkStyle = {
 const linkStyle = {
   fontSize: '2.5vmin',
   fontWeight: '600',
-  color: 'var(--textPrimary)',
+  color: 'var(--textSecondary)',
   padding: '2.5px',
   textAlign: 'center',
   display: 'flex',
