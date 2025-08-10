@@ -23,3 +23,9 @@
 .branded-link {
     color: var(--secondary) !important;
 }
+
+.modal-white,
+.modal-white :not(button),
+.modal-white .btn-neutral {
+  color: var(--textSecondary);
+}

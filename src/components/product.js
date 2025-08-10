@@ -68,7 +68,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
             borderRadius: '4px',
             //backgroundColor: 'var(--background)',
         }}>
-            <Modal centered show={show} onHide={handleClose}>
+            <Modal centered show={show} onHide={handleClose} className='modal-white'>
             <Form id={`${productInfo.id}-form`} onSubmit={handleSubmit}>
                 <Modal.Header style={{ borderBottom: 'none'}} closeButton>
                 </Modal.Header>
@@ -81,8 +81,8 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                 style={props.style ? props.style : {
                                     height: 'auto',
                                     padding: '10px',
-                                    boxShadow: '5px 5px 5px 5px rgb(190, 187, 187, 0.5)',
-                                    backgroundColor: 'white',
+                                    // boxShadow: '5px 5px 5px 5px rgb(190, 187, 187, 0.5)',
+                                    backgroundColor: 'var(--background)',
                                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
                                     maxWidth: '100%',
                                     maxHeight: '100%',
@@ -108,9 +108,9 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                 <Col>
                                     <ButtonGroup className="d-inline-flex">
                                         <input type="hidden" name="quantity" value={quantity} />
-                                        <Button size="sm" style={{backgroundColor: 'var(--primary', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle /></Button>
-                                        <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled>{`QTY: ${quantity}`}</Button>
-                                        <Button size="sm" style={{backgroundColor: 'var(--primary'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle color='var(--textPrimary) !important'/></Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)'}} disabled>{`QTY: ${quantity}`}</Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline color='var(--textPrimary) !important'/></Button>
                                     </ButtonGroup>
                                 </Col>
                             </Col>
@@ -135,7 +135,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                     // width: '50%',
                     height: 'auto',
                     objectFit: 'cover',
-                    boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
+                    // boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
                     // backgroundColor: 'var(--primary-transparent)',
                     backgroundColor: 'white',
                     transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
