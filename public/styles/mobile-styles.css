@@ -4,15 +4,15 @@
         font-size: 4.5vmax;
     }
     h2 {
-        font-size: 3vmax;
+        font-size: 3vmin;
     }
     h3 {
-        font-size: 3vmin; 
+        font-size: 2.5vmin; 
     }
-    .header {
+    .page-header {
         width: 100%;
         /* width: 100% !important; */
-        height: 50vw;
+        height: 80vw;
         /* height: 50vw !important; */
     }
     p {

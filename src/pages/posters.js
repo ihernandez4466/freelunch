@@ -21,8 +21,8 @@ export default function Posters() {
                         Posters
                     </h1>
             </Row> */}
-            <Col sm={6} md={4}><div><h1>Posters Coming Soon</h1></div></Col>
-            <Col sm={6} md={8}>
+            <Col sm={4} md={4}><div><h1>Posters Coming Soon</h1></div></Col>
+            {/* <Col sm={8} md={8}>
             <Image                 
                 style={{
                     height: 'auto',
@@ -33,7 +33,7 @@ export default function Posters() {
                 src="/images/branding/poster_tease.png"
                 alt="poster tease"
             />
-            </Col>
+            </Col> */}
         </div>
     );
 }

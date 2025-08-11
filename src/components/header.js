@@ -21,8 +21,10 @@ export default function Header({ imagePath }) {
           <h2 style={{ margin: '0'}}>Pre-sales are live! Secure your merch at checkout!</h2>
           <FaFire style={{ marginRight: '2.5px'}}/>
         </div>
-        <img src={headerPath} loading="lazy" alt="freelunch header" style={{ width: '100%', height: '50vw', backgroundColor: 'white'}}></img>
-        <img src={headerPath2} loading="lazy" alt="freelunch collage"style={{ width: '100%', height: '50vw', backgroundColor: 'white'}}></img>
+        <div> 
+          <img src={headerPath} className="page-header" loading="lazy" alt="freelunch header" style={{ backgroundColor: 'white'}}></img>
+          <img src={headerPath2} className="page-header" loading="lazy" alt="freelunch collage"style={{ backgroundColor: 'white'}}></img>
+        </div>
       </Container>
       );
     }
