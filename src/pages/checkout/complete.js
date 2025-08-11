@@ -9,7 +9,7 @@ export default function CheckoutComplete(){
             <div className="w-100 d-flex justify-content-center">
                 <Row className="w-75" style={{
                 padding: '30px',
-                backgroundColor: 'var(--primary-transparent)',
+                backgroundColor: 'var(--background)',
                 borderRadius: '20px',
                 }}>
                 <p>

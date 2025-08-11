@@ -121,8 +121,8 @@ export default function CheckoutSummary({ user, setRecipientCallback, setOrderCo
         <>
         {error ? <></> :
             (
-            <Container style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-            <h1 className="mb-4">Order Summary</h1>
+            <Container className="modal-white" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+            <h1 className="mb-4" style={{color: 'var(--textPrimary)'}}>Order Summary</h1>
             {(taxIsLoading || checkoutSubmitLoading) ? <Loading /> : (
                 <>
                 <Row className="justify-content-center w-100">
