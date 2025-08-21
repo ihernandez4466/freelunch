@@ -20,15 +20,15 @@ export default function Home(props) {
   const [showCart, setShowCart] = useState(false);
   const [sessionRetryCount, setSessionRetryCount] = useState(0);
   const [sessionError, setSessionError] = useState(null);
+  const [items, setItems] = useState(null);
+
+  // const [checkoutData, setCheckoutData] = useState(null);
 
   const handleShowCheckout = (show, data) => {
     setShowCart(!show);
     setShowCheckout(show);
+    setItems(data)
   }
-  const options = {
-    // passing the client secret obtained from the server
-    clientSecret: 'process.env.STRIPE_CLIENT_SECRET',
-  };
 
   /* insert into session + user tables */
   const persistSession = async (sessionToken, expirationDate) => {
@@ -154,7 +154,7 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, options};  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart};  
   
   return (
       <div>
@@ -162,7 +162,7 @@ export default function Home(props) {
          (<>
             <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
             {/* <CheckoutProcess userId={userId} />  */}
-            <CheckoutPage />
+            <CheckoutPage items={items}/>
           </>)
           : 
           (<>

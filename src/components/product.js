@@ -39,7 +39,8 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
             size: e.target.size.value,
             price: e.target.price.value,
             quantity: e.target.quantity.value,
-            category: e.target.category.value
+            category: e.target.category.value,
+            stripe_price_id: e.target.stripe_price_id.value
         }
         try {
             console.log(data);

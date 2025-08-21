@@ -8,7 +8,7 @@ const handler = {
         if (userId == undefined || userId == null) {
             return res.status(400).json("Missing userid")
         }
-        let query = `SELECT session_id, cart_items.id as cart_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path
+        let query = `SELECT session_id, cart_items.id as cart_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path, stripe_price_id
             FROM cart_items
             JOIN shopping_session
             ON shopping_session.id = cart_items.session_id
@@ -30,16 +30,15 @@ const handler = {
         finally {
             client.release()
         }
-
     },
     post: async (req, res) => {
         const body = JSON.parse(req.body);
         if (!body) {
             return res.status(400).json({ error: "Invalid request body" });
         }
-        const { userId, productId, category, price, size, quantity } = body
+        const { userId, productId, category, price, size, quantity, stripe_price_id } = body
 
-        if (!userId || !productId || !price || !size || !quantity) {
+        if (!userId || !productId || !price || !size || !quantity || !stripe_price_id) {
             return res.status(400).json({ error: "Missing required fields" });
         }
 
@@ -89,7 +88,10 @@ const handler = {
                 finally {
                     client.release()
                 }
-            }
+            
+            default:
+                return res.status(400).json({ error: `Unsupported category: ${category}` });
+        }
     },
     put: async (req, res) => {
         const body = JSON.parse(req.body);
