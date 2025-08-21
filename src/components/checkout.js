@@ -7,6 +7,7 @@ import {
 import { loadStripe } from '@stripe/stripe-js'
 
 import { fetchClientSecret } from '../pages/api/stripe/actions/stripe'
+require('dotenv').config();
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 

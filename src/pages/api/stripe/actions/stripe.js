@@ -14,7 +14,7 @@ export async function fetchClientSecret() {
       {
         // TODO: Provide the exact Price ID (for example, price_1234) of
         // the product you want to sell
-        price: '{{PRICE_ID}}',
+        price: 'price_1Rxgkl4OXI1oDmGWEcNDtPqa', // this is an example of the black sweater
         quantity: 1
       }
     ],
