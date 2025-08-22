@@ -10,13 +10,13 @@ require('dotenv').config();
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-const fetchClientSecret = async (items) => {
+const fetchClientSecret = async ({ items }) => {
   const response = await fetch('/api/stripe/actions/stripe', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(items)
+    body: JSON.stringify({ items })
   })
   
   if (!response.ok) {
@@ -28,11 +28,12 @@ const fetchClientSecret = async (items) => {
 }
 
 export default function Checkout({ items }) {
+  debugger;
   return (
     <div id="checkout">
       <EmbeddedCheckoutProvider
         stripe={stripePromise}
-        options={{ fetchClientSecret: () => fetchClientSecret(items) }}
+        options={{ fetchClientSecret: () => fetchClientSecret({ items }) }}
       >
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

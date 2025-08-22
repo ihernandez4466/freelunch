@@ -1,7 +1,35 @@
 import { Row } from "react-bootstrap";
+import { getCookie, splitCookieValues } from "../components/useCookie";
+import { useEffect } from "react";
 
 export default function CheckoutComplete({ customerEmail }){
-    // call API to clear cart -> need the cart id -> can get this from session_id
+    // can get the session id from the user id
+    const clearCart = async () => {
+        const session = getCookie('userId');
+        const values = splitCookieValues(session);
+        const sessionId = values[0];
+        console.log(sessionId);
+        debugger;
+        const response = await fetch(`/api/cart?sessionId=${sessionId}`, {
+            method: 'GET',
+        });
+        if (!response.ok) {
+            throw new Error('Failed to clear cart');
+        }
+        const data = await response.json();
+        debugger;
+        data.forEach(async (item) => {
+            const deleteResponse = await fetch(`/api/cart?id=${item.id}`, {
+                method: 'DELETE',
+            });
+            if (!deleteResponse.ok) {
+                throw new Error('Failed to delete cart item');
+            }
+        })
+    }
+    useEffect(() => {
+        clearCart();
+    }, []);
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h1 className="mb-4 mt-4 text-center">We appreciate your business! A confirmation email will be sent to{' '}

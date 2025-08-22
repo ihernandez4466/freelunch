@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
 
   const { items } = req.body
-
+  
   try {
     const origin = req.headers.origin || `https://${req.headers.host}`
 
