@@ -10,21 +10,13 @@ require('dotenv').config();
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-const fetchClientSecret = async ({ items }) => {
-  // Example items - you'll want to pass these dynamically based on your cart/product selection
-  // const items = [
-  //   {
-  //     price: 'price_1Rxgkl4OXI1oDmGWEcNDtPqa', // Replace with actual Stripe price ID
-  //     quantity: 1
-  //   }
-    // Add more items as needed
-
+const fetchClientSecret = async (items) => {
   const response = await fetch('/api/stripe/actions/stripe', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ items })
+    body: JSON.stringify(items)
   })
   
   if (!response.ok) {
@@ -40,7 +32,7 @@ export default function Checkout({ items }) {
     <div id="checkout">
       <EmbeddedCheckoutProvider
         stripe={stripePromise}
-        options={{ fetchClientSecret: fetchClientSecret(items) }}
+        options={{ fetchClientSecret: () => fetchClientSecret(items) }}
       >
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

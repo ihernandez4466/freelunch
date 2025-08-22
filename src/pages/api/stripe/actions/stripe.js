@@ -1,4 +1,4 @@
-import { stripe } from '../lib/stripe.js'
+import { stripe } from '../lib/stripe'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -6,10 +6,6 @@ export default async function handler(req, res) {
   }
 
   const { items } = req.body
-
-  if (!Array.isArray(items) || !items.every(item => typeof item.price_id === 'string' && typeof item.quantity === 'number')) {
-    return res.status(400).json({ message: 'Invalid request payload' })
-  }
 
   try {
     const origin = req.headers.origin || `https://${req.headers.host}`
