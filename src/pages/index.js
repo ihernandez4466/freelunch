@@ -1,7 +1,8 @@
 'use client'
 import Sweaters from './sweaters';
 import Posters from './posters';
-import CheckoutProcess from "./checkout/process";
+// import CheckoutProcess from "./checkout/process";
+import CheckoutPage from './checkout';
 import ContactUs from './contact-us';
 import CustomNavBar from '../components/navbar';
 import { useEffect, useState } from 'react';
@@ -19,10 +20,14 @@ export default function Home(props) {
   const [showCart, setShowCart] = useState(false);
   const [sessionRetryCount, setSessionRetryCount] = useState(0);
   const [sessionError, setSessionError] = useState(null);
+  const [items, setItems] = useState(null);
+
+  // const [checkoutData, setCheckoutData] = useState(null);
 
   const handleShowCheckout = (show, data) => {
     setShowCart(!show);
     setShowCheckout(show);
+    setItems(data)
   }
 
   /* insert into session + user tables */
@@ -156,7 +161,8 @@ export default function Home(props) {
         {showCheckout ? 
          (<>
             <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
-            <CheckoutProcess userId={userId} /> 
+            {/* <CheckoutProcess userId={userId} />  */}
+            <CheckoutPage items={items}/>
           </>)
           : 
           (<>

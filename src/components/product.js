@@ -39,8 +39,10 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
             size: e.target.size.value,
             price: e.target.price.value,
             quantity: e.target.quantity.value,
-            category: e.target.category.value
+            category: e.target.category.value,
+            stripe_price_id: e.target.stripe_price_id.value
         }
+        debugger;
         try {
             console.log(data);
             const response = await fetch('/api/cart', {
@@ -94,6 +96,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                <Row inline key={`${productInfo.id}-name`}>
                                     <input type="hidden" name="product" value={productInfo.id} />
                                     <input type="hidden" name="category" value={productInfo.category} />
+                                    <input type="hidden" name="stripe_price_id" value={productInfo.stripe_price_id} />
                                     <h1>{`$${productInfo.price} ${productInfo.name}`}</h1>
                                     <input type="hidden" name="price" value={productInfo.price} />
                                 </Row>
