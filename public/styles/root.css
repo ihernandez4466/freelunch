@@ -7,8 +7,8 @@
   --background-grey: #333333;
   --background: rgb(239,209,209,0.1);
   --background-nontransparent: rgb(216, 200, 187);
-  --textPrimary: white;
-  --textSecondary: #383030;
+  --textPrimary: #383030;
+  --textSecondary: white;
 
   /*logo: #bc0404 rgb(188,4,4);
   light-logo: #cc3232 rgb(204,50,50);
