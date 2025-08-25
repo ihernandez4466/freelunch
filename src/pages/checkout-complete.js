@@ -1,6 +1,7 @@
 import { Row } from "react-bootstrap";
 import { getCookie, splitCookieValues } from "../components/useCookie";
 import { useEffect } from "react";
+import CustomNavBar from "../components/navbar";
 
 export default function CheckoutComplete({ customerEmail }){
     // can get the session id from the user id
@@ -8,29 +9,34 @@ export default function CheckoutComplete({ customerEmail }){
         const session = getCookie('userId');
         const values = splitCookieValues(session);
         const sessionId = values[0];
-        console.log(sessionId);
-        debugger;
-        const response = await fetch(`/api/cart?sessionId=${sessionId}`, {
+        
+        const response = await fetch(`/api/cart?userId=${sessionId}`, {
             method: 'GET',
         });
+        
         if (!response.ok) {
-            throw new Error('Failed to clear cart');
+            const errorText = await response.text();
+            throw new Error(`Failed to clear cart: ${response.status} - ${errorText}`);
         }
+        
         const data = await response.json();
-        debugger;
-        data.forEach(async (item) => {
-            const deleteResponse = await fetch(`/api/cart?id=${item.id}`, {
-                method: 'DELETE',
-            });
-            if (!deleteResponse.ok) {
-                throw new Error('Failed to delete cart item');
-            }
-        })
+        if(data && data.rows && data.rows.length > 0) {
+            data.rows.forEach(async (item) => {
+                const deleteResponse = await fetch(`/api/cart?id=${item.cart_id}`, {
+                    method: 'DELETE',
+                });
+                if (!deleteResponse.ok) {
+                    throw new Error('Failed to delete cart item');
+                }
+            })
+        }
     }
     useEffect(() => {
         clearCart();
     }, []);
     return (
+        <>
+        <CustomNavBar showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h1 className="mb-4 mt-4 text-center">We appreciate your business! A confirmation email will be sent to{' '}
           {customerEmail}.</h1>
@@ -51,5 +57,6 @@ export default function CheckoutComplete({ customerEmail }){
                 </Row>
             </div>
         </div>
+        </>
     )
 }

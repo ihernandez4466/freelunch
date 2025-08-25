@@ -10,7 +10,7 @@ import Cart from '../pages/cart';
 
 export default function CustomNavBar(props) {
     const userId = props.userId;
-    const handleShowCheckout = props.handleShowCheckout
+    const handleShowCheckout = props.handleShowCheckout ? props.handleShowCheckout : null
     const showHomeLink = props.showHomeLink
     const showSweatersLink = props.showSweatersLink == false ? props.showSweatersLink : true
     const showPostersLink = props.showPostersLink == false ? props.showPostersLink : true
