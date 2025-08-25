@@ -6,6 +6,8 @@ export default function useDataFetcher ({ endpoint }) {
     const [error, setError] = useState(null);
   
     useEffect(() => {
+      if (!endpoint) return;
+      
       const fetchData = async () => {
         setIsLoading(true);
         try {
