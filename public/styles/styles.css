@@ -74,6 +74,7 @@ p {
   font-size: 2vmin; /* Desktop: default text */
   color: var(--textPrimary);
 }
+<<<<<<< HEAD
 .product-image {
     padding: 10px;
     margin-top: 10px;
@@ -124,6 +125,9 @@ p {
   pointer-events: none;
   z-index: 1;
 }
+=======
+
+>>>>>>> 2a60954 (mobile response)
 /* ======================
    TABLET STYLES
    ====================== */
