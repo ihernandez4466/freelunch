@@ -7,7 +7,7 @@ export default function Header({ imagePath }) {
     const headerPath2 = imagePath + '/branding/photo-collage-color.png';
     
     return (
-      <Container fluid style={{margin: '0px', padding: '0px'}}>        
+      <Container fluid>        
          <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -19,16 +19,16 @@ export default function Header({ imagePath }) {
           fontWeight: 'bold',
         }}>
           <FaFire style={{ marginLeft: '2.5px'}}/>
-          <h2 style={{ margin: '0'}}>Pre-sales are live! Secure your merch at checkout!</h2>
+          <h2 className="banner-text" style={{ margin: '0', color: 'var(--textSecondary)'}}>Pre-sales are live! Secure your merch at checkout!</h2>
           <FaFire style={{ marginRight: '2.5px'}}/>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}> 
           <div style={{ width: '100%' }}>
             <img src={headerPath} className="page-header" loading="lazy" alt="freelunch header" style={{ objectFit: 'cover', width: '100%', display: 'block' }}></img>
           </div>
-          <div style={{ 
+          <div id="brand" className="brand-section" style={{ 
             width: '100%', 
-            backgroundColor: 'var(--background)',
+            backgroundColor: 'var(--background-grey)',
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center',

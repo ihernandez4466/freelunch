@@ -37,7 +37,7 @@ export default function ContactForm({handleSubmit, submitString}) {
                     style={{ height: '100px' }}
                     />
                 </FloatingLabel>
-                <div style={{ padding: '20px', display: 'flex', justifyContent: 'center'}}>
+                <div style={{ display: 'flex', justifyContent: 'center'}}>
                     <Button type="submit">
                         {submitString ? submitString : "Contact Us"}
                     </Button>

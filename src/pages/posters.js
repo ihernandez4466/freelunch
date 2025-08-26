@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Col, Image } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 /**
  * Functional component that renders page for posters (currently only a single image but should be broken up into widgets).
@@ -7,33 +6,10 @@ import { Col, Image } from 'react-bootstrap';
 
 export default function Posters() {
     return(
-        <div id="posters" style={{
-            padding: '30px', 
-            border: '2px solid var(--primary-transparent)', 
-            borderRadius: '20px 20px 20px 20px', 
-            backgroundColor: 'var(--background)',
-            display: 'flex', 
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-            {/* <Row>
-                    <h1>
-                        Posters
-                    </h1>
-            </Row> */}
-            <Col sm={4} md={4}><div><h1>Posters Coming Soon</h1></div></Col>
-            {/* <Col sm={8} md={8}>
-            <Image                 
-                style={{
-                    height: 'auto',
-                    padding: '10px',
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                }}
-                src="/images/branding/poster_tease.png"
-                alt="poster tease"
-            />
-            </Col> */}
-        </div>
+            <Row id="posters">
+                <div>
+                    <h2 className="posters-header" style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'var(--background)', borderRadius: '20px 20px 20px 20px'}}>Posters Coming Soon</h2>
+                </div>
+            </Row>
     );
 }

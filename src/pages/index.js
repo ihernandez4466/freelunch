@@ -154,21 +154,20 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId, handleShowCheckout, showCart};  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showBrand: true};  
   
   return (
       <div>
         {showCheckout ? 
          (<>
             <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
-            {/* <CheckoutProcess userId={userId} />  */}
             <CheckoutPage items={items}/>
           </>)
           : 
           (<>
             <CustomNavBar {...enhancedProps}/>
             <Header imagePath={imagePath}/>
-            <div style={{ padding: '50px 50px 50px 50px' }}>
+            <div className="content">
               <Sweaters {...enhancedProps} />
               <hr style={{ margin: '4rem 0' }}></hr>
               <Posters {...enhancedProps} />
