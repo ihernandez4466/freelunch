@@ -28,7 +28,7 @@ export default function Header({ imagePath }) {
           </div>
           <div id="brand" className="brand-section" style={{ 
             width: '100%', 
-            backgroundColor: 'var(--background)',
+            backgroundColor: 'var(--background-grey)',
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center',
