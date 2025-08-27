@@ -212,6 +212,17 @@ p {
     }
   }
 
+  .total-btn {
+    font-size: 1.5rem;
+  }
+
+  .appreciation-header {
+    font-size: 1.5rem;
+  }
+
+  .no-items {
+    font-size: 1.5rem;
+  }
   /* .product-info {
     display: flex;
     flex-direction: row;

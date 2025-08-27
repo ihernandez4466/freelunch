@@ -16,6 +16,10 @@ export default async function handler(req, res) {
       line_items: items,
       mode: 'payment', // one time payment -> can change to subscription or future payment
       return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,
+      shipping_address_collection: {
+        allowed_countries: ['US', 'CA'], // Add countries you ship to
+      },
+      billing_address_collection: 'required', // Optional: also collect billing address
     })
 
     res.status(200).json({ client_secret: session.client_secret })
