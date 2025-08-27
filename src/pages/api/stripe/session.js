@@ -18,7 +18,10 @@ export default async function handler(req, res) {
 
     res.status(200).json({
       status: session.status,
-      customer_email: session.customer_details?.email || ''
+      customer_email: session.customer_details?.email || '',
+      shipping_address: session.shipping_details?.address || null,
+      customer_name: session.shipping_details?.name || session.customer_details?.name || '',
+      billing_address: session.customer_details?.address || null
     })
   } catch (error) {
     console.error('Error retrieving session:', error)

@@ -12,10 +12,11 @@ export default function CustomNavBar(props) {
     const userId = props.userId;
     const handleShowCheckout = props.handleShowCheckout ? props.handleShowCheckout : null
     const showHomeLink = props.showHomeLink
-    const showSweatersLink = props.showSweatersLink == false ? props.showSweatersLink : true
-    const showPostersLink = props.showPostersLink == false ? props.showPostersLink : true
-    const showContactLink = props.showContactLink == false ? props.showContactLink : true
-    const showCartLink = props.showCartLink == false ? props.showCartLink : true
+    const showBrand = props.showBrand 
+    const showSweatersLink = props.showSweatersLink === false ? props.showSweatersLink : true
+    const showPostersLink = props.showPostersLink === false ? props.showPostersLink : true
+    const showContactLink = props.showContactLink === false ? props.showContactLink : true
+    const showCartLink = props.showCartLink === false ? props.showCartLink : true
     const [showCart, setShowCart] = useState(false);
     const handleClose = () => setShowCart(false);
     const handleShow = () => setShowCart(true);
@@ -37,6 +38,10 @@ export default function CustomNavBar(props) {
         </Navbar.Brand>
         <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
           { showHomeLink && <Link href='/' onClick={handleHomeClick}><IoMdArrowBack className='btn-primary' style={{ color: 'white', fontSize: '20px'}}/></Link>}
+          { showBrand && 
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="brand" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+            Home
+          </ScrollLink>}
           { showSweatersLink && 
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Sweaters
@@ -57,7 +62,7 @@ export default function CustomNavBar(props) {
             </Button> 
             <Offcanvas show={showCart} onHide={handleClose} placement="end">
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title><h1 style={{color: 'var(--textSecondary)'}}>Cart</h1></Offcanvas.Title>
+                <Offcanvas.Title><h1>Cart</h1></Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
               <Cart userId={userId} handleShowCheckout={handleShowCheckout} handleShowCart={handleShowCart}/>
@@ -83,7 +88,7 @@ const activeLinkStyle = {
 const linkStyle = {
   fontSize: '2.5vmin',
   fontWeight: '600',
-  color: 'var(--textSecondary)',
+  color: 'var(--textPrimary)',
   padding: '2.5px',
   textAlign: 'center',
   display: 'flex',

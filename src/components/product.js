@@ -42,7 +42,6 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
             category: e.target.category.value,
             stripe_price_id: e.target.stripe_price_id.value
         }
-        debugger;
         try {
             console.log(data);
             const response = await fetch('/api/cart', {
@@ -70,7 +69,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
             borderRadius: '4px',
             //backgroundColor: 'var(--background)',
         }}>
-            <Modal centered show={show} onHide={handleClose} className='modal-white'>
+            <Modal centered show={show} onHide={handleClose} >
             <Form id={`${productInfo.id}-form`} onSubmit={handleSubmit}>
                 <Modal.Header style={{ borderBottom: 'none'}} closeButton>
                 </Modal.Header>
@@ -80,15 +79,8 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                             <Col md={6} className="d-flex justify-content-center flex-wrap">
                             <Image
                                 onClick={handleShow}
-                                style={props.style ? props.style : {
-                                    height: 'auto',
-                                    padding: '10px',
-                                    // boxShadow: '5px 5px 5px 5px rgb(190, 187, 187, 0.5)',
-                                    backgroundColor: 'var(--background)',
-                                    transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
-                                    maxWidth: '100%',
-                                    maxHeight: '100%',
-                                }}
+                                className="product-image"
+                                style={props.style ? props.style : {}}
                                 src={`${productInfo.img_path}`}
                             />                            
                             </Col>
@@ -111,9 +103,9 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                 <Col>
                                     <ButtonGroup className="d-inline-flex">
                                         <input type="hidden" name="quantity" value={quantity} />
-                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle color='var(--textPrimary) !important'/></Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle/></Button>
                                         <Button size="sm" style={{backgroundColor: 'var(--primary)'}} disabled>{`QTY: ${quantity}`}</Button>
-                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline color='var(--textPrimary) !important'/></Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
                                     </ButtonGroup>
                                 </Col>
                             </Col>
@@ -130,27 +122,17 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                 </Modal.Footer>
                 </Form>
             </Modal>
-            <div style={{ padding: '0px 0px 5px 0px'}}>
-            {/* <div> */}
+            <div>
             <Image
                 onClick={handleShow}
-                style={props.style ? props.style : {
-                    // width: '50%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    // boxShadow: '5px 5px 5px 2px rgb(190, 187, 187, 0.5)',
-                    // backgroundColor: 'var(--primary-transparent)',
-                    backgroundColor: 'white',
-                    transition: 'all 0.3s ease, filter 0.1s ease', // Add a transition for all properties over 0.3 seconds with ease timing function
-                    maxWidth: '100%',
-                    // maxHeight: '100%',
-                }}
+                className="product-image"
+                style={props.style ? props.style : {}}
                 src={`${productInfo.img_path}`}
                 alt="product"
             />
-                <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', paddingTop: '10px'}}>
-                <h3 style={{ textAlign: 'center'}}>${productInfo.price}</h3>
-                <h3 style={{ textAlign: 'center', paddingLeft: '5px'}}>{productInfo.name}</h3>
+                <div className="product-info">
+                <h3 className="price-text">${productInfo.price}</h3>
+                <h3 className="name-text">{productInfo.name}</h3>
                 </div>
             </div>
         </Col>

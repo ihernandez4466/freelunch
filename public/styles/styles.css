@@ -1,15 +1,19 @@
 @import "./root.css";
 
+/* ======================
+   BASE STYLES (Desktop First)
+   ====================== */
 body {
   font-family: 'serif';
-  background-color: var(--background-grey);
+  background-color: white;
   margin: 0;
   height: 100vh;
   overflow: hidden; /* Prevents horizontal scrollbar */
   overflow-y: scroll; 
 }
 
-.btn-primary{
+/* Button Styles */
+.btn-primary {
   background-color: var(--primary);
   border-radius: 15px;
   border: none;
@@ -27,7 +31,7 @@ body {
 .btn-neutral {
   background-color: var(--background);
   color: var(--textPrimary);
-  border: 1px solid #000 !important; /* Change to desired color and width */
+  border: 1px solid #000 !important;
 }
 .btn-neutral:hover, .btn-neutral:focus, .btn-neutral.checked, .btn-neutral.active, .open>.dropdown-toggle.btn-neutral {
   background-color: var(--primary) !important;
@@ -37,23 +41,25 @@ body {
 
 .btn-cart {
   background-color: var(--secondary);
-  color: var(--textPrimary);
+  color: var(--textSecondary);
   border-radius: 15px;
   border: none;
 }
 .btn-cart:hover {
-  background-color: var(--secondary);
+  background-color: var(--primary);
   color: var(--textSecondary);
   border: none;
 }
 
+/* Layout - Desktop First */
 .page-header {
   width: 100%;
-  height: 50vw;
+  height: 50vw; /* Desktop: default height */
 }
 
+/* Typography - Desktop First */
 h1 {
-  font-size: 4.0vmin;
+  font-size: 4.0vmin; /* Desktop: default font */
   color: var(--textPrimary);
 }
 h2 {
@@ -65,6 +71,164 @@ h3 {
   color: var(--textPrimary);
 }
 p {
-  font-size: 2vmin;
+  font-size: 2vmin; /* Desktop: default text */
   color: var(--textPrimary);
+}
+.product-image {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    transition: all 0.3s ease, filter 0.1s ease; /* Add a transition for all properties over 0.3 seconds with ease timing function */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.posters-header {
+    padding: 50px;
+}
+
+.content {
+  padding: 50px 50px 50px 50px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.price-text, .name-text {
+  font-size: large;
+}
+
+.brand-section {
+  position: relative;
+}
+
+.brand-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    transparent 15%,
+    transparent 85%,
+    white 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+/* ======================
+   TABLET STYLES
+   ====================== */
+@media (max-width: 1023px) {
+  .page-header {
+    height: 60vw; /* Tablet: medium height */
+  }
+  
+  h1 {
+    font-size: 4.2vmin;
+  }
+  h2 {
+    font-size: 3.2vmin;
+  }
+  h3 {
+    font-size: 2.7vmin;
+  }
+  p {
+    font-size: 2.2vmin;
+  }
+}
+
+/* ======================
+   MOBILE STYLES
+   ====================== */
+@media (max-width: 768px) {
+  .page-header {
+    height: 80vw; /* Mobile: larger height */
+  }
+  
+  h1 {
+    font-size: 2rem; /* Mobile: responsive font */
+    padding: 2vw;
+  }
+  h2 {
+    font-size: 2rem;
+    padding: 1.5vw;
+  }
+  h3 {
+    font-size: 2rem;
+    padding: 1.5vw;
+  }
+  p {
+    font-size: 2vmax; /* Mobile: larger text */
+  }
+
+  .banner-text {
+    font-size: 1rem;
+  }
+  .product-image {
+    height: auto;
+    padding: 1rem;
+    object-fit: contain;
+    /* // boxShadow: '5px 5px 5px 5px rgb(190, 187, 187, 0.5)', */
+    transition: all 0.3s ease, filter 0.1s ease; /* Add a transition for all properties over 0.3 seconds with ease timing function */
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .content {
+    padding: 1rem;
+  }
+
+  .price-text, .name-text {
+    font-size: large;
+    margin: 0;
+  }
+
+  .contact-us-div {
+    padding: 1rem;
+    background-color: var(--background);
+    margin: 1vw;
+    border-radius: 20px;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    .card {
+      margin-top: 1rem;
+    }
+
+    .form-floating {
+      font-size: 0.75rem;
+      margin: 0.5rem;
+      height: 100%;
+    }
+  }
+
+  .total-btn {
+    font-size: 1.5rem;
+  }
+
+  .appreciation-header {
+    font-size: 1.5rem;
+  }
+
+  .no-items {
+    font-size: 1.5rem;
+  }
+  /* .product-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  } */
+
 }
