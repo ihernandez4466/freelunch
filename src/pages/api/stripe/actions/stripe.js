@@ -10,16 +10,32 @@ export default async function handler(req, res) {
   try {
     const origin = req.headers.origin || `https://${req.headers.host}`
 
+    // Extract line items (remove itemDetails for Stripe)
+    const stripeLineItems = items.map(({ itemDetails, ...stripeItem }) => stripeItem);
+
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
-      line_items: items,
+      line_items: stripeLineItems,
       mode: 'payment', // one time payment -> can change to subscription or future payment
       return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,
       shipping_address_collection: {
         allowed_countries: ['US', 'CA'], // Add countries you ship to
       },
       billing_address_collection: 'required', // Optional: also collect billing address
+      payment_intent_data: {
+        metadata: {
+          order_items: JSON.stringify(items.map(item => ({
+            name: item.itemDetails?.name || 'Unknown Product',
+            size: item.itemDetails?.size || 'N/A',
+            product_id: item.itemDetails?.product_id || 'N/A',
+            quantity: item.itemDetails.quantity
+          }))),
+          order_summary: items.map(item => 
+            `${item.itemDetails?.name || 'Product'} (Size: ${item.itemDetails?.size?.toUpperCase() || 'N/A'}) x${item.itemDetails?.quantity || item.quantity}`
+          ).join(', ')
+        }
+      }
     })
 
     res.status(200).json({ client_secret: session.client_secret })

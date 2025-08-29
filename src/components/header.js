@@ -1,10 +1,12 @@
 import { Container } from 'react-bootstrap';
 import { FaFire } from "react-icons/fa";
+import CollageCarousel from './collageCarousal';
 
 export default function Header({ imagePath }) {
-    const headerPath = imagePath + '/branding/photo-collage-blackwhite.png';
     const brand = imagePath + '/branding/freelunch-signature-and-slogan.png';
-    const headerPath2 = imagePath + '/branding/photo-collage-color.png';
+    const headerPath1 = imagePath + '/branding/photo-collage-blackwhite-models.png';
+    const headerPath2 = imagePath + '/branding/photo-collage-color-model1.png';
+    const headerPath3 = imagePath + '/branding/photo-collage-color-model2.png';
     
     return (
       <Container fluid>        
@@ -22,18 +24,17 @@ export default function Header({ imagePath }) {
           <h2 className="banner-text" style={{ margin: '0', color: 'var(--textSecondary)'}}>Pre-sales are live! Secure your merch at checkout!</h2>
           <FaFire style={{ marginRight: '2.5px'}}/>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}> 
-          <div style={{ width: '100%' }}>
-            <img src={headerPath} className="page-header" loading="lazy" alt="freelunch header" style={{ objectFit: 'cover', width: '100%', display: 'block' }}></img>
-          </div>
-          <div id="brand" className="brand-section" style={{ 
+
+        <div id="brand" className="brand-section" style={{ 
             width: '100%', 
             backgroundColor: 'var(--background)',
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center',
             padding: '20px 0',
-            minHeight: '200px'
+            minHeight: '100px',
+            maxHeight: '300px',
+            height: 'auto'
           }}>
             <img src={brand} loading="lazy" alt="freelunch brand" style={{ 
               width: '50%', 
@@ -42,11 +43,14 @@ export default function Header({ imagePath }) {
               height: 'auto',
               display: 'block',
             }}></img>
-          </div>
-          <div style={{ width: '100%' }}>
-            <img src={headerPath2} className="page-header" loading="lazy" alt="freelunch collage" style={{ objectFit: 'cover', width: '100%', display: 'block' }}></img>
-          </div>
         </div>
+
+
+        <CollageCarousel>
+          <img src={headerPath1} className="page-header" loading="lazy" alt="freelunch header" style={{ objectFit: 'cover', width: '100%', display: 'block' }} />
+          <img src={headerPath3} className="page-header" loading="lazy" alt="freelunch collage" style={{ objectFit: 'cover', width: '100%', display: 'block' }} />
+          <img src={headerPath2} className="page-header" loading="lazy" alt="freelunch header" style={{ objectFit: 'cover', width: '100%', display: 'block' }} />
+        </CollageCarousel>
       </Container>
-      );
-    }
+    );
+}

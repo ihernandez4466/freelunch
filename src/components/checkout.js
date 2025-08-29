@@ -28,7 +28,6 @@ const fetchClientSecret = async ({ items }) => {
 }
 
 export default function Checkout({ items }) {
-  debugger;
   return (
     <div id="checkout">
       <EmbeddedCheckoutProvider
