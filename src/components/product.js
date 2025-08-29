@@ -97,17 +97,17 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                     <ToggleButtonGroup id="sizeInput" name="size" type="radio" value={size}
                                         onChange={handleSize} style={{ paddingBottom: '15px'}}>
                                     {productInfo.available_sizes.map((size, i) => 
-                                        <ToggleButton size="sm" className="btn-neutral" id={`size-${i}`} value={size}>{size}</ToggleButton>)}                                
+                                        <ToggleButton size="sm" className="btn-neutral" id={`size-${i}`} value={size}>{size.toUpperCase()}</ToggleButton>)}                                
                                     </ToggleButtonGroup>
                                 </Row>
-                                <Col>
+                                <Row>
                                     <ButtonGroup className="d-inline-flex">
                                         <input type="hidden" name="quantity" value={quantity} />
                                         <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle/></Button>
                                         <Button size="sm" style={{backgroundColor: 'var(--primary)'}} disabled>{`QTY: ${quantity}`}</Button>
                                         <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
                                     </ButtonGroup>
-                                </Col>
+                                </Row>
                             </Col>
                     </Row>
                    
@@ -126,12 +126,24 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
             <Image
                 onClick={handleShow}
                 className="product-image"
-                style={props.style ? props.style : {}}
+                style={{
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
+                    ...(props.style ? props.style : {})
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.transform = 'scale(1.05)';
+                    e.target.style.opacity = '0.9';
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.transform = 'scale(1)';
+                    e.target.style.opacity = '1';
+                }}
                 src={`${productInfo.img_path}`}
                 alt="product"
             />
                 <div className="product-info">
-                <h3 className="price-text">${productInfo.price}</h3>
+                {/* <h3 className="price-text">${productInfo.price}</h3> */}
                 <h3 className="name-text">{productInfo.name}</h3>
                 </div>
             </div>

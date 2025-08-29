@@ -147,7 +147,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                 <Col xs={12}>
                     <p>{product.name}</p>
                     <p>{`Price: $${product.price}`}</p>
-                    <p>{`Size: ${product.size}`}</p>
+                    <p>{`Size: ${product.size.toUpperCase()}`}</p>
                     <ButtonGroup size="sm" style={{ width: '50%' }}>
                         <Button style={{backgroundColor: 'var(--primary)', flex: 1}} disabled={product.quantity <= 1} onClick={() => handleQuantity(product, "subtract")}><GrSubtractCircle /></Button>
                         <Button style={{backgroundColor: 'var(--primary)', flex: 2}} disabled >{`QTY: ${product.quantity}`}</Button>

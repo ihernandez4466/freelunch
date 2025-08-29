@@ -180,9 +180,9 @@ p {
     font-size: 2vmax; /* Mobile: larger text */
   }
 
-  .banner-text {
+  /* .banner-text {
     font-size: 1rem;
-  }
+  } */
   .product-image {
     height: auto;
     padding: 1rem;
