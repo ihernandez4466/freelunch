@@ -127,6 +127,8 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                 onClick={handleShow}
                 className="product-image"
                 style={{
+                    maxWidth: '100%',
+                    maxHeight: '100%',
                     cursor: 'pointer',
                     transition: 'transform 0.2s ease-in-out, opacity 0.2s ease-in-out',
                     ...(props.style ? props.style : {})

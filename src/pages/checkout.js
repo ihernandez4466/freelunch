@@ -2,13 +2,18 @@ import Checkout from '../components/checkout';
 import { useState, useEffect } from 'react';
 
 export default function CheckoutPage({ items }) {
-  // debugger;
   const [sanitizedItems, setSanitizedItems] = useState(null);
   useEffect(() => {
-    debugger;
     const sanitizedItems = items ? items.rows.map(item => ({
       "quantity": item.quantity,
-      "price": item.stripe_price_id
+      "price": item.stripe_price_id,
+      // Include item details for metadata
+      "itemDetails": {
+        "name": item.name,
+        "size": item.size,
+        "product_id": item.product_id || item.id,
+        "quantity": item.quantity
+      }
     })) : [];
     setSanitizedItems(sanitizedItems);
   }, [items]);
