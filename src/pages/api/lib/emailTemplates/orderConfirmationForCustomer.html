@@ -1,21 +1,168 @@
-<html>
-    <body>
-      <p>Thank you {{customer_first}} {{customer_last}} for submitting an order.</p>
-      <hr/>
-      <p>Your contact information</p>
-      <p>Email: {{customer_email}}</p>
-      <p>Phone: {{customer_phone}}</p>
-      <p>Comments: {{customer_comments}}</p>
-      <hr/>
-      <p>Your order confirmation: {{order_details_id}}</p>
-      <p>Your order total: {{order_total}}</p>
-      {{#each customer_order}}
-        <div style="padding: 10px;">
-          <p>Name: {{name}}</p>
-          <p>Price: ${{price}}</p>
-          <p>Size: {{size}}</p>
-          <p>QTY: {{quantity}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - FreeLunch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            max-height: 60px;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 5px 5px 5px 2px rgba(190, 187, 187, 0.5);
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .order-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 7px 7px 7px 3px rgba(190, 187, 187, 0.6);
+        }
+        .item-details {
+            flex: 1;
+            margin-left: 15px;
+        }
+        .item-details h3 {
+            margin: 5px 0;
+            color: #333;
+        }
+        .total-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer img {
+            max-height: 40px;
+        }
+        .footer-text {
+            flex: 1;
+            margin-left: 15px;
+        }
+        .contact-info {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="/images/branding/logo-icon.png" alt="FreeLunch Logo">
+            <h1>Order Confirmation</h1>
         </div>
-      {{/each}}
-    </body>
-  </html>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="section">
+                <h2>Thank You!</h2>
+                <p>Thank you for your order! We've received your request and our team will reach out to you with the next steps to complete your order. Please expect 2-3 business weeks to receive your order.</p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="section">
+                <h2>Your Contact Information</h2>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> {{customer_email}}</p>
+                    {{#if customer_phone}}
+                    <p><strong>Phone:</strong> {{customer_phone}}</p>
+                    {{/if}}
+                    {{#if customer_comments}}
+                    <p><strong>Comments:</strong> {{customer_comments}}</p>
+                    {{/if}}
+                </div>
+            </div>
+
+            <!-- Order Items -->
+            <div class="section">
+                <h2>Your Order</h2>
+                {{#each customer_order}}
+                <div class="order-item">
+                    <div class="item-details">
+                        <h3>{{name}}</h3>
+                        <h3>Price: ${{price}}</h3>
+                        <h3>Size: {{size}}</h3>
+                        <h3>Quantity: {{quantity}}</h3>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+            <!-- Order Total -->
+            <div class="section">
+                <div class="total-section">
+                    <h2>Order Total</h2>
+                    <div class="total-amount">${{order_total}}</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <p>If you have any questions or concerns, feel free to contact us at <strong>freelunch707@gmail.com</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <img src="/images/branding/logo-icon.png" alt="FreeLunch Logo">
+            <div class="footer-text">
+                <p><strong>FreeLunch</strong></p>
+                <p>Thank you for your business!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
