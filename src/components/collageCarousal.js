@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-const CollageCarousel = ({ children, autoSlide = true, slideInterval = 2000, controls = false, indicators = true }) => {
+const CollageCarousel = ({ children, autoSlide = true, slideInterval = 2500, controls = false, indicators = true }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

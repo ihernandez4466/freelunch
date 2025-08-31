@@ -1,11 +1,11 @@
 import { Row } from "react-bootstrap";
 import { getCookie, splitCookieValues } from "../components/useCookie";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import CustomNavBar from "../components/navbar";
 
 export default function CheckoutComplete({ customerEmail }){
     // can get the session id from the user id
-    const clearCart = async () => {
+    const getCartDataAndClear = async () => {
         const session = getCookie('userId');
         const values = splitCookieValues(session);
         const sessionId = values[0];
@@ -16,24 +16,71 @@ export default function CheckoutComplete({ customerEmail }){
         
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Failed to clear cart: ${response.status} - ${errorText}`);
+            throw new Error(`Failed to get cart: ${response.status} - ${errorText}`);
         }
         
         const data = await response.json();
-        if(data && data.rows && data.rows.length > 0) {
-            data.rows.forEach(async (item) => {
+        const cartItems = data && data.rows ? data.rows : [];
+        
+        // Clear cart items if they exist
+        if(cartItems.length > 0) {
+            await Promise.all(cartItems.map(async (item) => {
                 const deleteResponse = await fetch(`/api/cart?id=${item.cart_id}`, {
                     method: 'DELETE',
                 });
                 if (!deleteResponse.ok) {
                     throw new Error('Failed to delete cart item');
                 }
-            })
+            }));
         }
+        
+        return { cartItems, sessionId };
     }
+    const sendConfirmationEmail = useCallback(async (cartItems, sessionId) => {
+        if (!cartItems || cartItems.length === 0) {
+            console.log('No items in cart, skipping confirmation email');
+            return;
+        }
+        
+        try {
+            // Calculate order total from cart items
+            const orderTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+            
+            const response = await fetch('/api/order-confirmation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    customer_email: customerEmail,
+                    session_id: sessionId,
+                    customer_order: cartItems,
+                    order_total: orderTotal
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to send confirmation email: ${response.status}`);
+            }
+            
+            console.log('Confirmation email sent successfully');
+        } catch (error) {
+            console.error('Error sending confirmation email:', error);
+        }
+    }, [customerEmail]);
+    
     useEffect(() => {
-        clearCart();
-    }, []);
+        const handleCheckoutComplete = async () => {
+            try {
+                const { cartItems, sessionId } = await getCartDataAndClear();
+                await sendConfirmationEmail(cartItems, sessionId);
+            } catch (error) {
+                console.error('Error during checkout completion:', error);
+            }
+        };
+        
+        handleCheckoutComplete();
+    }, [sendConfirmationEmail]);
     return (
         <>
         <CustomNavBar showCart={false} showHomeLink={true} showBrand={false} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
