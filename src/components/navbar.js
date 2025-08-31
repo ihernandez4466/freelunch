@@ -16,6 +16,7 @@ export default function CustomNavBar(props) {
     const showSweatersLink = props.showSweatersLink === false ? props.showSweatersLink : true
     const showPostersLink = props.showPostersLink === false ? props.showPostersLink : true
     const showContactLink = props.showContactLink === false ? props.showContactLink : true
+    const showWholeSaleLink = props.showWholeSaleLink === true ? props.showWholeSaleLink : false
     const showCartLink = props.showCartLink === false ? props.showCartLink : true
     const [showCart, setShowCart] = useState(false);
     const handleClose = () => setShowCart(false);
@@ -54,6 +55,10 @@ export default function CustomNavBar(props) {
           { showContactLink && 
           <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
             Contact Us
+          </ScrollLink> }
+          { showWholeSaleLink && 
+          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+            WholeSale
           </ScrollLink> }
           { showCartLink && 
           <>

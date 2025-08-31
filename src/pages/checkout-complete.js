@@ -83,7 +83,7 @@ export default function CheckoutComplete({ customerEmail }){
     }, [sendConfirmationEmail]);
     return (
         <>
-        <CustomNavBar showCart={false} showHomeLink={true} showBrand={false} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
+        <CustomNavBar showCart={false} showHomeLink={true} showBrand={false} showSweatersLink={false} showPostersLink={false} showContactLink={false} showWholeSaleLink={false} showCartLink={false} />
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h1 className="appreciation-header mb-4 mt-4 text-center">We appreciate your business! A confirmation email will be sent to{' '}
           {customerEmail}.</h1>

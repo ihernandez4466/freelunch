@@ -154,13 +154,13 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showBrand: true};  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showBrand: true, showWholeSaleLink: true};  
   
   return (
       <div>
         {showCheckout ? 
          (<>
-            <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showCartLink={false} />
+            <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showWholeSaleLink={false} showCartLink={false} />
             <CheckoutPage items={items}/>
           </>)
           : 

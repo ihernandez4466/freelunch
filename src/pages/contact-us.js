@@ -62,8 +62,8 @@ export default function ContactUs() {
         <Row id="contact-us" className="contact-us-div">
             <Col md={6} style={{ paddingTop: '15px', paddingBottom: '15px'}}>
                 <h1 style={{ color: 'var(--textPrimary)'}}>Join The Movement</h1>
-                <p style={{ color: 'var(--textPrimary)', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters or posters, 
-                    we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation. Purchases online will be coming soon and delivery is available.
+                <p style={{ color: 'var(--textPrimary)', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters/posters or buy wholesale, 
+                    we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation.
                 </p>
             <div style={{ display: 'flex', alignItems: 'center'}}><MdEmail /><h3 style={{ margin: '0px 0px 0px 10px'}}>freelunch707@gmail.com</h3></div>
             <div style={{ display: 'flex', alignItems: 'center'}}><BiSolidPhoneCall /><h3 style={{ margin: '0px 0px 0px 10px'}}>+1 (707) 931-8265</h3></div>
