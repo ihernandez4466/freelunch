@@ -15,7 +15,9 @@ CREATE TABLE products (
     modified_at timestamp,
     img_path text NOT NULL,
     available_quantity int DEFAULT 10,
-    available_sizes text ARRAY NOT NULL
+    available_sizes text ARRAY NOT NULL,
+    stripe_price_id text NOT NULL,
+    stripe_shipping_id text NOT NULL
 );
 
 CREATE TABLE order_details (

@@ -9,11 +9,11 @@ export default function Posters() {
     const posterImages = [
         { src: '/images/posters/brand.png', alt: 'Brand Poster' },
         { src: '/images/posters/chalupa-betty.png', alt: 'Chalupa Betty Poster' },
-        { src: '/images/posters/chiquita.png', alt: 'Chiquita Poster' },
+        // { src: '/images/posters/chiquita.png', alt: 'Chiquita Poster' },
         { src: '/images/posters/dama.png', alt: 'Dama Poster' },
-        { src: '/images/posters/gangster-live.png', alt: 'Gangster Live Poster' },
+        // { src: '/images/posters/gangster-live.png', alt: 'Gangster Live Poster' },
         { src: '/images/posters/man-gangster-live.png', alt: 'Man Gangster Live Poster' },
-        { src: '/images/posters/monalisa.png', alt: 'Monalisa Poster' },
+        // { src: '/images/posters/monalisa.png', alt: 'Monalisa Poster' },
         { src: '/images/posters/selena-gangster-live.png', alt: 'Selena Gangster Live Poster' },
         { src: '/images/posters/serena-gangster-live.png', alt: 'Serena Gangster Live Poster' }
     ];

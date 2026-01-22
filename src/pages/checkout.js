@@ -12,7 +12,8 @@ export default function CheckoutPage({ items }) {
         "name": item.name,
         "size": item.size,
         "product_id": item.product_id || item.id,
-        "quantity": item.quantity
+        "quantity": item.quantity,
+        "stripe_shipping_id": item.stripe_shipping_id
       }
     })) : [];
     setSanitizedItems(sanitizedItems);
