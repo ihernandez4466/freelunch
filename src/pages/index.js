@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { setCookieInBrowser, getCookie, deleteCookie, splitCookieValues} from '../components/useCookie';
 import { v4 as uuidv4 } from 'uuid';
 import Header from '../components/header';
+import PhotoCollage from '../components/photoCollage';
 
 const imagePath = '/images';
 
@@ -169,6 +170,8 @@ export default function Home(props) {
             <Header imagePath={imagePath}/>
             <div className="content">
               <Sweaters {...enhancedProps} />
+              <hr style={{ margin: '4rem 0' }}></hr>
+              <PhotoCollage imagePath={imagePath} />
               <hr style={{ margin: '4rem 0' }}></hr>
               <Posters {...enhancedProps} />
               <hr style={{ margin: '4rem 0' }}></hr>

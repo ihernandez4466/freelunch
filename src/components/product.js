@@ -89,7 +89,8 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
                                     <input type="hidden" name="product" value={productInfo.id} />
                                     <input type="hidden" name="category" value={productInfo.category} />
                                     <input type="hidden" name="stripe_price_id" value={productInfo.stripe_price_id} />
-                                    <h1>{`$${productInfo.price} ${productInfo.name}`}</h1>
+                                    <h1>{`$${productInfo.price}`}</h1>
+                                    <h1>{`${productInfo.name}`}</h1>
                                     <input type="hidden" name="price" value={productInfo.price} />
                                 </Row>
                                 <Row>

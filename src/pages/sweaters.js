@@ -41,8 +41,8 @@ export default function Sweaters(props) {
             </Row>
         ));
     
-        return <>{renderResult[0]}</>;
-    }
+    return <>{renderResult}</>;
+}
     
     
     return (

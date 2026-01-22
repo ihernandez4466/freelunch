@@ -8,7 +8,7 @@ const handler = {
         if (userId == undefined || userId == null) {
             return res.status(400).json("Missing userid")
         }
-        let query = `SELECT session_id, cart_items.id as cart_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path, stripe_price_id
+        let query = `SELECT session_id, cart_items.id as cart_id, product_id, size, quantity, total, name, price, description, cart_items.category, img_path, stripe_price_id, stripe_shipping_id
             FROM cart_items
             JOIN shopping_session
             ON shopping_session.id = cart_items.session_id

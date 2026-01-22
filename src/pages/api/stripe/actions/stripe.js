@@ -22,6 +22,9 @@ export default async function handler(req, res) {
       shipping_address_collection: {
         allowed_countries: ['US', 'CA'], // Add countries you ship to
       },
+      shipping_options: [
+        { shipping_rate: items[0]?.itemDetails?.stripe_shipping_id } // this assumes they all have the same shipping price
+      ],
       billing_address_collection: 'required', // Optional: also collect billing address
       payment_intent_data: {
         metadata: {
