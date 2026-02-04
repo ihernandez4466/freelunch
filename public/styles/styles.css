@@ -1,10 +1,10 @@
 @import "./root.css";
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&display=swap');
 /* ======================
    BASE STYLES (Desktop First)
    ====================== */
 body {
-  font-family: 'serif';
+  font-family: 'Cormorant', serif;
   background-color: white;
   margin: 0;
   height: 100vh;
@@ -114,13 +114,13 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
     white 0%,
     transparent 15%,
     transparent 85%,
     white 100%
-  );
+  ); */
   pointer-events: none;
   z-index: 1;
 }
@@ -193,7 +193,7 @@ p {
 
   .contact-us-div {
     padding: 1rem;
-    background-color: var(--background);
+    /* background-color: var(--background); */
     margin: 1vw;
     border-radius: 20px;
 

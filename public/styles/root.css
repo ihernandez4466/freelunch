@@ -1,11 +1,12 @@
 :root {
   /* light mode */
-  --primary: #7e4040;
+  --primary: #415763; 
   --primary-transparent: rgb(126,64,64,0.1);  
-  --secondary: #bc0404;
+  --secondary: #000000;
+  /* --secondary:#E7B2B7;   */
   --secondary-transparent: rgb(188,4,4, 0.1);
   --background-grey: #eeeeee;
-  --background: rgb(239,209,209,0.1);
+  --background: rgb(239,209,209,0.2);
   --background-nontransparent: rgb(216, 200, 187);
   --textPrimary: #383030;
   --textSecondary: white;
