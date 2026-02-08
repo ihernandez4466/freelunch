@@ -66,7 +66,7 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
     return (
         <Col xs={12} md={4} className="d-flex justify-content-center mb-3 overflow-hidden" style={{
             borderRadius: '4px',
-            //backgroundColor: 'var(--background)',
+            backgroundColor: 'var(--background)',
         }}>
             <ProductModal
                 show={show}

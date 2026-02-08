@@ -36,9 +36,9 @@ export default function Sweaters(props) {
         const renderResult = resultOfN.map((row, rowIndex) => (
             <Row 
             style={{
-                backgroundColor: 'var(--background)',
+                // backgroundColor: 'var(--background)',
                 padding: '30px',
-                borderRadius: '20px',
+                // borderRadius: '20px',
             }}
             key={`productdiv-${rowIndex}`}>
                 {row.map((item, idx) => (

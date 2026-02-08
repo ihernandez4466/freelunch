@@ -26,6 +26,11 @@ export default async function handler(req, res) {
         { shipping_rate: items[0]?.itemDetails?.stripe_shipping_id } // this assumes they all have the same shipping price
       ],
       billing_address_collection: 'required', // Optional: also collect billing address
+      // Dark mode – matches site (--background-dark, --primary). Requires API version 2025-09-30.clover+ for branding_settings.
+      branding_settings: {
+        background_color: '#000000',
+        button_color: '#FB3232',
+      },
       payment_intent_data: {
         metadata: {
           order_items: JSON.stringify(items.map(item => ({

@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap';
 import { FaFire } from "react-icons/fa";
 
 export default function Header({ imagePath }) {
-    const brand = imagePath + '/branding/header-juju-blue.png';
+    const brand = imagePath + '/branding/header-blue-juju.png';
     
     return (
       <Container fluid>        
