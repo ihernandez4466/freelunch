@@ -59,71 +59,81 @@ export default function ContactUs() {
     
     
     return (
-        <Row id="contact-us" className="contact-us-div">
-            <Col md={6} style={{ paddingTop: '15px', paddingBottom: '15px'}}>
+        <div id="contact-us" style={{
+            padding: '30px',
+            alignContent: 'center',
+            alignItems: 'center',
+            // backgroundColor: 'var(--background)',
+            // borderRadius: '20px 20px 20px 20px', 
+        }}>
+            <Row>          
                 <h1 style={{ color: 'var(--textPrimary)'}}>Join The Movement</h1>
-                <p style={{ color: 'var(--textPrimary)', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters/posters or buy wholesale, 
-                    we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation.
-                </p>
-            <div style={{ display: 'flex', alignItems: 'center'}}><MdEmail /><h3 style={{ margin: '0px 0px 0px 10px'}}>freelunch707@gmail.com</h3></div>
-            <div style={{ display: 'flex', alignItems: 'center'}}><BiSolidPhoneCall /><h3 style={{ margin: '0px 0px 0px 10px'}}>+1 (707) 931-8265</h3></div>
-            <div style={{ display: 'flex', alignItems: 'center'}}><MdLocationPin /><h3 style={{ margin: '0px 0px 0px 10px'}}><a className="branded-link" href={'https://www.google.com/maps/place/Sonoma,+CA+95476/@38.2910861,-122.4902991,13z/data=!3m1!4b1!4m6!3m5!1s0x8085ac43817b9d77:0x380ed210ee6e045!8m2!3d38.291859!4d-122.4580356!16zL20vMHI3OGs?entry=ttu'} target="_blank" rel="noopener noreferrer">
-                        Sonoma, California
-                    </a></h3></div>
-            </Col>
-            <Col md={6}>
-            <Card style={{ height: '100%' }}>
-                <Card.Body>
-            <Form id="contact-form" onSubmit={handleSubmit}>
-            <Row className="mb-3">
-                    <Col md>
-                        <FloatingLabel label="First Name">
-                        <Form.Control type="text" name="customer_first" placeholder="Enter First Name" required/>
-                        </FloatingLabel>
-                    </Col>
-                    <Col md>
-                    <FloatingLabel label="Last Name">
-                        <Form.Control type="text" name="customer_last" placeholder="Enter Last Name" required/>
-                        </FloatingLabel>
-                    </Col>
-                </Row>
-                
-                <Row className="mb-3">
-                    <Col md>
-                        <FloatingLabel label="Email address">
-                        <Form.Control type="email" name="customer_email" placeholder="name@example.com" required/>
-                        </FloatingLabel>
-                    </Col>
-                    <Col md>
-                        <FloatingLabel label="Phone Number">
-                        <Form.Control name="customer_phone" placeholder="Mobile or Home Phone" />
-                        </FloatingLabel>
-                    </Col>
-                </Row>
+            </Row>
+            <Row>
+                <Col sx={12} md={6} style={{ padding: '30px', borderRadius: '4px', backgroundColor: 'var(--background)'}}>
+                    <p style={{ color: 'var(--textPrimary)', fontWeight: '400'}}>If you are eager to purchase one of our customizable sweaters/posters or buy wholesale, 
+                        we are thrilled to assist you in creating something special. Feel free to reach out if you're interested in making a purchase or collaborating with us on a unique creation.
+                    </p>
+                <div style={{ display: 'flex', alignItems: 'center'}}><MdEmail /><h3 style={{ margin: '0px 0px 0px 10px'}}>freelunch707@gmail.com</h3></div>
+                <div style={{ display: 'flex', alignItems: 'center'}}><BiSolidPhoneCall /><h3 style={{ margin: '0px 0px 0px 10px'}}>+1 (707) 931-8265</h3></div>
+                <div style={{ display: 'flex', alignItems: 'center'}}><MdLocationPin /><h3 style={{ margin: '0px 0px 0px 10px'}}><a className="branded-link" href={'https://www.google.com/maps/place/Sonoma,+CA+95476/@38.2910861,-122.4902991,13z/data=!3m1!4b1!4m6!3m5!1s0x8085ac43817b9d77:0x380ed210ee6e045!8m2!3d38.291859!4d-122.4580356!16zL20vMHI3OGs?entry=ttu'} target="_blank" rel="noopener noreferrer">
+                            Sonoma, California
+                        </a></h3></div>
+                </Col>
+                <Col sm={12} md={6}>
+                <Card style={{ height: '100%' }}>
+                    <Card.Body>
+                        <Form id="contact-form" onSubmit={handleSubmit}>
+                        <Row className="mb-3">
+                                <Col md>
+                                    <FloatingLabel label="First Name">
+                                    <Form.Control type="text" name="customer_first" placeholder="Enter First Name" required/>
+                                    </FloatingLabel>
+                                </Col>
+                                <Col md>
+                                <FloatingLabel label="Last Name">
+                                    <Form.Control type="text" name="customer_last" placeholder="Enter Last Name" required/>
+                                    </FloatingLabel>
+                                </Col>
+                            </Row>
+                            
+                            <Row className="mb-3">
+                                <Col md>
+                                    <FloatingLabel label="Email address">
+                                    <Form.Control type="email" name="customer_email" placeholder="name@example.com" required/>
+                                    </FloatingLabel>
+                                </Col>
+                                <Col md>
+                                    <FloatingLabel label="Phone Number">
+                                    <Form.Control name="customer_phone" placeholder="Mobile or Home Phone" />
+                                    </FloatingLabel>
+                                </Col>
+                            </Row>
 
-                <FloatingLabel label="Comments">
-                    <Form.Control
-                    required
-                    as="textarea"
-                    name="customer_comments" 
-                    placeholder="Leave a comment here"
-                    style={{ height: '100px' }}
-                    />
-                </FloatingLabel>
-                <div style={{ padding: '20px', display: 'flex', justifyContent: 'center'}}>
-                    <Button type="submit">
-                        Contact Us
-                    </Button>
-                </div>
-            </Form>
-            </Card.Body>
-            </Card>
+                            <FloatingLabel label="Comments">
+                                <Form.Control
+                                required
+                                as="textarea"
+                                name="customer_comments" 
+                                placeholder="Leave a comment here"
+                                style={{ height: '100px' }}
+                                />
+                            </FloatingLabel>
+                            <div style={{ padding: '20px', display: 'flex', justifyContent: 'center'}}>
+                                <Button type="submit">
+                                    Contact Us
+                                </Button>
+                            </div>
+                        </Form>
+                    </Card.Body>
+                </Card>
             { showAlert && <MyAlert 
                 success={alertSuccess}
                 message={alertMessage}
                 duration={1500}
             />}
-            </Col>
-        </Row>
+                </Col>
+            </Row>
+        </div>
     );
 }
