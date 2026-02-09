@@ -2,11 +2,11 @@ import { Container } from 'react-bootstrap';
 import { FaFire } from "react-icons/fa";
 
 export default function Header({ imagePath }) {
-    const brand = imagePath + '/branding/header-blue-juju.png';
+    const brand = imagePath + '/branding/header_smaller.webp';
     
     return (
       <Container fluid>        
-         {/* <div style={{
+         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -17,9 +17,9 @@ export default function Header({ imagePath }) {
           fontWeight: 'bold',
         }}>
           <FaFire style={{ marginLeft: '2.5px'}}/>
-          <h2 className="banner-text" style={{ margin: '0', color: 'var(--textSecondary)'}}></h2>
+          <h2 className="banner-text" style={{ margin: '0', color: 'var(--textSecondary)'}}>Pre-sales are live! Secure your merch at checkout!</h2>
           <FaFire style={{ marginRight: '2.5px'}}/>
-        </div> */}
+        </div>
 
         <div id="brand" className="brand-section" style={{ 
             width: '100%', 
@@ -32,7 +32,7 @@ export default function Header({ imagePath }) {
             // maxHeight: '300px',
             // height: 'auto'
           }}>
-            <img src={brand} loading="lazy" alt="freelunch header" style={{ width: '100%', height: '100%'}}></img>
+            <img src={brand} loading="lazy" alt="freelunch header" style={{ width: '100%', height: '50vw', backgroundColor: 'white'}}></img>
         </div>
       </Container>
     );

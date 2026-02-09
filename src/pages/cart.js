@@ -116,7 +116,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
         <Container key={idx} style={{ 
             boxShadow: 'rgba(190, 187, 187, 0.5) 2px 2px 2px 2px',
             margin: '1rem 0px 1rem 0px', 
-            backgroundColor: 'white',
+            backgroundColor: 'var(--background)',
             padding: '15px'
             }}>
             {/* Image Row */}
@@ -143,7 +143,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
             </Row>
             
             {/* Product Details Row */}
-            <Row className="text-center cart-item-details" style={{ marginTop: '1rem'}}>
+            <Row className="text-center" style={{ marginTop: '1rem'}}>
                 <Col xs={12}>
                     <p>{product.name}</p>
                     <p>{`Price: $${product.price}`}</p>
@@ -183,7 +183,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
             {data && data.rows.length > 0 && !showCheckout && (
                 <div style={{
                     flexShrink: 0,
-                    // backgroundColor: 'white',
+                    backgroundColor: 'white',
                     borderTop: '1px solid #ddd',
                     display: 'flex',
                     alignItems: 'center',

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Col, Image } from 'react-bootstrap';
+import { Button, ButtonGroup, Col, Container, Image, Form, Modal, Row, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import ProductModal from './modals/productModal';
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { GrSubtractCircle } from "react-icons/gr";
 
 /**
  * Functional component that renders a widget for a product.
@@ -66,19 +67,62 @@ export default function ProductDiv({ productInfo, successSetter, ...props }) {
     return (
         <Col xs={12} md={4} className="d-flex justify-content-center mb-3 overflow-hidden" style={{
             borderRadius: '4px',
-            backgroundColor: 'var(--background)',
+            //backgroundColor: 'var(--background)',
         }}>
-            <ProductModal
-                show={show}
-                onHide={handleClose}
-                productInfo={productInfo}
-                size={size}
-                handleSize={handleSize}
-                quantity={quantity}
-                handleQuantity={handleQuantity}
-                handleSubmit={handleSubmit}
-                imageStyle={props.style}
-            />
+            <Modal centered show={show} onHide={handleClose} >
+            <Form id={`${productInfo.id}-form`} onSubmit={handleSubmit}>
+                <Modal.Header style={{ borderBottom: 'none'}} closeButton>
+                </Modal.Header>
+                <Modal.Body>
+                    <Container>
+                        <Row>
+                            <Col md={6} className="d-flex justify-content-center flex-wrap">
+                            <Image
+                                onClick={handleShow}
+                                className="product-image"
+                                style={props.style ? props.style : {}}
+                                src={`${productInfo.img_path}`}
+                            />                            
+                            </Col>
+                            <Col md={6}>
+                               <Row inline key={`${productInfo.id}-name`}>
+                                    <input type="hidden" name="product" value={productInfo.id} />
+                                    <input type="hidden" name="category" value={productInfo.category} />
+                                    <input type="hidden" name="stripe_price_id" value={productInfo.stripe_price_id} />
+                                    <h1>{`$${productInfo.price}`}</h1>
+                                    <h1>{`${productInfo.name}`}</h1>
+                                    <input type="hidden" name="price" value={productInfo.price} />
+                                </Row>
+                                <Row>
+                                    <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
+                                    <ToggleButtonGroup id="sizeInput" name="size" type="radio" value={size}
+                                        onChange={handleSize} style={{ paddingBottom: '15px'}}>
+                                    {productInfo.available_sizes.map((size, i) => 
+                                        <ToggleButton size="sm" className="btn-neutral" id={`size-${i}`} value={size}>{size.toUpperCase()}</ToggleButton>)}                                
+                                    </ToggleButtonGroup>
+                                </Row>
+                                <Row>
+                                    <ButtonGroup className="d-inline-flex">
+                                        <input type="hidden" name="quantity" value={quantity} />
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle/></Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)'}} disabled>{`QTY: ${quantity}`}</Button>
+                                        <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
+                                    </ButtonGroup>
+                                </Row>
+                            </Col>
+                    </Row>
+                   
+                    </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Row className="w-100 d-flex justify-content-center my-3">
+                        <Button size="sm" className="btn-neutral" type="submit">
+                        Add To Cart
+                        </Button>
+                    </Row>
+                </Modal.Footer>
+                </Form>
+            </Modal>
             <div>
             <Image
                 onClick={handleShow}

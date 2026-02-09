@@ -34,13 +34,7 @@ export default function Sweaters(props) {
         for (let i = 0; i < products.length; i += n) resultOfN.push(products.slice(i, i + n));
         
         const renderResult = resultOfN.map((row, rowIndex) => (
-            <Row 
-            style={{
-                // backgroundColor: 'var(--background)',
-                padding: '30px',
-                // borderRadius: '20px',
-            }}
-            key={`productdiv-${rowIndex}`}>
+            <Row key={`productdiv-${rowIndex}`}>
                 {row.map((item, idx) => (
                     <ProductDiv productInfo={item} successSetter={successFromProduct} {...props}/>
                 ))}
@@ -56,12 +50,12 @@ export default function Sweaters(props) {
             padding: '30px',
             alignContent: 'center',
             alignItems: 'center',
-            // backgroundColor: 'var(--background)',
+            backgroundColor: 'var(--background)',
             borderRadius: '20px 20px 20px 20px', 
         }}>
             <Row>
                     <h1>
-                        Sweaters
+                        Apparel
                     </h1>
                     <h3>Dive into our first collection of designs that seek to show our brand through apparel. These sweaters are completely customizable upon request</h3>
             </Row>

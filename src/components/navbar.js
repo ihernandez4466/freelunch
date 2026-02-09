@@ -30,7 +30,7 @@ export default function CustomNavBar(props) {
       router.replace(router.asPath);
     };
     return (
-      <Navbar sticky="top" style={{ height: '50px', backgroundColor:'var(--background-dark)'}}>
+      <Navbar sticky="top" style={{ height: '50px', backgroundColor:'white'}}>
       <Container 
         fluid 
         style={{ justifyContent: 'space-between', display: 'flex' }}>
@@ -62,10 +62,10 @@ export default function CustomNavBar(props) {
           </ScrollLink> }
           { showCartLink && 
           <>
-            <Button variant="link" className="btn-cart" onClick={handleShow}>
+            <Button className="btn-cart" onClick={handleShow}>
               <PiShoppingCartDuotone/>
             </Button> 
-            <Offcanvas data-bs-theme="dark" show={showCart} onHide={handleClose} placement="end">
+            <Offcanvas show={showCart} onHide={handleClose} placement="end">
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title><h1>Cart</h1></Offcanvas.Title>
               </Offcanvas.Header>
@@ -84,7 +84,7 @@ export default function CustomNavBar(props) {
 const activeLinkStyle = {
   fontSize: '2.5vmin',
   fontWeight: '700',
-  color: 'var(--brand)',
+  color: 'var(--secondary)',
   borderRadius: '5px',
   textAlign: 'center',
   textDecoration: 'none'

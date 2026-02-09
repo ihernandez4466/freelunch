@@ -155,12 +155,12 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showPostersLink: false, showBrand: true, showWholeSaleLink: true};  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showBrand: true, showWholeSaleLink: true};  
   
   return (
-    <>
-    {showCheckout ? 
-      (<>
+      <div>
+        {showCheckout ? 
+         (<>
             <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showWholeSaleLink={false} showCartLink={false} />
             <CheckoutPage items={items}/>
           </>)
@@ -170,15 +170,15 @@ export default function Home(props) {
             <Header imagePath={imagePath}/>
             <div className="content">
               <Sweaters {...enhancedProps} />
-              {/* <hr style={{ margin: '4rem 0' }}></hr> */}
-              {/* <PhotoCollage imagePath={imagePath} /> */}
-              {/* <hr style={{ margin: '4rem 0' }}></hr> */}
-              {/* <Posters {...enhancedProps} /> */}
+              <hr style={{ margin: '4rem 0' }}></hr>
+              <PhotoCollage imagePath={imagePath} />
+              <hr style={{ margin: '4rem 0' }}></hr>
+              <Posters {...enhancedProps} />
               <hr style={{ margin: '4rem 0' }}></hr>
               <ContactUs {...enhancedProps} />
             </div>
           </>)
         }
-      </>
+      </div>
   );
 }
