@@ -131,7 +131,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                     <Image style={{
                         padding: '10px',
                         boxShadow: 'rgba(190, 187, 187, 0.5) 2px 2px 2px 2px',
-                        backgroundColor: 'var(--primary-transparent)',
+                        backgroundColor: 'var(--background-light)',
                         transition: 'all 0.3s ease, filter 0.1s ease',
                         maxWidth: '10rem',
                         maxHeight: '10rem',
@@ -143,7 +143,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
             </Row>
             
             {/* Product Details Row */}
-            <Row className="text-center" style={{ marginTop: '1rem'}}>
+            <Row className="text-center cart-item-details" style={{ marginTop: '1rem'}}>
                 <Col xs={12}>
                     <p>{product.name}</p>
                     <p>{`Price: $${product.price}`}</p>
@@ -183,7 +183,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
             {data && data.rows.length > 0 && !showCheckout && (
                 <div style={{
                     flexShrink: 0,
-                    backgroundColor: 'white',
+                    // backgroundColor: 'white',
                     borderTop: '1px solid #ddd',
                     display: 'flex',
                     alignItems: 'center',

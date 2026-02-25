@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 export default function Logo({ logoSrc, customStyle }) {
 
-    const logoPath = '/images/branding/logo-icon.png';
+    const logoPath = '/images/brand/logo-icon.png';
     return (
         <>
             <Image 

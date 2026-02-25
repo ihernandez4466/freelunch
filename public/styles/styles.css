@@ -1,11 +1,10 @@
 @import "./root.css";
-
 /* ======================
    BASE STYLES (Desktop First)
    ====================== */
 body {
-  font-family: 'serif';
-  background-color: white;
+  font-family: 'Merienda', serif;
+  background-color: var(--background-dark);
   margin: 0;
   height: 100vh;
   overflow: hidden; /* Prevents horizontal scrollbar */
@@ -29,26 +28,26 @@ body {
 }
 
 .btn-neutral {
-  background-color: var(--background);
-  color: var(--textPrimary);
+  background-color: white;
+  color: var(--textSecondary);
   border: 1px solid #000 !important;
 }
 .btn-neutral:hover, .btn-neutral:focus, .btn-neutral.checked, .btn-neutral.active, .open>.dropdown-toggle.btn-neutral {
   background-color: var(--primary) !important;
   border: 1px solid #000 !important;
-  color: var(--textSecondary);
+  color: var(--textPrimary);
 }
 
 .btn-cart {
-  background-color: var(--secondary);
-  color: var(--textSecondary);
+  background-color: transparent !important;
+  color: var(--brand) !important;
   border-radius: 15px;
-  border: none;
+  border: none !important;
 }
 .btn-cart:hover {
-  background-color: var(--primary);
-  color: var(--textSecondary);
-  border: none;
+  background-color: var(--primary) !important;
+  color: var(--textPrimary) !important;
+  border: none !important;
 }
 
 /* Layout - Desktop First */
@@ -103,9 +102,47 @@ p {
   font-size: large;
 }
 
+/* Product modal – apply at all screen sizes */
+.product-modal {
+  overflow: hidden;
+  max-height: 100%;
+}
+.product-modal h1,
+.product-modal h2,
+.product-modal h3,
+.product-modal p {
+  /* color: var(--textSecondary); */
+}
+.product-modal .btn-neutral {
+  /* color: var(--textSecondary); */
+}
+
+.product-modal .btn-neutral:hover {
+  /* color: var(--textPrimary); */
+}
+
+.product-modal .product-modal-info-row {
+  max-width: 50%;
+}
+
+/* Hide horizontal scrollbar on thumbnail strip (removes grey line at end) */
+.product-modal-thumbnail-strip {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.product-modal-thumbnail-strip::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 .brand-section {
   position: relative;
 }
+  
+.cart-item-details {
+    p {
+      color: var(--textPrimary);
+    }
+  }
 
 .brand-section::before {
   content: '';
@@ -114,13 +151,13 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
     white 0%,
     transparent 15%,
     transparent 85%,
     white 100%
-  );
+  ); */
   pointer-events: none;
   z-index: 1;
 }
@@ -193,7 +230,7 @@ p {
 
   .contact-us-div {
     padding: 1rem;
-    background-color: var(--background);
+    /* background-color: var(--background); */
     margin: 1vw;
     border-radius: 20px;
 
@@ -230,5 +267,4 @@ p {
     align-items: center;
     gap: 5px;
   } */
-
 }

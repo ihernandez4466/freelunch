@@ -17,7 +17,8 @@ CREATE TABLE products (
     available_quantity int DEFAULT 10,
     available_sizes text ARRAY NOT NULL,
     stripe_price_id text NOT NULL,
-    stripe_shipping_id text NOT NULL
+    stripe_shipping_id text NOT NULL,
+    adult boolean DEFAULT true
 );
 
 CREATE TABLE order_details (

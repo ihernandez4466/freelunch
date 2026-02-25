@@ -1,14 +1,18 @@
 :root {
   /* light mode */
-  --primary: #7e4040;
-  --primary-transparent: rgb(126,64,64,0.1);  
-  --secondary: #bc0404;
+  /* --brand: #bc0404; */
+  --brand: #f90000;
+  --primary: #bc0404;/* #415763; */ 
+  --primary-transparent: rgb(251, 50, 50,0.2);
+  --secondary: #000000;
+  /* --secondary:#E7B2B7;   */
   --secondary-transparent: rgb(188,4,4, 0.1);
-  --background-grey: #eeeeee;
-  --background: rgb(239,209,209,0.1);
+  --background-dark: #000000;
+  --background-light: white;
+  --background: var(--bs-body-color);
   --background-nontransparent: rgb(216, 200, 187);
-  --textPrimary: #383030;
-  --textSecondary: white;
+  --textPrimary: #ffffff;
+  --textSecondary: #000000;
 
   /*logo: #bc0404 rgb(188,4,4);
   light-logo: #cc3232 rgb(204,50,50);
@@ -21,7 +25,7 @@
 }
 
 .branded-link {
-    color: var(--secondary) !important;
+    color: var(--brand) !important;
 }
 
 .modal-white,

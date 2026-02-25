@@ -155,30 +155,33 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showBrand: true, showWholeSaleLink: true};  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showPostersLink: false, showBrand: true, showWholeSaleLink: true};  
   
   return (
-      <div>
-        {showCheckout ? 
-         (<>
+    <>
+    {showCheckout ? 
+      (<>
             <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showWholeSaleLink={false} showCartLink={false} />
             <CheckoutPage items={items}/>
           </>)
           : 
           (<>
             <CustomNavBar {...enhancedProps}/>
-            <Header imagePath={imagePath}/>
+            <Header imagePath={imagePath + '/headers/sweater-collection.svg'}/>
             <div className="content">
-              <Sweaters {...enhancedProps} />
-              <hr style={{ margin: '4rem 0' }}></hr>
-              <PhotoCollage imagePath={imagePath} />
-              <hr style={{ margin: '4rem 0' }}></hr>
-              <Posters {...enhancedProps} />
+              <Sweaters {...enhancedProps} adult={true}/>
+            </div>
+            <Header imagePath={imagePath + '/headers/kids-collection.svg'}/>
+            <Header customStyle={{ padding: '50px' }} imagePath={imagePath + '/headers/kids-collection2.svg'}/>
+            <div className="content">
+              <Sweaters {...enhancedProps} adult={false}/>
+            </div>
+            <div className="content">
               <hr style={{ margin: '4rem 0' }}></hr>
               <ContactUs {...enhancedProps} />
             </div>
           </>)
         }
-      </div>
+      </>
   );
 }
