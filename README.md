@@ -1,6 +1,8 @@
 # Setup Locally
 
-Create a .env file in your root directory
+Create a .env file in your root directory:
+
+```
 DB_USER=postgres
 DB_HOST=localhost
 DB_DATABASE=freelunch
@@ -12,6 +14,11 @@ SMTP_PORT=465
 SMTP_SECURE=true
 EMAIL_USER=youremail
 EMAIL_PASSWORD=yourpassword
+
+# Stripe (get keys from https://dashboard.stripe.com/apikeys)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
+```
 
 Run locally
 

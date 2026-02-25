@@ -98,7 +98,8 @@ export default function ProductModal({
                                 />
                                 </Row>
                                 {/* Row 2: Thumbnails – single row, horizontal scroll if many */}
-                                <div className="d-flex flex-nowrap overflow-x-auto gap-2 justify-content-center product-modal-thumbnail-strip" style={{ minHeight: 0, paddingTop: '10px', width: '100%' }}>
+                                {/* <div className="d-flex flex-nowrap overflow-x-auto gap-2 justify-content-center product-modal-thumbnail-strip" 
+                                style={{ minHeight: 0, paddingTop: '10px', width: '100%' }}>
                                     {imagePaths.map((imgPath, index) => (
                                         <div
                                             key={index}
@@ -134,7 +135,7 @@ export default function ProductModal({
                                             )}
                                         </div>
                                     ))}
-                                </div>
+                                </div> */}
                             </div>
                         </Col>
                         {/* Column 2: xs centered, md+ aligned at start (left) */}

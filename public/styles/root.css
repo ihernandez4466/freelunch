@@ -1,14 +1,15 @@
 :root {
   /* light mode */
   /* --brand: #bc0404; */
-  --brand: #FB3232;
-  --primary: #415763; 
-  --primary-transparent: rgb(65, 87, 99,0.2);
+  --brand: #f90000;
+  --primary: #bc0404;/* #415763; */ 
+  --primary-transparent: rgb(251, 50, 50,0.2);
   --secondary: #000000;
   /* --secondary:#E7B2B7;   */
   --secondary-transparent: rgb(188,4,4, 0.1);
   --background-dark: #000000;
-  --background: rgb(65,87,99,0.5);
+  --background-light: white;
+  --background: var(--bs-body-color);
   --background-nontransparent: rgb(216, 200, 187);
   --textPrimary: #ffffff;
   --textSecondary: #000000;

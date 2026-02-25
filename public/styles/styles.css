@@ -1,10 +1,9 @@
 @import "./root.css";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&display=swap');
 /* ======================
    BASE STYLES (Desktop First)
    ====================== */
 body {
-  font-family: 'Cormorant', serif;
+  font-family: 'Merienda', serif;
   background-color: var(--background-dark);
   margin: 0;
   height: 100vh;
@@ -141,7 +140,7 @@ p {
   
 .cart-item-details {
     p {
-      color: var(--textSecondary);
+      color: var(--textPrimary);
     }
   }
 

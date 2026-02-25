@@ -116,7 +116,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
         <Container key={idx} style={{ 
             boxShadow: 'rgba(190, 187, 187, 0.5) 2px 2px 2px 2px',
             margin: '1rem 0px 1rem 0px', 
-            backgroundColor: 'white',
+            backgroundColor: 'var(--background)',
             padding: '15px'
             }}>
             {/* Image Row */}
@@ -131,7 +131,7 @@ export default function Cart({ userId, handleShowCheckout, handleShowCart }) {
                     <Image style={{
                         padding: '10px',
                         boxShadow: 'rgba(190, 187, 187, 0.5) 2px 2px 2px 2px',
-                        backgroundColor: 'var(--primary-transparent)',
+                        backgroundColor: 'var(--background-light)',
                         transition: 'all 0.3s ease, filter 0.1s ease',
                         maxWidth: '10rem',
                         maxHeight: '10rem',
