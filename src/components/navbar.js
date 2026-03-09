@@ -1,18 +1,13 @@
 import { useState } from 'react';
-import { useRouter } from "next/navigation";
 import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
-import Link from 'next/link';
 import { PiShoppingCartDuotone } from "react-icons/pi";
-import { IoMdArrowBack } from "react-icons/io";
 import Logo from '../components/logo';
 import Cart from '../pages/cart';
 
 export default function CustomNavBar(props) {
     const userId = props.userId;
     const handleShowCheckout = props.handleShowCheckout ? props.handleShowCheckout : null
-    const showHomeLink = props.showHomeLink
-    const showBrand = props.showBrand 
     const showSweatersLink = props.showSweatersLink === false ? props.showSweatersLink : true
     const showPostersLink = props.showPostersLink === false ? props.showPostersLink : true
     const showContactLink = props.showContactLink === false ? props.showContactLink : true
@@ -25,12 +20,9 @@ export default function CustomNavBar(props) {
       if(show) handleShow();
       else handleClose();
     }
-    const router = useRouter();
-    const handleHomeClick = () => {
-      router.replace(router.asPath);
-    };
+
     return (
-      <Navbar sticky="top" style={{ height: '50px', backgroundColor:'var(--background-dark)'}}>
+      <Navbar sticky="top" className="navbar" style={{ backgroundColor: 'var(--background)' }}>
       <Container 
         fluid 
         style={{ justifyContent: 'space-between', display: 'flex' }}>
@@ -38,26 +30,21 @@ export default function CustomNavBar(props) {
             <Logo />
         </Navbar.Brand>
         <Nav variant="underline" style={{ fontFamily: 'merienda' }}>
-          { showHomeLink && <Link href='/' onClick={handleHomeClick}><IoMdArrowBack className='btn-primary' style={{ color: 'white', fontSize: '20px'}}/></Link>}
-          { showBrand && 
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="brand" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
-            Home
-          </ScrollLink>}
           { showSweatersLink && 
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle}  to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+          <ScrollLink activeClass="active" to="sweaters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle} activeStyle={activeLinkStyle}>
             Sweaters
           </ScrollLink>}
           { showPostersLink && 
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="posters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+          <ScrollLink activeClass="active" to="posters" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle} activeStyle={activeLinkStyle}>
             Posters
           </ScrollLink>
           }
           { showContactLink && 
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+          <ScrollLink activeClass="active" to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle} activeStyle={activeLinkStyle}>
             Contact Us
           </ScrollLink> }
           { showWholeSaleLink && 
-          <ScrollLink activeClass="active" activeStyle={activeLinkStyle} to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle}>
+          <ScrollLink activeClass="active" to="contact-us" spy={true} smooth={true} duration={300} offset={-50} style={linkStyle} activeStyle={activeLinkStyle}>
             WholeSale
           </ScrollLink> }
           { showCartLink && 
@@ -82,7 +69,7 @@ export default function CustomNavBar(props) {
 }
 
 const activeLinkStyle = {
-  fontSize: '2.5vmin',
+  fontSize: '1rem',
   fontWeight: '700',
   color: 'var(--brand)',
   borderRadius: '5px',
@@ -91,7 +78,7 @@ const activeLinkStyle = {
 };
 
 const linkStyle = {
-  fontSize: '2.5vmin',
+  fontSize: '1rem',
   fontWeight: '600',
   color: 'var(--textPrimary)',
   padding: '2.5px',

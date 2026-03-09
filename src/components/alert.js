@@ -25,13 +25,13 @@ function MyAlert({ success, message, duration }) {
         minWidth: "300px"
       }}>
       <Alert variant={success ? "success": "danger"} style={{ 
-        color: 'var(--textSecondary)', 
+        color: 'var(--textPrimary)', 
         textAlign: 'center',
-        backgroundColor: 'var(--secondary)', 
+        backgroundColor: 'var(--primary)', 
         border: 'none'
         }}>
         {message}
-        <IoMdCheckmarkCircleOutline style={{ color: 'var(--textSecondary)'}}/>
+        <IoMdCheckmarkCircleOutline style={{ color: 'var(--textPrimary)'}}/>
       </Alert>
       </div>
     </Fade>

@@ -57,7 +57,7 @@ export default function ProductModal({
     const isGif = (path) => typeof path === 'string' && path.toLowerCase().endsWith('.gif');
 
     return (
-        <Modal data-bs-theme="dark" centered show={show} onHide={onHide} fullscreen contentClassName="d-flex flex-column h-100 product-modal">
+        <Modal data-bs-theme="dark" centered show={show} onHide={onHide} fullscreen="md-down" contentClassName="d-flex flex-column h-100 product-modal">
             <Form
                 id={`${productInfo.id}-form`}
                 onSubmit={handleSubmit}
@@ -82,21 +82,20 @@ export default function ProductModal({
                     }}
                 >
                     <Row className="flex-grow-1">
-                        {/* Column 1: xs centered, md+ aligned at end (right) */}
-                        <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-end justify-content-center">
-                            <div className="d-flex flex-column align-items-center align-items-md-end">
-                                {/* Row 1: Primary image */}
-                                <Row xs={9} md={9} className="w-100" style={{ borderBottom: '1px solid var(--primary)' }}>
+                        {/* Column 1: image – stacked on all screens */}
+                        <Col xs={12} className="d-flex flex-column align-items-center">
+                            <Row className="w-100 justify-content-center">
                                 <Image
                                     src={selectedImage}
                                     style={{
-                                        width: '450px',
-                                        height: '400px',
+                                        width: '100%',
+                                        maxWidth: '450px',
+                                        height: 'auto',
                                         objectFit: 'contain',
-                                        backgroundColor: 'white'                                    
+                                        backgroundColor: 'white',
                                     }}
                                 />
-                                </Row>
+                            </Row>
                                 {/* Row 2: Thumbnails – single row, horizontal scroll if many */}
                                 {/* <div className="d-flex flex-nowrap overflow-x-auto gap-2 justify-content-center product-modal-thumbnail-strip" 
                                 style={{ minHeight: 0, paddingTop: '10px', width: '100%' }}>
@@ -136,12 +135,11 @@ export default function ProductModal({
                                         </div>
                                     ))}
                                 </div> */}
-                            </div>
                         </Col>
-                        {/* Column 2: xs centered, md+ aligned at start (left) */}
-                        <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-start justify-content-center">
-                            <div className="w-100 text-center text-md-start" style={{ maxWidth: '90%' }}>
-                            <Row key={`${productInfo.id}-name`} className="justify-content-center justify-content-md-start">
+                        {/* Column 2: product info – stacked on all screens */}
+                        <Col xs={12} className="d-flex flex-column align-items-center">
+                            <div className="w-100 text-center" style={{ maxWidth: '90%' }}>
+                            <Row key={`${productInfo.id}-name`} className="justify-content-center">
                                 <input type="hidden" name="product" value={productInfo.id} />
                                 <input type="hidden" name="category" value={productInfo.category} />
                                 <input type="hidden" name="stripe_price_id" value={productInfo.stripe_price_id} />
@@ -149,7 +147,7 @@ export default function ProductModal({
                                 <h1>{`${productInfo.name}`}</h1>
                                 <input type="hidden" name="price" value={productInfo.price} />
                             </Row>
-                            <Row className="justify-content-center justify-content-md-start">
+                            <Row className="justify-content-center">
                                 <Form.Label htmlFor="sizeInput" key={`${productInfo.id}-size`}>Pick Size</Form.Label>
                                 <ToggleButtonGroup id="sizeInput" className="product-modal-info-row" name="size" type="radio" value={size}
                                     onChange={handleSize} style={{ paddingBottom: '15px'}}>
@@ -158,7 +156,7 @@ export default function ProductModal({
                                     )}
                                 </ToggleButtonGroup>
                             </Row>
-                            <Row className="justify-content-center justify-content-md-start">
+                            <Row className="justify-content-center">
                                 <ButtonGroup className="d-inline-flex product-modal-info-row">
                                     <input type="hidden" name="quantity" value={quantity} />
                                     <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px'}} disabled={quantity <= 1} onClick={() => handleQuantity("subtract")}><GrSubtractCircle/></Button>
@@ -166,7 +164,7 @@ export default function ProductModal({
                                     <Button size="sm" style={{backgroundColor: 'var(--primary)', borderTopRightRadius: '25px', borderBottomRightRadius: '25px'}} disabled={quantity >= productInfo.available_quantity} onClick={() => handleQuantity("add")}><IoIosAddCircleOutline /></Button>
                                 </ButtonGroup>
                             </Row>
-                            <Row style={{ padding: '10px' }} className="justify-content-center justify-content-md-start">
+                            <Row style={{ padding: '10px' }} className="justify-content-center">
                                 <Button size="sm" className="btn-neutral product-modal-info-row" type="submit">
                                     Add To Cart
                                 </Button>

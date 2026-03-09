@@ -7,9 +7,14 @@ import MyAlert from '../components/alert';
 import Header from '../components/header';
 /* Functional component that renders sweaters page.*/
 
+function buildProductEndpoint(filters) {
+    const params = { category: 'sweaters', ...(filters || {}) }
+    return `/api/product?${new URLSearchParams(params).toString()}`
+}
+
 export default function Sweaters(props) {
-    
-    const [data, isLoading, error] = DataFetcher({ endpoint: `/api/product?category=sweaters&adult=${props.adult}` })
+    const { filters } = props
+    const [data, isLoading, error] = DataFetcher({ endpoint: buildProductEndpoint(filters) })
     const products = data?.rows ?? []
     const [showAlert, setShowAlert] = useState(false);
     const [alertSuccess, setAlertSuccess] = useState(false);
@@ -36,7 +41,7 @@ export default function Sweaters(props) {
         for (let i = 0; i < products.length; i += n) resultOfN.push(products.slice(i, i + n))
         return resultOfN.map((row, rowIndex) => (
             <Row
-                style={{ padding: '30px' }}
+                className="product-sweaters-row"
                 key={`productdiv-${rowIndex}`}
             >
                 {row.map((item) => (

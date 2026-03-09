@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { setCookieInBrowser, getCookie, deleteCookie, splitCookieValues} from '../components/useCookie';
 import { v4 as uuidv4 } from 'uuid';
 import Header from '../components/header';
+import AlternatingHeader from '../components/alternatingHeader';
 import PhotoCollage from '../components/photoCollage';
 
 const imagePath = '/images';
@@ -155,13 +156,13 @@ export default function Home(props) {
     }
   }, [session]);
 
-  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showPostersLink: false, showBrand: true, showWholeSaleLink: true};  
+  const enhancedProps = { ...props, userId, handleShowCheckout, showCart, showPostersLink: false, showWholeSaleLink: true };  
   
   return (
     <>
     {showCheckout ? 
       (<>
-            <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showHomeLink={true} showSweatersLink={false} showPostersLink={false} showContactLink={false} showWholeSaleLink={false} showCartLink={false} />
+            <CustomNavBar handleShowCheckout={handleShowCheckout} showCart={false} showSweatersLink={false} showPostersLink={false} showContactLink={false} showWholeSaleLink={true} showCartLink={false} />
             <CheckoutPage items={items}/>
           </>)
           : 
@@ -169,12 +170,20 @@ export default function Home(props) {
             <CustomNavBar {...enhancedProps}/>
             <Header imagePath={imagePath + '/headers/sweater-collection.svg'}/>
             <div className="content">
-              <Sweaters {...enhancedProps} adult={true}/>
+              <Sweaters {...enhancedProps} filters={{ adult: true }} />
             </div>
             <Header imagePath={imagePath + '/headers/kids-collection.svg'}/>
-            <Header customStyle={{ padding: '50px' }} imagePath={imagePath + '/headers/kids-collection2.svg'}/>
             <div className="content">
-              <Sweaters {...enhancedProps} adult={false}/>
+            <AlternatingHeader
+              imagePaths={[
+                imagePath + '/headers/kids-collection-2.svg',
+                imagePath + '/headers/kids-collection-3.svg',
+              ]}
+                interval={5000}
+              />
+            </div>
+            <div className="content">
+              <Sweaters {...enhancedProps} filters={{ adult: false }} />
             </div>
             <div className="content">
               <hr style={{ margin: '4rem 0' }}></hr>

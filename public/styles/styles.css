@@ -98,6 +98,10 @@ p {
   text-align: center;
 }
 
+.product-sweaters-row {
+  padding: 30px;
+}
+
 .price-text, .name-text {
   font-size: large;
 }
@@ -120,11 +124,6 @@ p {
 .product-modal .btn-neutral:hover {
   /* color: var(--textPrimary); */
 }
-
-.product-modal .product-modal-info-row {
-  max-width: 50%;
-}
-
 /* Hide horizontal scrollbar on thumbnail strip (removes grey line at end) */
 .product-modal-thumbnail-strip {
   scrollbar-width: none; /* Firefox */
@@ -136,6 +135,11 @@ p {
 
 .brand-section {
   position: relative;
+}
+
+.alternating-header {
+  background-color: var(--background-dark);
+  padding: 50px;
 }
   
 .cart-item-details {
@@ -207,6 +211,19 @@ p {
     font-size: 2vmax; /* Mobile: larger text */
   }
 
+  .navbar {
+    height: 50px;
+    background-color: var(--background-dark);
+    font-size: 1rem;
+  }
+
+  .content {
+    margin: 20px;
+  }
+
+  .product-sweaters-row {
+    padding: 20px;
+  }
   /* .banner-text {
     font-size: 1rem;
   } */
@@ -260,6 +277,12 @@ p {
   .no-items {
     font-size: 1.5rem;
   }
+
+  .alternating-header {
+    background-color: var(--background-dark);
+    padding: 30px;
+  }
+
   /* .product-info {
     display: flex;
     flex-direction: row;
